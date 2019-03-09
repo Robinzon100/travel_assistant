@@ -1,0 +1,19 @@
+{
+  "name": "travel_assistant",
+  "version": "1.0.0",
+  "description": "a travel website where people can find discounts on tours",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Robinzon100/travel_assistant.git"
+  },
+  "author": "Robinzon Sokhashvili",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Robinzon100/travel_assistant/issues"
+  },
+  "homepage": "https://github.com/Robinzon100/travel_assistant#readme"
+}
