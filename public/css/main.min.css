@@ -1,0 +1,1 @@
+body{margin:0;padding:0}*,::after,::before{margin:0;padding:0;box-sizing:inherit}html{font-size:62.5%}p{font-size:calc(14px + (18 - 14) * ((100vw - 300px)/ (1900 - 700)))!important}h1{font-size:calc(18px + (35 - 18) * ((100vw - 300px)/ (1900 - 700)))!important}a{text-decoration:none}
