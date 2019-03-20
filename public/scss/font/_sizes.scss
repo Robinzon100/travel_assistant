@@ -1,0 +1,20 @@
+p {
+    font-size: calc(14px + (18 - 14) * ((100vw - 300px) / (1900 - 700))) !important;
+}
+
+
+a{
+    font-size: calc(14px + (18 - 14) * ((100vw - 300px) / (1900 - 700))) !important;
+}
+
+h1 {
+    font-size: calc(26px + (45 - 26) * ((100vw - 300px) / (1900 - 700))) !important;
+}
+
+h2 {
+    font-size: calc(18px + (36 - 18) * ((100vw - 300px) / (1900 - 700))) !important;
+}
+
+h3 {
+    font-size: calc(16px + (30 - 16) * ((100vw - 300px) / (1900 - 700))) !important;
+}

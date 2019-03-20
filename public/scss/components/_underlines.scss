@@ -1,0 +1,27 @@
+.underline-1{
+     
+        text-decoration: none;
+        font-family: montserat-regular;
+        background-image: linear-gradient(to top, $dark, $dark);
+       -webkit-text-fill-color: transparent;
+       -webkit-background-clip: text;
+        position:relative;
+        transition: all 0.2s ease-in;
+        background-size: 200% auto;
+        
+        &:after{
+           content: "";
+           display: block;
+           position: absolute;
+           z-index:-1;
+           width: 100%;
+           height: 20%;
+           background:rgba($primary-light , 20%)  ;
+           background-size: 200% auto;
+           transform-origin:bottom;
+           transition: all 0.2s ease-in;
+           bottom: 10%;
+        }
+ 
+      
+}

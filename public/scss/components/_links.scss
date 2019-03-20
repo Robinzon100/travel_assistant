@@ -1,0 +1,36 @@
+.link-underline {
+   text-decoration: none;
+   background-image: linear-gradient(to top, $dark, $dark);
+   -webkit-text-fill-color: transparent;
+   -webkit-background-clip: text;
+   position: relative;
+   transition: all 0.2s ease-in;
+   background-size: 200% auto;
+
+   &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      z-index: -1;
+      width: 100%;
+      height: 20%;
+      background: $primary-light;
+      background-size: 200% auto;
+      transform-origin: bottom;
+      bottom: 9%;
+      transition: all 0.2s ease-in;
+   }
+
+   &:hover:after {
+      transform: translatey(-50%);
+      opacity: 0;
+      transform: scaley(4);
+   }
+
+   &:hover {
+      background-image: linear-gradient(to top, $primary-light 20%, $primary-light);
+      background-position: top center;
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+   }
+}
