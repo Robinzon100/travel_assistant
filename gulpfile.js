@@ -36,8 +36,8 @@ function javascript() {
     .pipe(uglify())
     .pipe(concat("main.min.js"))
     .pipe(sourcemaps.write("."))
-    .pipe(gulp.dest("./public/javascript"))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest("./public/javascript"));
+     
 }
 
 

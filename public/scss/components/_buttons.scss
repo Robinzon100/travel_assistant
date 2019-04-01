@@ -1,0 +1,15 @@
+.btn-big {
+    color: white;
+    font-size: calc(16px + (30 - 16) * ((100vw - 300px) / (1900 - 700))) !important;
+    background-image: linear-gradient(to right, $primary-dark, $primary-light);
+    padding: 4.5%;
+    margin-top: 4vw;
+    border-radius: 5px;
+    text-align: center;
+    transition: all 0.2s ease-in;
+
+    &:hover {
+        transform: translateY(-7%) scale(1.1);
+        filter: drop-shadow(0 0 30px rgba(50, 50, 50, 0.4));
+    }
+}

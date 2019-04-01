@@ -1,0 +1,46 @@
+.navigation { 
+    width: 100%;
+    padding: 1.2rem 0;
+    // filter: drop-shadow(0px 3px 15px rgba(0, 0, 0, 0.3));
+    background-color: rgba(white, 0.949);
+    position: fixed;
+    z-index: 99999;   
+    transition: all 0.2s ease;
+
+
+    .navigation__content {
+        max-width: $max-width;
+        margin: 0 auto;
+
+        &__logo {
+            width: 18vw;
+        }
+
+
+        &__links {
+
+            ul {
+
+                li {
+                    display: inline-block;
+                    margin-left: 3vw;
+
+                    a {
+                        font-size: calc(16px + (24 - 16) * ((100vw - 300px) / (1900 - 700))) !important;
+                        font-family: montserat-alternates;
+                        font-weight: 200;
+
+                        &:hover+ ::after {
+                            color: $primary-light;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        &__hamburger{
+            display: none;
+        }
+    }
+}
