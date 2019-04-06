@@ -1,3 +1,6 @@
+const Tours = require('./../models/tours');
+
+
 exports.getLanding = (req, res, next) =>{
     res.render('landing',{
         pageTitle: "travel assistant",
@@ -8,16 +11,21 @@ exports.getLanding = (req, res, next) =>{
 
 
 exports.getTours = (req, res, next) =>{
-    res.render('tours/tours',{
-        pageTitle: "tours",
-        path: '/tours'
+    Tours.fetchAll()
+    .then(tours =>{
+        res.render('tours/tours',{
+            tours: tours,
+            pageTitle: "tours",
+            path: '/tours'
+        })
     });
+
 };
 
 exports.postTours = (req, res, next) =>{
-    tourName = req.body.name;
+    // tourName = req.body.name;
     res.render('tours/tours',{
-        tourname: tourName,
+        // tourname: tourName,
         pageTitle: "tours",
         path: '/tours'
     });

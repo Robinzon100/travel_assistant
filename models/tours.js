@@ -28,18 +28,21 @@ class Tours {
             });
     }
 
-    static fetchAll(){
+    static fetchAll() {
         const db = getDb();
         return db.collection('tours')
-        .find()
-        .toArray()
-        .then(tours =>{
-            console.log(result);
-            return tours;
-        })
-        .catch(err =>{
-            console.log(err);
-        });
+            .find()
+            .toArray()
+            .then(tours => {
+                console.log(tours);
+                return tours;
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 
 }
+
+
+module.exports = Tours;

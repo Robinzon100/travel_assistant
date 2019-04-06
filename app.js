@@ -14,7 +14,7 @@ app.set('views', 'views');
 // ─── BODY PARSER ────────────────────────────────────────────────────────────────
 app.use(bodyParser.urlencoded({
     extended: false,
-})); 
+}));
 
 // reading public folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -34,12 +34,9 @@ app.use((req, res, next) => {
     res.status(404).send('404 - Not Found!');
 }); 
 
-// mongoConnect((client =>{
+mongoConnect((client =>{
     // console.log(client);
-    // console.log("connected !");
-    app.listen(3000, ()=>{
-        console.log('server started');
-    });
-
-// }))
+    console.log("connected !");
+    app.listen(3000)
+}))
 

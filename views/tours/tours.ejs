@@ -1,6 +1,17 @@
 <%- include("../includes/head.ejs") %>
 
-<h1> <%= tourName %> </h1>
-
+<% for (let tour of tours) {  %>
+    <h1> <%= tour.title %> </h1>
+    <p> <%= tour.price %> </p>
+    <p> <%= tour.description %> </p>
+    <p> <%= tour.image %> </p>
+    <p> <%= tour.locations %> </p>
+    <p> <%= tour.locationLink %> </p>
+    <p> <%= tour.website %> </p>
+    <p> <%= tour.telephone %> </p>
+    <p> <%= tour.email %> </p>
+    <p> <%= tour.ratting %> <p/>
+<% } %>
+ 
 
 <%- include("../includes/bottom.ejs") %>
