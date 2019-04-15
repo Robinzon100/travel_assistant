@@ -9,7 +9,7 @@ p {
     line-height: 3.3rem;
 }
 
-a{
+a {
     font-size: calc(14px + (18 - 14) * ((100vw - 300px) / (1900 - 700))) !important;
 }
 
@@ -23,4 +23,33 @@ h2 {
 
 h3 {
     font-size: calc(18px + (26 - 18) * ((100vw - 300px) / (1900 - 700))) !important;
-} 
+}
+
+
+
+
+
+.card-small { 
+ 
+ 
+    // STYLES
+    &__text {
+ 
+
+        &__title {
+            font-size: calc(14px + (18 - 14) * ((100vw - 300px) / (1900 - 700))) !important;
+        }
+
+        &__price {
+            font-size: calc(18px + (24 - 18) * ((100vw - 300px)/ (1900 - 700))) !important;
+        }
+
+        &__description {
+            font-size: calc(12px + (14 - 12) * ((100vw - 300px) / (1900 - 700))) !important;
+        }
+
+        &__rating {}
+
+    }
+
+}

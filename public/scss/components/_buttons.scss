@@ -13,3 +13,31 @@
         filter: drop-shadow(0 0 30px rgba(50, 50, 50, 0.4));
     }
 }
+
+
+
+.btn-small {
+    padding: 0.3rem 1.3rem;
+    background-color: #071E3D;
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    margin: 0.8rem 0;
+    transition: all 0.2s;
+    width: 12.2rem;
+    font-size: calc(14px + (16 - 14) * ((100vw - 300px)/ (1900 - 700))) !important;
+
+    &>* {
+        display: inline-block;
+    }
+
+    p {
+        transition: all 0.2s;
+        color: white;
+    }
+
+    &:hover p {
+        transform: translatex(50%);
+    }
+
+}

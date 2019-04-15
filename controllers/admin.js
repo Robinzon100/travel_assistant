@@ -25,7 +25,6 @@ exports.postAddTour = (req, res, next) =>{
 
     tour.save()
         .then(tour => {
-            console.log(tour);
             res.redirect('/tours');
         })
         .catch(err => {

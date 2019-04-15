@@ -1,17 +1,71 @@
 <%- include("../includes/head.ejs") %>
+<%- include("../includes/navigation.ejs") %>
 
-<% for (let tour of tours) {  %>
-    <h1> <%= tour.title %> </h1>
-    <p> <%= tour.price %> </p>
-    <p> <%= tour.description %> </p>
-    <p> <%= tour.image %> </p>
-    <p> <%= tour.locations %> </p>
-    <p> <%= tour.locationLink %> </p>
-    <p> <%= tour.website %> </p>
-    <p> <%= tour.telephone %> </p>
-    <p> <%= tour.email %> </p>
-    <p> <%= tour.ratting %> <p/>
-<% } %>
- 
+
+<div class="header">
+	<div class="header__image"></div>
+	<div class="header__navigation">
+		<div class="header__navigation__categories-nav">
+			<ul>
+				<li><a href=""><img src="" alt=""></a></li>
+				<li><a href=""><img src="" alt=""></a></li>
+				<li><a href=""><img src="" alt=""></a></li>
+				<li><a href=""><img src="" alt=""></a></li>
+				<li><a href=""><img src="" alt=""></a></li>
+				<li><a href=""><img src="" alt=""></a></li>
+				<li><a href=""><img src="" alt=""></a></li>
+				<li><a href=""><img src="" alt=""></a></li>
+				<li><a href=""><img src="" alt=""></a></li>
+				<li><a href=""><img src="" alt=""></a></li>
+				<li><a href=""><img src="" alt=""></a></li>
+				<li><a href=""><img src="" alt=""></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+<div class="medium-card-container">
+	<% for (let tour of tours) {  %>
+		<div class="card-small">
+			<!-- 	<a href="#" class="card-small__text__overlay-button"> visit Page <p> &#10230; </p></a> -->
+			<div class="card-small__image" style="background-image: url(<%= tour.image %>)"></div>
+			<div class="card-small__text">
+				<h2 class="card-small__text__title"><%= tour.title %> </h2>
+				<p class="card-small__text__price"><%= tour.price %>$</p>
+				<div class="card-small__text__description"><%= tour.description %></div>
+				<div class="card-small__text__rating">
+					<ul>
+						<% for (let i = 0; i < 5; i++){ %> 
+							<li>
+								<svg xmlns="http://www.w3.org/2000/svg" width="19.26" height="24.611" viewBox="0 0 19.26 24.611">
+									<defs>
+										<style>
+											.cls-1 {
+												fill: #21e6c1;
+											}
+										</style>
+									</defs>
+									<path id="Union_2" data-name="Union 2" class="cls-1"
+										d="M-911.875-10813.494a.954.954,0,0,1-.685-.354c-4.472-5.562-7.9-8.683-8.707-12.749a9.632,9.632,0,0,1,2.668-8.7,9.541,9.541,0,0,1,6.346-2.8,9.628,9.628,0,0,1,7.088,2.657,9.632,9.632,0,0,1,2.976,6.964c0,5.075-3.773,8.241-8.886,14.628l-.076.074a.957.957,0,0,1-.675.278Zm-6.256-13.739c.462,2.317,2.307,4.5,5.105,7.807.378.446.778.917,1.189,1.411.432-.517.841-1,1.232-1.463,3.509-4.148,5.193-6.265,5.193-9.009a6.4,6.4,0,0,0-3.947-5.908,6.4,6.4,0,0,0-6.971,1.368A6.422,6.422,0,0,0-918.131-10827.233Zm2.687,1.088a4.354,4.354,0,0,1,.533-5.5,4.335,4.335,0,0,1,3.085-1.278,4.352,4.352,0,0,1,4.27,3.5,4.357,4.357,0,0,1-2.6,4.874,4.339,4.339,0,0,1-1.668.334A4.357,4.357,0,0,1-915.443-10826.146Zm2.35-3.68a1.771,1.771,0,0,0-.522,1.262,1.786,1.786,0,0,0,1.436,1.752,1.788,1.788,0,0,0,2-1.066,1.79,1.79,0,0,0-.658-2.168,1.773,1.773,0,0,0-.992-.3A1.786,1.786,0,0,0-913.093-10829.825Z"
+										transform="translate(921.449 10838.105)" />
+								</svg>
+							</li>
+						<% } %> 
+					</ul>
+				</div>
+				<a href="#" class="card-small__text__button btn-small"> visit Page <p> &#10230; </p></a>
+
+			</div>
+		</div>
+	<% } %>
+</div>
+
+
+
+
+
+
+
 
 <%- include("../includes/bottom.ejs") %>

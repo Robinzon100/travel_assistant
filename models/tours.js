@@ -2,7 +2,7 @@ const getDb = require('../utils/database').getDb;
 const mongoId = require('mongodb').ObjectID;
 
 class Tours {
-    constructor(title, price, description, image, locations, locationLink, website, telephone, email, ratting) {
+    constructor(title, price, description, image, locations, locationLink, website, telephone, email) {
         this.title = title;
         this.price = price;
         this.description = description;
@@ -12,7 +12,6 @@ class Tours {
         this.website = website;
         this.telephone = telephone;
         this.email = email;
-        this.ratting = ratting;
     }
 
 
@@ -21,7 +20,7 @@ class Tours {
         return db.collection('tours')
             .insertOne(this)
             .then(result => {
-                console.log(result);
+                let savedResult = result;
             })
             .catch(err => {
                 console.log(err);
@@ -34,7 +33,6 @@ class Tours {
             .find()
             .toArray()
             .then(tours => {
-                console.log(tours);
                 return tours;
             })
             .catch(err => {

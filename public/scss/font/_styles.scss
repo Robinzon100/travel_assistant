@@ -2,7 +2,6 @@ a {
     font-weight: bold;
 }
 
-
 p {
     word-spacing: 0.4rem;
 }
@@ -13,4 +12,32 @@ h3 {
 
 h2 {
     font-family: $font-heading-1;
+}
+
+
+
+
+.card-small {
+    font-family: $font-heading-2 !important; 
+
+    // STYLES
+    &__text {
+
+        &__title {
+            font-family:  $font-heading-2 !important;
+        }
+
+        &__price {}
+
+        &__description {
+            font-family: $font-paragraph;
+            color: $dark-light;
+        }
+
+        &__button {
+            font-family: 'montserat-regular';
+        }
+
+    }
+
 }

@@ -37,11 +37,11 @@ const resizeImages = () => {
     });
 };
 
-window.setInterval(function () {
-    resizeImages();
-    getDistance();
-    // console.log(getDistance());
-}, 1000);
+// window.setInterval(function () {
+//     resizeImages(); 
+//     getDistance();
+//     // console.log(getDistance());
+// }, 1000);
 
 let distance  = getDistance();
 

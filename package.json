@@ -37,6 +37,7 @@
     "gulp-nodemon": "^2.4.2",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
-    "gulp-uglify": "^3.0.2"
+    "gulp-uglify": "^3.0.2",
+    "volleyball": "^1.5.1"
   }
 }
