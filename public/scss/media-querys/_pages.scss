@@ -7,15 +7,13 @@
 // @media all and (max-width: 736px) {}
 // 480px
 
-
-
-// === === === === === === === === === 
+// === === === === === === === === ===
 
 // LANDING PAGE
 
-// === === === === === === === === === 
-@media all and (max-width: 480px) {}
-
+// === === === === === === === === ===
+@media all and (max-width: 480px) {
+}
 
 @media all and (max-width: 980px) {
     .hero {
@@ -35,7 +33,6 @@
             text-align: center;
             z-index: 1;
 
-
             &__slogan {
                 color: white;
 
@@ -43,7 +40,6 @@
                     color: white !important;
                 }
             }
-
         }
 
         &__image {
@@ -52,16 +48,16 @@
             filter: drop-shadow(0 0 18px rgba(50, 50, 50, 0.18));
 
             &::after {
-                content: '';
+                content: "";
                 display: block;
                 width: 100%;
                 height: 100%;
-                background-image: radial-gradient(rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0));
+                background-image: radial-gradient(
+                    rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0)
+                );
             }
         }
     }
-
-
 
     .icons {
         padding: 25vw 0 25vw 0;
@@ -71,12 +67,23 @@
                 width: 25vw;
             }
 
-            &__heading {}
+            &__heading {
+            }
 
-            &__text {}
+            &__text {
+            }
         }
     }
 
-    
-
+    .card-small {
+        &__text {
+            padding: 1rem 0 1.3rem 0.6rem;
+        }
+        &__text__description {
+            height: 4rem;
+        }
+        &__text__title {
+            height: 3.8rem;
+        }
+    }
 }

@@ -24,9 +24,10 @@
 
     &__image {
         position: absolute;
+        z-index: -1;
         top: 0;
         right: 0;
-        width: 65vw;
+        width: 100%;
         filter: drop-shadow(0 0 18px rgba(50, 50, 50, 0.18));
     }
 }

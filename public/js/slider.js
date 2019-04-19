@@ -29,41 +29,44 @@ let slided = 0;
 // ─── FUNCTIONS ──────────────────────────────────────────────────────────────────
 //
 
+if (sliderImages) {
+    
 
 
-const resizeImages = () => {
-    sliderImagesArray.forEach(elem => {
-        elem.style.width = `${slider.style.width}vw`;
+    const resizeImages = () => {
+        sliderImagesArray.forEach(elem => {
+            elem.style.width = `${slider.style.width}vw`;
+        });
+    };
+
+    // window.setInterval(function () {
+    //     resizeImages(); 
+    //     getDistance();
+    //     // console.log(getDistance());
+    // }, 1000);
+
+    let distance  = getDistance();
+
+    sliderBtnnext.addEventListener('click', () => {
+        if (slided == sliderImagesArray.length - 1) {
+            sliderImages.style.transform = 'translateX(-0px)';
+            slided = 0;
+        } else {
+            slided += 1;
+            sliderImages.style.transform = `translateX(-${distance * slided}px`;
+            console.log(distance);
+        }
     });
-};
 
-// window.setInterval(function () {
-//     resizeImages(); 
-//     getDistance();
-//     // console.log(getDistance());
-// }, 1000);
-
-let distance  = getDistance();
-
-sliderBtnnext.addEventListener('click', () => {
-    if (slided == sliderImagesArray.length - 1) {
-        sliderImages.style.transform = 'translateX(-0px)';
-        slided = 0;
-    } else {
-        slided += 1;
-        sliderImages.style.transform = `translateX(-${distance * slided}px`;
-        console.log(distance);
-    }
-});
-
-sliderBtnPrev.addEventListener('click', () => {
-    if (slided == 0) {
-        sliderImages.style.transform = `translateX(0)px`;
-        slided = 0;
-    } else {
-        slided -= 1;
-        sliderImages.style.transform = `translateX(-${distance * slided}px`;
-    }
-});
+    sliderBtnPrev.addEventListener('click', () => {
+        if (slided == 0) {
+            sliderImages.style.transform = `translateX(0)px`;
+            slided = 0;
+        } else {
+            slided -= 1;
+            sliderImages.style.transform = `translateX(-${distance * slided}px`;
+        }
+    });
 
 
+}

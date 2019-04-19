@@ -3,11 +3,11 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express(); 
-const volleyball = require('volleyball')
+const volleyball = require('volleyball');
 
 // ─── MY EXPORTS ─────────────────────────────────────────────────────────────────
 const mongoConnect = require('./utils/database').mongoConnect;
-
+ 
 // ─── VIEW ENGINE ────────────────────────────────────────────────────────────────    
 app.set('view engine', 'ejs'); 
 app.set('views', 'views');  
@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // using volleyball
 app.use(volleyball);
-
+ 
 
 // ─── ROUTES ─────────────────────────────────────────────────────────────────────
 const toursRouts = require('./routes/tours'); 

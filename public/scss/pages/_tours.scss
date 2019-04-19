@@ -10,5 +10,11 @@
 
 
 .medium-card-container{
-    
+    width: 90%;
+    max-width: $max-width-rem;
+    margin: 0 auto;
+
+    &__title{
+        display: inline-block;
+    }
 }

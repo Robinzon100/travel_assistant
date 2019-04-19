@@ -1,7 +1,8 @@
 <nav class="navigation scroll" anim-class = "anim-nav" anim-pos = "50">
     <div class="navigation__content">
+    <a href="/">
         <img class="navigation__content__logo" src="img/SVG/logo/travel assistant 3.svg" alt="">
-
+    </a>
         <div class="navigation__content__hamburger">
             <svg class="ham hamRotate ham8" viewBox="0 0 100 100" width="80">
                 <path class="line top"
@@ -14,10 +15,10 @@
 
         <div class="navigation__content__links">
             <ul id='menu-js'>
-                <li><a href="/tours" class="link-apear-underline">eplore</a></li>
-                <li><a href="" class="link-apear-underline">sign / login</a></li>
-                <li><a href="" class="link-apear-underline">search</a></li>
-                <li><a href="" class="link-apear-underline">about</a></li>
+                <li><a href="/tours" class="<%= path === '/tours' ? 'underline-1' : 'link-apear-underline' %> ">eplore</a></li>
+                <li><a href="/signlogin" class="<%= path === '/signlogin' ? 'underline-1' : 'link-apear-underline' %> ">sign / login</a></li>
+                <li><a href="/search" class="<%= path === '/search' ? 'underline-1' : 'link-apear-underline' %> ">search</a></li>
+                <li><a href="/about" class="<%= path === '/about' ? 'underline-1' : 'link-apear-underline' %> ">about</a></li>
             </ul>
         </div>
     </div>
