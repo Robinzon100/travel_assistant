@@ -41,7 +41,7 @@
 
                     a {
                         font-size: calc(16px + (24 - 16) * ((100vw - 300px) / (1900 - 700))) !important;
-                        font-family: montserrat-alternates-regular;
+                        font-family: $font-secondary;
                         font-weight: 200;
 
                         &:hover+ ::after {

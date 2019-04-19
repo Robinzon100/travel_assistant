@@ -1,9 +1,9 @@
 // ─── BASE EXPORTS ───────────────────────────────────────────────────────────────   
 const path = require('path');
 const express = require('express');
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser'); 
 const app = express(); 
-const volleyball = require('volleyball');
+const volleyball = require('volleyball'); 
 
 // ─── MY EXPORTS ─────────────────────────────────────────────────────────────────
 const mongoConnect = require('./utils/database').mongoConnect;
@@ -13,9 +13,7 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');  
 
 // ─── BODY PARSER ────────────────────────────────────────────────────────────────
-app.use(bodyParser.urlencoded({
-    extended: false,
-}));
+app.use(express.json());
 
 // reading public folder
 app.use(express.static(path.join(__dirname, 'public')));

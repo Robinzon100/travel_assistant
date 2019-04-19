@@ -9,15 +9,11 @@
         position: absolute;
         align-self: center;
         margin-left: 10%;
-        font-family: $font-heading-2;
+        @extend %font-heading-1; 
 
         &__slogan {
             color: $dark;
-
-            & * {
-                color: $dark;
-                font-family: $font-heading-2;
-            }
+            @extend %font-heading-1;
         }
 
     }
@@ -50,7 +46,7 @@
         &__heading {
             word-break: none;
             margin: 2rem 0 1rem;
-            font-family: $font-heading-2;
+           @extend %font-heading-1; 
         }
 
         &__text {

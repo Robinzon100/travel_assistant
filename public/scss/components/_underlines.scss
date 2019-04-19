@@ -6,7 +6,7 @@ span {
 
 .underline-1 {
         text-decoration: none;
-        font-family: $font-heading-1;
+        @extend %font-heading-1;
         position: relative;
         background-size: 200% auto;
 

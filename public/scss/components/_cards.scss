@@ -1,6 +1,5 @@
 .card-small {
     width: 100%;
-    max-width: 30rem;
     background-color: white;
     border-radius: 22px;
     overflow: hidden;
@@ -16,7 +15,7 @@
         z-index: 6;
         background: white;
         padding: 1.3rem 2rem;
-        width: 41%;
+        width: 51%;
         display: inline;
         text-align: center;
         text-decoration: none;
@@ -43,7 +42,7 @@
         background-position: center;
         transform-origin: top;
         transition: all 0.3s cubic-bezier(0.62, 0.28, 0.23, 0.99);
-        filter: drop-shadow(0 4px 1px rgba(50, 50, 50, .4));
+        filter: drop-shadow(0 0px 20px rgba(50, 50, 50, .2));
 
         &:hover {
             border-radius: 0;
@@ -53,40 +52,51 @@
     // STYLES
     &__text {
         overflow: hidden;
-        padding: 1.6rem 0 1.8rem 1.5rem;
+        padding: 0.7vw;
         transition: all 0.3s cubic-bezier(0.62, 0.28, 0.23, 0.99);
         position: relative;
         z-index: 2;
+        // width: calc(100% - 1.6rem);
 
         &__title {
             width: 100%;
             line-height: initial;
             align-self: center;
+            height: 4rem;
         }
 
         &__price {
             font-weight: bold;
             color: $green;
-            // padding-right: 1.6rem;
-            width: 11rem;
+            // margin-right: 2rem;
+            width: 10rem;
             text-align: center;
         }
 
-        &__description {
-            height: 5rem;
+        &__description{
+            height: 5.2rem;
             width: 90%;
             overflow: hidden;
             text-overflow: ellipsis; 
             display: -webkit-box;
             line-height: 18px; /* fallback */
             max-height: 132px; /* fallback */
-            -webkit-line-clamp: 3; /* number of lines to show */
+            -webkit-line-clamp: 2; /* number of lines to show */
             -webkit-box-orient: vertical;
             
         }
 
         &__rating {
             width: 11rem;
+            display: flex;
+            align-content: center;
+            flex-direction: row;
+
+
+            &__star{
+                margin-left: 0.2rem;
+                width: 2rem;
+            }
         }
 
         &__button {
@@ -112,8 +122,8 @@
     &__text {
         display: grid;
         align-items: center;
-        grid-row-gap: 0.6rem;
-        grid-column-gap: 1.5rem;
+        grid-row-gap: 6%;
+        grid-column-gap: 4%;
         grid-template-areas:
             "title title price"
             "description description views"

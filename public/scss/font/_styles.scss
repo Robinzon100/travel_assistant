@@ -1,5 +1,5 @@
 a {
-    font-weight: bold;
+    // font-weight: bold;
 }
 
 p {
@@ -7,11 +7,11 @@ p {
 }
 
 h3 {
-    font-family: $font-heading-1;
+    @extend %font-heading-1;
 }
 
 h2 {
-    font-family: $font-heading-1;
+    @extend %font-heading-1;
 }
 
 
