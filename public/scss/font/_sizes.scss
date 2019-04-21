@@ -10,7 +10,7 @@ p {
 }
 
 a {
-    font-size: calc(14px + (18 - 14) * ((100vw - 300px) / (1900 - 700))) !important;
+    // font-size: calc(14px + (18 - 14) * ((100vw - 300px) / (1900 - 700))) !important;
 }
 
 h1 {
@@ -37,7 +37,7 @@ h3 {
  
 
         &__title {
-            font-size: calc(14px + (18 - 14) * ((100vw - 300px) / (1900 - 700))) !important;
+            font-size: calc(13px + (14 - 13) * ((100vw - 300px)/ (1900 - 700))) !important;
         }
 
         &__price {
@@ -48,7 +48,9 @@ h3 {
             font-size: calc(12px + (14 - 12) * ((100vw - 300px) / (1900 - 700))) !important;
         }
 
-        &__rating {}
+        &__location {
+            font-size: calc(14px + (15 - 14) * ((100vw - 300px) / (1900 - 700))) !important;
+        }
 
     }
 

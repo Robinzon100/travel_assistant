@@ -4,37 +4,34 @@
     position: relative;
     @include noselect;
 
-
     &__slogan_btn {
         position: absolute;
         align-self: center;
         margin-left: 10%;
-        @extend %font-heading-1; 
+        @extend %font-heading-1;
 
         &__slogan {
             color: $dark;
             @extend %font-heading-1;
         }
-
     }
-
+ 
     &__image {
         position: absolute;
         z-index: -1;
-        top: 0;
-        right: 0;
-        width: 100%;
-        filter: drop-shadow(0 0 18px rgba(50, 50, 50, 0.18));
+        top: 12vh;
+        right: 0%;
+        width: 62%;
+        // filter: drop-shadow(0 0 18px rgba(50, 50, 50, 0.18));
     }
 }
-
 
 .icons {
     position: relative;
     padding: 5vw 0 5vw 0;
     list-style: none;
     background-color: rgb(255, 255, 255);
-    filter: drop-shadow(0 0 20px rgba($primary-dark, 0.1));
+    filter: drop-shadow(0 0 20px rgba($primary-dark, 0.04));
 
     &__icon {
         text-align: center;
@@ -46,7 +43,7 @@
         &__heading {
             word-break: none;
             margin: 2rem 0 1rem;
-           @extend %font-heading-1; 
+            @extend %font-heading-1;
         }
 
         &__text {
@@ -55,15 +52,11 @@
     }
 }
 
-
-
 .commertial {
     padding: 15vw 0 15vw 0;
 
     &__commertials {
-
         .right {
-
             h2 {
                 justify-self: right;
                 direction: rtl;
@@ -76,7 +69,6 @@
         }
 
         &__commertial {
-
             img {
                 width: 100%;
                 filter: drop-shadow(0 0 30px rgba(50, 50, 50, 0.4));
@@ -92,16 +84,9 @@
                 color: $dark-light;
                 font-weight: 300;
             }
-
-
-
-
         }
     }
 }
-
-
-
 
 .about {
     position: relative;
@@ -110,7 +95,6 @@
     flex-direction: column;
     align-items: center;
     margin-top: 30vh;
-
 
     &:after {
         content: "";
@@ -136,7 +120,6 @@
     //     repeat: no-repeat;
     // }
 
-
     &__image {
         width: 10vw;
         padding: 3vw;
@@ -149,8 +132,6 @@
         filter: drop-shadow(0 0 30px rgba(50, 50, 50, 0.4));
     }
 
-
-
     &__text {
         background-color: white;
         max-width: $max-width-vw;
@@ -159,8 +140,6 @@
         align-items: center;
         flex-direction: column;
         filter: drop-shadow(0 0 30px rgba(50, 50, 50, 0.4));
-
-
 
         &__heading {
             padding: 4vh 0 0vw 0;
@@ -174,9 +153,8 @@
             padding: 2vw 5vw;
 
             p {
-
                 span {
-                    // margin: 3rem 0 1rem 0!important;  
+                    // margin: 3rem 0 1rem 0!important;
                     font-weight: bold;
                 }
             }
@@ -184,13 +162,9 @@
             & * {
                 color: $dark-light;
             }
-
-
         }
     }
 }
-
-
 
 .slider-section {
     height: 100vh;
@@ -210,7 +184,6 @@
             overflow: hidden;
             position: relative;
 
-
             &__image-container {
                 display: flex;
                 flex-direction: row;
@@ -219,7 +192,7 @@
                 position: absolute;
                 transition: all 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
-                &__image { 
+                &__image {
                     height: 100%;
                     width: 80vw;
                     background-color: $primary-light;
@@ -229,24 +202,22 @@
                     background-image: url("../../img/slider images/slider_1.jpg");
                 }
 
-                &__image:nth-child(1){
+                &__image:nth-child(1) {
                     background-image: url("../../img/slider images/slider_1.jpg");
                 }
-                &__image:nth-child(2){
+                &__image:nth-child(2) {
                     background-image: url("../../img/slider images/slider_2.jpg");
                 }
-                &__image:nth-child(3){
+                &__image:nth-child(3) {
                     background-image: url("../../img/slider images/slider_3.jpg");
                 }
-                &__image:nth-child(4){
+                &__image:nth-child(4) {
                     background-image: url("../../img/slider images/slider_4.jpg");
                 }
-                &__image:nth-child(5){
+                &__image:nth-child(5) {
                     background-image: url("../../img/slider images/slider_5.jpg");
                 }
             }
-
-
 
             .buttons-container {
                 position: absolute;
@@ -268,7 +239,7 @@
                     cursor: pointer;
 
                     &::after {
-                        content: '';
+                        content: "";
                         display: block;
                         position: absolute;
                         width: 3rem;
@@ -278,13 +249,11 @@
                         border-right: 3px solid $dark;
                         border-bottom: 3px solid $dark;
                         transform: translate(0%, -50%) rotate(135deg);
-
                     }
 
                     &:hover {
                         background-color: rgb(221, 221, 221);
                     }
-
                 }
 
                 &__next {
@@ -309,5 +278,4 @@
             }
         }
     }
-
 }

@@ -8,7 +8,7 @@
     &__icons {
         align-items: center;
         justify-items: center;
-        grid-row-gap: 8vw;
+        grid-row-gap: 8vw; 
         grid-column-gap: 6vw;
         grid-column: 2/3;
         display: grid;
@@ -77,11 +77,11 @@
             grid-template-columns: 1fr 1fr;
         }
     }
-}
-
+} 
+  
 .medium-card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(26rem, 1fr));
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(21rem, 1fr)) !important;  
     justify-items: center; 
-    grid-column-gap: 2%;
+    grid-column-gap: 2%;     
 }
