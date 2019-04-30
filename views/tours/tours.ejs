@@ -31,10 +31,10 @@
 
 	<div class="card-small">
 		<!-- <a href="#"> -->
-		<a href="">
+		<a href="tours/<%= tour._id %>">
 			<div class="card-small__image" style="background-image: url(<%= tour.image %>)"></div>
 		</a>
-		<a href="" class="card-small__text">
+		<a href="tours/<%= tour._id %>" class="card-small__text">
 			<h2 class="card-small__text__title"><%= tour.title %> </h2>
 			<p class="card-small__text__price"><%= tour.price %>$</p>
 			<div class="card-small__text__description"><%= tour.description %></div>

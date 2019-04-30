@@ -1,6 +1,6 @@
 const getDb = require("../utils/database").getDb;
 const mongoId = require("mongodb").ObjectID;
-const mongodb = require('mongodb');
+const mongodb = require("mongodb");
 
 class Tours {
     constructor(
@@ -26,20 +26,30 @@ class Tours {
         this.email = email;
         this.ratting = ratting;
     }
+    
+    // === === === === === 
+    //!  SAVING SINGLE tour
+    // === === === === === 
 
     save() {
         const db = getDb();
         return db
             .collection("tours")
             .insertOne(this)
-            .then(result => {
-                let savedResult = result;
-                console.log(result);
+            .then(tour => {
+                let savedtour = tour;
+                console.log(tour);
             })
             .catch(err => {
                 console.log(err);
             });
-    }
+    } 
+
+
+    
+    // === === === === === 
+    //!  getting SINGLE tour
+    // === === === === === 
 
     static findById(tourId) {
         const db = getDb();
@@ -47,11 +57,19 @@ class Tours {
             .collection("tours")
             .find({ _id: new mongodb.ObjectId(tourId) })
             .next()
-            .then(result => {
-                const newResult = result;
+            .then(tour => {
+                console.log(tour);
+                return tour;
             })
             .catch(err => console.log(err));
     }
+
+
+
+
+    // === === === === === 
+    //!  getting ALL tour
+    // === === === === === 
 
     static fetchAll() {
         const db = getDb();

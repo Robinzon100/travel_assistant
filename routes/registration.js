@@ -5,8 +5,8 @@ const router = express.Router();
 // ─── CONTROLERS ──────────────────────────────────────────────────────────────────
 const registrationsConntrlers = require('../controllers/registration');
 
-router.get("/register", registrationsConntrlers.getRegistration);
-router.post("/register", registrationsConntrlers.postRegistration);
+router.get("/signlogin", registrationsConntrlers.getRegistration);
+router.post("/signlogin", registrationsConntrlers.postRegistration);
 
 
 module.exports = router;

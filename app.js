@@ -18,11 +18,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 // reading public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+ 
 // using volleyball
 app.use(volleyball);
  
-
+ 
 // ─── ROUTES ─────────────────────────────────────────────────────────────────────
 const toursRouts = require('./routes/tours'); 
 const adminsRouts = require('./routes/admin'); 
