@@ -15,6 +15,7 @@ app.set('views', 'views');
 // ─── BODY PARSER ────────────────────────────────────────────────────────────────
 app.use(bodyParser.urlencoded({extended: true}));
 
+
 // reading public folder
 app.use(express.static(path.join(__dirname, 'public')));
 

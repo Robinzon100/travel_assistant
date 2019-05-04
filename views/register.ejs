@@ -8,7 +8,7 @@
 <br>
 <br>
 <br>
-<form action="register" method="post">
+<form action="signlogin" method="post">
     <input type="text" name="username" placeholder="enter username"> <br><br>
     <input type="email" name="email" placeholder="enter email"> <br><br>
     <input type="password" name="password" placeholder="enter password"> <br><br>
@@ -18,7 +18,7 @@
     <% if(errors.length > 0){
         for (let err of errors) {%>
 
-            <p><%= err  %> </p>
+            <h1><%= err  %> </h1>
     <% }} %>
 
    

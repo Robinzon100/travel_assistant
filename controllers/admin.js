@@ -21,8 +21,9 @@ exports.postAddTour = (req, res, next) =>{
     const email = req.body.email;
     const ratting = req.body.ratting;
 
+
     const tour = new Tours(title, price, description, image, locations, locationLink, website, telephone, email, ratting);
-    console.log('title');  
+    
 
     tour.save()
         .then(tour => {

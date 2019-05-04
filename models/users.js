@@ -6,6 +6,7 @@ class User {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.date = Date();
         this.bookmarks = bookmarks;
         this._id = id;
     }
