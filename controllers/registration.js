@@ -26,25 +26,15 @@ exports.postRegistration = (req, res, next) => {
     //? log errors
     let errors = [];
 
-    // Joi.validate(
-    //     { username, email, password, repeatpassword },
-    //     schema.userSchema,
-    //     (err, value) => {
-    //         if (err === null) {
-    //             //* if the registration GOES WELL
-    //             const user = new Users(username, email, password);
-    //             console.log("registration succsess");
-    //             user.save()
-    //                 .then(() => {
-    //                     res.redirect("/tours");
-    //                 })
-    //                 .catch(err => {
-    //                     console.log(err);
-    //                 });
-    //         } else {
-    //             console.log(err);
-    //         }
-    //     }
-    // );
- 
+    const user = new Users(username, email, password);
+    user.save()
+        .then(() => {
+            res.redirect("/tours");
+        })
+        .catch(err => {
+            console.log(err);
+        });
+
+    // req.session.logedIn = true;
+    //  res.redirect('/');
 };

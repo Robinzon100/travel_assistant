@@ -1,11 +1,19 @@
+//
+// ─── BASE IMPORTS ───────────────────────────────────────────────────────────────
+//
 const mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient;
+
+//
+// ─── MY IMPORTS ─────────────────────────────────────────────────────────────────
+//
+const MONGODB_URI = require('../app').MONGODB_URI;
 
 let _db;
 
 const mongoConnect = cb => {
   MongoClient.connect(
-      "mongodb+srv://robinzon:rU0Hbn7IsLgLk4KF@travel-assistant-btaux.mongodb.net/travel-assistant?retryWrites=true", 
+      MONGODB_URI, 
       {useNewUrlParser: true})
     .then(client => {
       _db = client.db();

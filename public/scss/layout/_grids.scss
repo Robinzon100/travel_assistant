@@ -85,3 +85,15 @@
     justify-items: center; 
     grid-column-gap: 2%;     
 }
+
+
+// .medium-card-container {
+//     - width: 80%;
+//     + max-width: 132rem;
+//     + overflow-x: scroll;
+//     + width: 80%;
+//     }
+//     .medium-card-container {
+//     - grid-template-columns: repeat(auto-fill,minmax(21rem,1fr)) !important;
+//     + grid-template-columns: repeat(10,minmax(calc(120rem / 5),1fr)) !important;
+//     }
