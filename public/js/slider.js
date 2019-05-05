@@ -17,7 +17,7 @@ const sliderBtnnext = document.querySelector('#sliderBtnnext');
 //
 // ─── VERIABLES ──────────────────────────────────────────────────────────────────
 //
-
+ 
 const getDistance = () => {
     let distance = sliderImages.offsetWidth / sliderImagesArray.length;
     return distance;
