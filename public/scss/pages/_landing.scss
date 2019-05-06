@@ -267,13 +267,13 @@
         &__small-images {
             position: absolute;
             left: 0;
-            width: 40%;
+            width: 40%; 
             background-color: gray;
             display: flex;
             flex-direction: row;
 
             img {
-                width: 100%;
+                width: calc(100%/5);
                 height: 100%;
             }
         }

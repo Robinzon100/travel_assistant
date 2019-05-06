@@ -1,5 +1,9 @@
 // ─── BASE IMPORTS ───────────────────────────────────────────────────────────────
 const path = require("path");
+// const fs = require('fs');
+// const http2 = require("http2");
+// const cert = fs.readFileSync('my.cert')
+// const key = fs.readFileSync('my.key')
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
@@ -7,19 +11,16 @@ const volleyball = require("volleyball");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 
-
-
 //! MONGODB URI
-const MONGODB_URI = "mongodb+srv://robinzon:rU0Hbn7IsLgLk4KF@travel-assistant-btaux.mongodb.net/travel-assistant";
+const MONGODB_URI =
+    "mongodb+srv://robinzon:rU0Hbn7IsLgLk4KF@travel-assistant-btaux.mongodb.net/travel-assistant";
 
 //
 // ─── MY EXPORTS ─────────────────────────────────────────────────────────────────
 //
 module.exports = {
     MONGODB_URI
-}
-
-
+};
 
 // ─── MY IMPORTS ─────────────────────────────────────────────────────────────────
 const mongoConnect = require("./utils/database").mongoConnect;
@@ -39,18 +40,15 @@ const store = new MongoDBStore({
     collection: "sessions"
 });
 
-
 // USING the session for express
 app.use(
     session({
         secret: "this is the secret",
         resave: false,
         saveUninitialized: false,
-        store: store 
-    }) 
+        store: store
+    })
 );
-
-
 
 // using volleyball
 app.use(volleyball);
@@ -70,8 +68,12 @@ app.use((req, res, next) => {
     res.status(404).send("404 - Not Found!");
 });
 
-mongoConnect(client => {
+// const server = http2.createSecureServer({cert, key});
+
+// server.listen(8443);
+  
+mongoConnect(client => {  
     // console.log(client);
     console.log("connected !");
-    app.listen(3000);
+    app.listen(3000); 
 });
