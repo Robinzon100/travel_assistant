@@ -1,14 +1,14 @@
-const glide_1 = new Glide("#medium-card-container-1", {
-    type: "slider",
+const glide_1 = new Glide("#medium-card-container-tours", {
+    type: "glide",
     gap: "30",
     perView: 5,
     startAt: 1,
-    hoverpause: true,
-    autoplay: 4000,
-    dragThreshold: 20,
+    // hoverpause: true,
+    // autoplay: 20000,
+    // dragThreshold: 20,
     touchRatio: 1,
     perTouch: false,
-    breakpoints: {
+    breakpoints: { 
         1400: {
             perView: 4
         },
@@ -29,14 +29,14 @@ glide_1.mount();
 
 
 
-const glide_2 = new Glide("#medium-card-container-2", {
-    type: "slider",
+const glide_2 = new Glide("#medium-card-container-expeditions", {
+    type: "glide",
     gap: "30",
     perView: 5,
     startAt: 1,
-    hoverpause: true,
-    autoplay: 4000,
-    dragThreshold: 20,
+    // hoverpause: true,
+    // autoplay: 20000,
+    // dragThreshold: 20,
     touchRatio: 1,
     perTouch: false,
     breakpoints: {
@@ -57,3 +57,29 @@ glide_2.update({
 });
 
 glide_2.mount();
+
+
+
+
+const glide_specials = new Glide("#large-card-container-specialOffers", {
+    type: "glide",
+    gap: "30",
+    perView: 2,
+    startAt: 1,
+    // hoverpause: true,
+    // autoplay: 20000,
+    // dragThreshold: 20,
+    touchRatio: 1,
+    perTouch: false,
+    breakpoints: {
+        1024: {
+            perView: 1
+        }
+    }
+});
+
+glide_specials.update({
+    hoverpause: true
+});
+
+glide_specials.mount();

@@ -6,13 +6,11 @@
 // Required Core Stylesheet
 @import "../../node_modules/@glidejs/glide/src/assets/sass/glide.core";
 
- 
-
 @import "font/_font-faces";
 @import "font/_styles";
-@import "font/_sizes"; 
+@import "font/_sizes";
 
-@import "layout/_flex-boxes";
+@import "layout/_flex-boxes"; 
 @import "layout/_grids";
 
 @import "components/_links";
@@ -22,6 +20,7 @@
 @import "components/_buttons";
 @import "components/_slider";
 @import "components/_cards";
+@import "components/_arrow_links";
 
 @import "pages/_landing";
 @import "pages/_tours";

@@ -1,14 +1,18 @@
-//!
-const Joi = require("@hapi/joi");
+//  
+// const Joi = require("@hapi/joi");
+
+//  USER validation schema
+// const schema = require("../models/schemas/user");
 
 //! MODELS
 const Users = require("../models/users");
 
-//! USER validation schema
-const schema = require("../models/schemas/user");
+
+
+
 
 // === === === === ===
-//! GET the /singlogin
+//? GET the /singlogin
 // === === === === ===
 exports.getRegistration = (req, res, next) => {
     res.render("register", {
@@ -18,8 +22,12 @@ exports.getRegistration = (req, res, next) => {
     });
 };
 
+
+
+
+
 // === === === === ===
-//! POST the /singlogin AND validate user and save user
+//? POST the /singlogin AND validate user and save user
 // === === === === ===
 exports.postRegistration = (req, res, next) => {
     const { username, email, password, repeatpassword } = req.body;
@@ -29,12 +37,13 @@ exports.postRegistration = (req, res, next) => {
     const user = new Users(username, email, password);
     user.save()
         .then(() => {
+            req.session.logedIn = true;
             res.redirect("/tours");
         })
         .catch(err => {
             console.log(err);
         });
 
-    // req.session.logedIn = true;
-    //  res.redirect('/');
+    
+     
 };

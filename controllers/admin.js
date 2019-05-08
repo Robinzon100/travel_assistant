@@ -10,19 +10,10 @@ exports.getAddTour = (req, res, next) => {
 
 
 exports.postAddTour = (req, res, next) =>{
-    const title = req.body.title;
-    const price = req.body.price;
-    const description = req.body.description;
-    const image = req.body.image;
-    const locations = req.body.locations;
-    const locationLink = req.body.locationLink;
-    const website = req.body.website;
-    const telephone = req.body.telephone;
-    const email = req.body.email;
-    const ratting = req.body.ratting;
+    const {title, price, description, image, locations, locationLink, website, telephone, email, ratting, category} = req.body;
 
 
-    const tour = new Tours(title, price, description, image, locations, locationLink, website, telephone, email, ratting);
+    const tour = new Tours(title, price, description, image, locations, locationLink, website, telephone, email, ratting, category);
     
 
     tour.save()

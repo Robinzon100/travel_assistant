@@ -13,7 +13,8 @@ class Tours {
         website,
         telephone,
         email,
-        ratting
+        ratting,
+        category
     ) {
         this.title = title;
         this.price = price;
@@ -25,6 +26,7 @@ class Tours {
         this.telephone = telephone;
         this.email = email;
         this.ratting = ratting;
+        this.category = category;
     }
     
     // === === === === === 

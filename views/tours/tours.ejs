@@ -25,7 +25,106 @@
 </div>
 
 
-<div class="medium-card-container glide" id="medium-card-container-1">
+<div class="medium-card-container glide" id="medium-card-container-tours">
+	<h1 class="underline-headings medium-card-container__title"><a class="link-thin-arrow " href=""> TOURS </a></h1>
+	<div class="glide__arrows medium-card-container__buttons" data-glide-el="controls">
+		<button class="glide__arrow glide__arrow--left medium-card-container__buttons__left"
+			data-glide-dir="<">prev</button>
+		<button class="glide__arrow glide__arrow--right medium-card-container__buttons__right"
+			data-glide-dir=">">next</button>
+	</div>
+
+	<div class="glide__track" data-glide-el="track">
+		<div class="glide__slides">
+			<% for (let tour of tours) {  
+				if (tour.category == "tour"){ %>
+			<div class="card-small glide__slide">
+				<a href="tours/<%= tour._id %>">
+					<div class="card-small__image" style="background-image: url(<%= tour.image %>)"></div>
+				</a>
+				<a href="tours/<%= tour._id %>" class="card-small__text">
+					<h2 class="card-small__text__title"><%= tour.title %> </h2>
+					<p class="card-small__text__price"><%= tour.price %>$</p>
+					<div class="card-small__text__description"><%= tour.description %></div>
+					<p class="card-small__text__views"> <span>👁</span> 120</p>
+					<div class="card-small__text__rating">
+						<% for(let i = 0; i < tour.ratting; i++){ %>
+						<img class="card-small__text__rating__star" src="./img/SVG/star.svg" alt="">
+						<% } %>
+					</div>
+
+					<p href="#" class="card-small__text__location"><img src="img/SVG/SVG/ratting.svg" alt="">tbilisi</p>
+
+				</a>
+			</div>
+			<% } 
+		}%>
+
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="large-card-container glide" id="large-card-container-specialOffers">
+	<h1 class="underline-headings large-card-container__title"><a class="link-thin-arrow" href=""> SPECIALS</a></h1>
+	<div class="glide__arrows large-card-container__buttons" data-glide-el="controls">
+		<button class="glide__arrow glide__arrow--left large-card-container__buttons__left"
+			data-glide-dir="<">prev</button>
+		<button class="glide__arrow glide__arrow--right large-card-container__buttons__right"
+			data-glide-dir=">">next</button>
+	</div>
+
+	<div class="glide__track" data-glide-el="track">
+		<div class="glide__slides">
+			<% for (let tour of tours) {  %>
+			<div class="card-large glide__slide">
+				<a href="tours/<%= tour._id %>">
+					<div class="card-large__image" style="background-image: url(<%= tour.image %>)"></div>
+				</a>
+				<a href="tours/<%= tour._id %>" class="card-large__text">
+					<h2 class="card-large__text__title"><%= tour.title %> </h2>
+					<p class="card-large__text__price"><%= tour.price %>$</p>
+					<div class="card-large__text__description"><%= tour.description %></div>
+					<p class="card-large__text__views"> <span>👁</span> 120</p>
+					<div class="card-large__text__rating">
+						<% for(let i = 0; i < tour.ratting; i++){ %>
+						<img class="card-large__text__rating__star" src="./img/SVG/star.svg" alt="">
+						<% } %>
+					</div>
+
+					<p href="#" class="card-large__text__location"><img src="img/SVG/SVG/ratting.svg" alt="">tbilisi</p>
+
+				</a>
+			</div>
+			<% } %>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+<div class="medium-card-container glide" id="medium-card-container-expeditions">
+	<h1 class="underline-headings medium-card-container__title"><a class="link-thin-arrow " href=""> EXPEDITIONS </a>
+	</h1>
+
+	<div class="glide__arrows medium-card-container__buttons" data-glide-el="controls">
+		<button class="glide__arrow glide__arrow--left medium-card-container__buttons__left"
+			data-glide-dir="<">prev</button>
+		<button class="glide__arrow glide__arrow--right medium-card-container__buttons__right"
+			data-glide-dir=">">next</button>
+	</div>
 
 	<div class="glide__track" data-glide-el="track">
 		<div class="glide__slides">
@@ -38,7 +137,7 @@
 					<h2 class="card-small__text__title"><%= tour.title %> </h2>
 					<p class="card-small__text__price"><%= tour.price %>$</p>
 					<div class="card-small__text__description"><%= tour.description %></div>
-					<p class="card-small__text__views"> 👁 120</p>
+					<p class="card-small__text__views"> <span>👁</span> 120</p>
 					<div class="card-small__text__rating">
 						<% for(let i = 0; i < tour.ratting; i++){ %>
 						<img class="card-small__text__rating__star" src="./img/SVG/star.svg" alt="">
@@ -54,37 +153,7 @@
 	</div>
 </div>
 
- 
 
-
-<div class="medium-card-container glide" id="medium-card-container-2">
-
-		<div class="glide__track" data-glide-el="track">
-			<div class="glide__slides">
-				<% for (let tour of tours) {  %>
-				<div class="card-small glide__slide">
-					<a href="tours/<%= tour._id %>">
-						<div class="card-small__image" style="background-image: url(<%= tour.image %>)"></div>
-					</a>
-					<a href="tours/<%= tour._id %>" class="card-small__text">
-						<h2 class="card-small__text__title"><%= tour.title %> </h2>
-						<p class="card-small__text__price"><%= tour.price %>$</p>
-						<div class="card-small__text__description"><%= tour.description %></div>
-						<p class="card-small__text__views"> 👁 120</p>
-						<div class="card-small__text__rating">
-							<% for(let i = 0; i < tour.ratting; i++){ %>
-							<img class="card-small__text__rating__star" src="./img/SVG/star.svg" alt="">
-							<% } %>
-						</div>
-	
-						<p href="#" class="card-small__text__location"><img src="img/SVG/SVG/ratting.svg" alt="">tbilisi</p>
-	
-					</a>
-				</div>
-				<% } %>
-			</div>
-		</div>
-	</div>
 
 
 
