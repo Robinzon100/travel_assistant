@@ -66,7 +66,7 @@
         }
 
         &__price {
-            font-weight: bold;
+            font-weight: 300;
             color: $green;
             // margin-right: 2rem;
             text-align: right;
@@ -74,6 +74,7 @@
 
         &__description {
             height: 3.7rem;
+            margin-top: 0.4rem;
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
@@ -99,9 +100,9 @@
         &__location {
             display: flex;
             margin-top: 1rem;
-            justify-content: center;
+            justify-content: right;
             width: 100%;
-            text-align: center;
+            text-align: right;
             color: $dark;
             margin-top: 1rem;
 

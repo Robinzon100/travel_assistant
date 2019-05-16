@@ -13,6 +13,21 @@
 
 // === === === === === === === === ===
 @media all and (max-width: 480px) {
+    .icons{
+
+        &__icons{
+            display: block;
+        }
+
+        &__icon{
+           
+            margin-top: 8rem;
+
+            &__heading{
+                margin: 1rem 0 1rem;
+            }
+        }
+    }
 }
 
 @media all and (max-width: 980px) {

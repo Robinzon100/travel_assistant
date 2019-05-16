@@ -1,10 +1,31 @@
-.header {
-    height: 40vh;
+.explore_header_categories {
+    height: 80vh;
     background-image: url("../../img/png/small_hero.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+
+
+    &::before{
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+    
+
+    &__title{
+        @extend %font-heading-1;
+        color: white;
+        @include centerlize();
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        text-align: center;
+    }
 }
 
 .medium-card-container {
@@ -96,4 +117,6 @@
 
 .glide__slides{
     padding: 5rem 0;
+    margin: 5rem 0;
+    
 }

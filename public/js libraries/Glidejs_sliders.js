@@ -1,7 +1,7 @@
 const glide_1 = new Glide("#medium-card-container-tours", {
     type: "glide",
     gap: "30",
-    perView: 5,
+    perView: 4,
     startAt: 1,
     // hoverpause: true,
     // autoplay: 20000,
@@ -11,7 +11,7 @@ const glide_1 = new Glide("#medium-card-container-tours", {
     breakpoints: { 
         1400: {
             perView: 4
-        },
+        }, 
         1024: {
             perView: 2
         },
@@ -32,7 +32,7 @@ glide_1.mount();
 const glide_2 = new Glide("#medium-card-container-expeditions", {
     type: "glide",
     gap: "30",
-    perView: 5,
+    perView: 4,
     startAt: 1,
     // hoverpause: true,
     // autoplay: 20000,

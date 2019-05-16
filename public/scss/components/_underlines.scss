@@ -5,6 +5,7 @@ span {
 
 .underline-1 {
     text-decoration: none;
+    color: inherit;
     @extend %font-heading-1;
     position: relative;
     background-size: 200% auto;

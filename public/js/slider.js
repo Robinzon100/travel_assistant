@@ -38,14 +38,11 @@ if (sliderImages) {
     const resizeImages = () => {
         sliderImagesArray.forEach(elem => {
             elem.style.width = `${slider.offsetWidth}px`;
-            console.log(slider.offsetWidth);
-            console.log(elem.style.width);
         });
     };
 
     window.addEventListener("resize", () => {
         resizeImages();
-        console.log(`resized ${slider.style.width}`);
     });
 
     // window.setInterval(function () {

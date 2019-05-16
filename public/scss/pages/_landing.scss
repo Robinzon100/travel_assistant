@@ -15,7 +15,7 @@
             @extend %font-heading-1;
         }
     }
- 
+
     &__image {
         position: absolute;
         z-index: -1;
@@ -103,10 +103,11 @@
         z-index: -1;
         width: 100%;
         height: 80%;
-        background-size: cover;
         top: 0;
-        background-position: top center;
         background: url("../../img/our_mission.jpg");
+        background-size: cover !important;
+        background-position: center !important;
+        
         transform-origin: bottom;
         transition: all 0.2s ease-in;
         transform: translateX(-50%);
@@ -130,9 +131,11 @@
         background-color: white;
         padding: 3%;
         filter: drop-shadow(0 0 30px rgba(50, 50, 50, 0.4));
+        border-radius: 10px;
     }
 
     &__text {
+        border-radius: 10px;
         background-color: white;
         max-width: $max-width-vw;
         display: flex;
@@ -151,6 +154,7 @@
         &__paragraph {
             background-color: white;
             padding: 2vw 5vw;
+            border-radius: 10px;
 
             p {
                 span {
@@ -267,13 +271,13 @@
         &__small-images {
             position: absolute;
             left: 0;
-            width: 40%; 
+            width: 40%;
             background-color: gray;
             display: flex;
             flex-direction: row;
 
             img {
-                width: calc(100%/5);
+                width: calc(100% / 5);
                 height: 100%;
             }
         }
