@@ -1,15 +1,15 @@
 p {
-    font-size: calc(14px + (15 - 14) * ((100vw - 300px) / (1900 - 700))) !important;
+    font-size: calc(14px + (17 - 14) * ((100vw - 300px) / (1900 - 700))) !important;
     // line-height: 1.7;
-}
+} 
 
 .p-big {
     font-size: calc(16px + (20 - 16) * ((100vw - 300px) / (1900 - 700))) !important;
     letter-spacing: 1.1px;
     line-height: 3.3rem;
-}
+} 
 
-a {
+a { 
     // font-size: calc(14px + (18 - 14) * ((100vw - 300px) / (1900 - 700))) !important;
 }
 
@@ -85,4 +85,21 @@ h3 {
 
     }
 
+}
+
+  
+
+
+
+
+.tour_hero {
+
+
+    &__title{
+        font-size: calc(22px + (65 - 22) * ((100vw - 300px) / (1900 - 700))) !important;
+
+        &--sub{
+            font-size: calc(16px + (30 - 16) * ((100vw - 300px) / (1900 - 700))) !important;
+        }
+    }
 }

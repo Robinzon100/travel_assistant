@@ -1,27 +1,48 @@
+@media all and (max-width: 480px) {
+    .icons {
+        &__icons {
+            grid-row-gap: 20vw;
+        }
+    }
+
+    
+}
+
+@media all and (max-width: 736px) {
+    .tour_hero {
+        &__showcase-images {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: 1fr;
+            grid-template-areas: "first second third fourth fifth sixth";
+        }
+    }
+}
+
 @media all and (max-width: 980px) {
     .commertial {
-
         &__commertials {
             grid-template-columns: 1fr;
             grid-row-gap: 20vw;
 
             .left {
-                grid-template-areas: "image"
-                                    "heading_text"
-                                    "paragraph_text";
+                grid-template-areas:
+                    "image"
+                    "heading_text"
+                    "paragraph_text";
             }
 
             .right {
-                grid-template-areas: "image"
-                                    "heading_text"
-                                    "paragraph_text";
-
+                grid-template-areas:
+                    "image"
+                    "heading_text"
+                    "paragraph_text";
 
                 h2 {
                     justify-self: left;
                     direction: ltr;
                 }
-                
+
                 p {
                     direction: ltr;
                 }
@@ -32,52 +53,40 @@
                 align-items: center;
                 grid-template-columns: 1fr;
                 // grid-column-gap: 3vw;
-                grid-template-areas: "image"
-                                    "heading_text"
-                                    "paragraph_text";
+                grid-template-areas:
+                    "image"
+                    "heading_text"
+                    "paragraph_text";
 
-                h2{
+                h2 {
                     padding-top: 6vh;
                     padding-bottom: 2vh;
                     padding-left: 0;
                 }
-                
-                p{
+
+                p {
                     padding-left: 0;
                 }
             }
         }
     }
-    
-
 
     .about {
-
-        &__image{
+        &__image {
             width: 20vw;
         }
 
         &__text {
             padding-left: 0;
-            padding-right: 0; 
+            padding-right: 0;
             max-width: 100vw !important;
 
-            &__heading {}    
+            &__heading {
+            }
             &__paragraph {
                 grid-row-gap: 5vh;
                 grid-template-columns: 1fr;
             }
-        }
-    }
-}
-
-
-
-
-@media all and (max-width: 480px) {
-    .icons {
-        &__icons {
-            grid-row-gap: 20vw;
         }
     }
 }

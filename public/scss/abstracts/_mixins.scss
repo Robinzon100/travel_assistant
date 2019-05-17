@@ -16,3 +16,18 @@
 @mixin centerlize {
     transform: translate(-50%, -50%);
 }
+
+
+
+@mixin backdrop($opacity) {
+    &::before{
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, $opacity);
+        // background-color: transparentize($color: $dark, $amount: 0.4);
+
+    }
+}

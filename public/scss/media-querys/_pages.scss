@@ -9,21 +9,19 @@
 
 // === === === === === === === === ===
 
-// LANDING PAGE
+//? LANDING PAGE
 
 // === === === === === === === === ===
 @media all and (max-width: 480px) {
-    .icons{
-
-        &__icons{
+    .icons {
+        &__icons {
             display: block;
         }
 
-        &__icon{
-           
+        &__icon {
             margin-top: 8rem;
 
-            &__heading{
+            &__heading {
                 margin: 1rem 0 1rem;
             }
         }
@@ -101,4 +99,54 @@
             height: 3.8rem;
         }
     }
+}
+
+// === === === === === === === === ===
+
+// === === === === === === === === ===
+
+// === === === === === === === === ===
+
+// === === === === === === === === ===
+
+//? TOUR PAGE
+
+// === === === === === === === === ===
+@media all and (max-width: 480px) {
+}
+
+@media all and (max-width: 736px) {
+    .tour_hero {
+        &__title {
+            margin: 0 auto;
+            text-align: center;
+            max-width: 80vw;
+
+            &--sub {
+                line-height: 1.2;
+                margin-top: 5vw;
+            }
+        }
+
+        &__showcase-images {
+            border-radius: 8px 8px 0 0;
+            overflow: hidden;
+            width: 100vw;
+            height: 30vw;
+            top: initial;
+            bottom: 0 !important;
+            
+            &__image:first-child{
+                border-top-left-radius: 8px;
+            }
+            
+            &__image:last-child{
+                border-top-right-radius: 8px;
+            }
+ 
+        }
+    }
+}
+
+@media all and (max-width: 980px) {
 }

@@ -1,1 +1,211 @@
- 
+.tour_hero {
+    height: 100vh;
+    @include backdrop(0.5);
+    display: flex;
+    position: relative;
+    text-shadow: 0px 0px 10px black;
+    transition: all .02s ease;
+    background: {
+        size: cover;
+        position: center;
+    }
+
+    &__title {
+        position: relative;
+        align-self: center;
+        max-width: 40vw;
+        margin-left: 10vw;
+        color: white;
+        line-height: 1.2;
+        @extend %font-heading-1;
+
+        &--sub {
+            margin-top: 4vw;
+            font-family: opensans-regular;
+            color: darken(white, 10%);
+            line-height: 1.6;
+        }
+    }
+
+    &__showcase-images {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin-top: 3.5vw;
+        width: 20vw;
+        // width: 80%;
+        filter: drop-shadow(5px 5px 20px rgba(0, 0, 0, 0.4));
+        height: 20vw;
+        list-style: none;
+
+        &__image {
+            cursor: pointer;
+            background: {
+                size: cover;
+                position: center;
+            }
+        }
+    }
+}
+
+
+.tour_main{
+    // height: 200vh;
+    background: {
+        image: url('../img/SVG/abstract background.svg');
+        position: 50% -30%;
+        size: cover;
+        repeat: no-repeat;
+    } 
+}
+
+
+.tour_info {
+    // height: 200vh;
+    margin: 0 auto;
+    max-width: $max-width-rem;
+    width: $max-width;
+    padding: 10vw 0;
+
+    &__slogan-and-description {
+        &--slogan {
+            @extend %font-heading-1;
+        }
+
+        &--description {
+            margin-top: 2vh;
+            color: rgba($color: $dark, $alpha: 0.75);
+        }
+    }
+
+    &__includes {
+        &--title {
+            line-height: 0.9;
+        }
+
+        &--cheks {
+            margin-top: 3vh;
+            list-style: none;
+            margin-top: 3vw;
+
+            li {
+                margin-left: 3vw;
+                position: relative;
+
+                p {
+                    color: rgba($color: $dark, $alpha: 0.75);
+                }
+
+                &::after {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    width: 2.3rem;
+                    height: 2.3rem;
+                    left: -14%;
+                    top: 0;
+                    background: {
+                        image: url("../img/SVG/checkmark.svg");
+                        size: cover;
+                        position: center;
+                    }
+                }
+            }
+        }
+    }
+
+    &__panel {
+        background-color: white;
+        filter: drop-shadow(0 0 20px rgba(black, 0.1));
+        border-radius: 10px;
+        padding: 2vw 3vw 0 3vw; 
+        position: relative;
+
+        &__img {
+            width: 13vw;
+            height: 13vw;
+            background-color: white;
+            @include centerlize;
+            position: absolute;
+            top: -0%;
+            left: 50%;
+            border-radius: 1000px;
+            filter: drop-shadow(0 8px 3px rgba(black, 0.4));
+            background: {
+                position: center;
+                size: cover;
+                repeat: no-repeat;
+            }
+        }
+
+        &__price {
+            text-align: center;
+            margin: 5vw 0 3vw 0;
+            color: $green;
+        }
+
+        hr {
+            -webkit-box-shadow: 0 10px 6px -6px #777;
+            -moz-box-shadow: 0 10px 6px -6px #777;
+            box-shadow: 0 10px 6px -6px #777;
+        }
+
+        &__info {
+            margin-top: 3vw;
+
+            ul {
+                list-style: none;
+
+                li{
+                    margin: 2vw 0 0 3.5rem;
+                    position: relative;
+
+                    &::after{
+                        content: '';
+                        display: block;
+                        position: absolute;
+                        @include centerlize;
+                        left: -3rem;
+                        top: 50%;
+                        height: 2.5rem;
+                        width: 2.5rem;
+                    }
+
+
+
+                    &:nth-child(1)::after{
+                        background: {
+                            image: url('../img/SVG/tour_page_icons/location.svg');
+                            size:cover;
+                            repeat: no-repeat;
+                        }
+                    }
+
+                    &:nth-child(2)::after{
+                        background: {
+                            image: url('../img/SVG/tour_page_icons/laptop.svg');
+                            size:cover;
+                            repeat: no-repeat;
+                        }
+                    }
+
+                    &:nth-child(3)::after{
+                        background: {
+                            image: url('../img/SVG/tour_page_icons/email.svg');
+                            size:cover;
+                            repeat: no-repeat;
+                        }
+                    }
+
+                    &:nth-child(4)::after{
+                        background: {
+                            image: url('../img/SVG/tour_page_icons/phone.svg');
+                            size:cover;
+                            repeat: no-repeat;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

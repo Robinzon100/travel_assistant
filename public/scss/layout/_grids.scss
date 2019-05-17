@@ -8,7 +8,7 @@
     &__icons {
         align-items: center;
         justify-items: center;
-        grid-row-gap: 8vw; 
+        grid-row-gap: 8vw;
         grid-column-gap: 6vw;
         grid-column: 2/3;
         display: grid;
@@ -77,15 +77,85 @@
             grid-template-columns: 1fr 1fr;
         }
     }
-} 
-  
-// .medium-card-container {
-//     display: grid; 
-//     grid-template-columns: repeat(auto-fill, minmax(21rem, 1fr)) !important;  
-//     justify-items: center; 
-//     grid-column-gap: 2%;     
-// }
+}
 
+// === === === === === === === === === ===
+//? TOUR PAGE
+// === === === === === === === === === ===
+
+.tour_hero {
+    &__showcase-images {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-areas:
+            "first second third"
+            ". fourth fifth"
+            ". . sixth";
+
+        &__image:nth-child(1) {
+            grid-area: first;
+        }
+        &__image:nth-child(2) {
+            grid-area: second;
+        }
+        &__image:nth-child(3) {
+            grid-area: third;
+        }
+        &__image:nth-child(4) {
+            grid-area: fourth;
+        }
+        &__image:nth-child(5) {
+            grid-area: fifth;
+        }
+        &__image:nth-child(6) {
+            grid-area: sixth;
+        }
+    }
+}
+
+.tour_info {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 2fr;
+    grid-column-gap: 3vw;
+    // grid-template-areas: "info info panel"
+    //                      "info info panel";
+
+    &__text {
+        display: -moz-inline-grid;
+        display: -ms-inline-grid;
+        display: grid !important;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 2fr;
+        grid-row-gap: 10vh;
+        grid-column: 1/2;
+    }
+
+    &__panel {
+        grid-column: 2/3;
+    }
+
+    &__includes {
+        &--title {
+        }
+
+        &--cheks {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: repeat(3, 1fr);
+            grid-row-gap: 5vh;
+            grid-column-gap: 7vh;
+        }
+    }
+}
+
+// .medium-card-container {
+//     display: grid;
+//     grid-template-columns: repeat(auto-fill, minmax(21rem, 1fr)) !important;
+//     justify-items: center;
+//     grid-column-gap: 2%;
+// }
 
 // .medium-card-container {
 //     - width: 80%;
