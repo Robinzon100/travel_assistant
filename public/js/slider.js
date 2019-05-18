@@ -14,18 +14,21 @@ const sliderBtnPrev = document.querySelector("#sliderBtnPrev");
 const sliderBtnnext = document.querySelector("#sliderBtnnext");
 
 //
-// ─── VERIABLES ──────────────────────────────────────────────────────────────────
+// ─── //!VERIABLES ──────────────────────────────────────────────────────────────────
 //
 let slided = 0;
 
 
+ 
 
-//
-// ─── FUNCTIONS ──────────────────────────────────────────────────────────────────
-//
+
+
+
 
 if (sliderImages) {
 
+
+    //? takes the urls in the thubnail <div> and gives the showcase <div>s AND creats the elements with urls
     const urlGiver = () =>{
         const Urls = [];
 
@@ -48,15 +51,11 @@ if (sliderImages) {
 
 
 
-
-
-
-
-
-
+    
+    //? after creating the element we can get them all (becouse we gave them a classname)
     const sliderImagesArray = document.querySelectorAll(".slider__display__image-container__image");
 
-
+    //?resizes the image <div> on each resize 
     const resizeImages = () => {
         sliderImagesArray.forEach(elem => {
             elem.style.width = `${slider.offsetWidth}px`;
@@ -68,26 +67,26 @@ if (sliderImages) {
     });
 
 
-    // const differentEelements = (array, element) =>{
-    //         const others = [...array];
-    //         const notselected = others.filter(el => el != element);
-    //         return notselected;
-    // }
+
+    //! helper function that gets the diferent array that doesnt contain the element(that is given in the second argument)
+    const differentEelements = (array, element) =>{
+            const others = [...array];
+            const notselected = others.filter(el => el != element);
+            return notselected;
+    }
 
  
+    //? adds the highlited class to the first thumnail image
     sliderThumbnailImage[0].classList.add('highlighted-Thumbnail');
+    
+    //? transfroms the main showcase container div TRANSFORMX VALUE appropriatly 
     for (let i = 0; i < sliderThumbnailImage.length; i++) {
         sliderThumbnailImage[i].addEventListener('click', () =>{
             sliderImages.style.transform = `translateX(-${sliderImages.offsetWidth / sliderImagesArray.length * i}px`;
             sliderThumbnailImage[i].classList.add('highlighted-Thumbnail');
             slided = i;
 
-            const others = [...sliderThumbnailImage];
-            const notselected = others.filter(el => el != sliderThumbnailImage[i]);
-            // console.log(notselected);
-            
-            
-            notselected.forEach(elem => {
+            differentEelements(sliderThumbnailImage, sliderThumbnailImage[i]).forEach(elem => {
                 elem.classList.remove('highlighted-Thumbnail');
             });
         })
@@ -95,7 +94,7 @@ if (sliderImages) {
     }
  
 
-
+    //? NEXT BUTTON event listener
     sliderBtnnext.addEventListener("click", () => {
         if (slided == sliderImagesArray.length - 1) {
             sliderImages.style.transform = "translateX(-0px)";
@@ -110,6 +109,8 @@ if (sliderImages) {
         }
     });
 
+
+    //? PREV BUTTON event listener
     sliderBtnPrev.addEventListener("click", () => {
         if (slided == 0) {
             sliderImages.style.transform = `translateX(0)px`;
