@@ -4,7 +4,7 @@
     display: flex;
     position: relative;
     text-shadow: 0px 0px 10px black;
-    transition: all .02s ease;
+    transition: all 0.02s ease;
     background: {
         size: cover;
         position: center;
@@ -48,17 +48,15 @@
     }
 }
 
-
-.tour_main{
-    // height: 200vh;
+.tour_main {
+    height: 200vh;
     background: {
-        image: url('../img/SVG/abstract background.svg');
-        position: 50% -30%;
+        image: url("../img/SVG/abstract background.svg");
+        position: 50% -530%;
         size: cover;
         repeat: no-repeat;
-    } 
+    }
 }
-
 
 .tour_info {
     // height: 200vh;
@@ -67,13 +65,18 @@
     width: $max-width;
     padding: 10vw 0;
 
+    &__text {
+        height: 80vh;
+    }
+
     &__slogan-and-description {
         &--slogan {
             @extend %font-heading-1;
+            line-height: 1;
         }
 
         &--description {
-            margin-top: 2vh;
+            margin-top: 3vh;
             color: rgba($color: $dark, $alpha: 0.75);
         }
     }
@@ -118,12 +121,28 @@
         background-color: white;
         filter: drop-shadow(0 0 20px rgba(black, 0.1));
         border-radius: 10px;
-        padding: 2vw 3vw 0 3vw; 
-        position: relative;
+        position: sticky;
+        top: 10vh;
+        height: 65rem;
+        overflow: hidden;
+
+        p{
+            font-size: calc(
+            13px + (17 - 13) * ((100vw - 300px) / (1900 - 700))
+        ) !important;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        &__content {
+            padding: 0 3vw;
+        }
 
         &__img {
-            width: 13vw;
-            height: 13vw;
+            width: 11vw;
+            height: 11vw;
             background-color: white;
             @include centerlize;
             position: absolute;
@@ -140,72 +159,102 @@
 
         &__price {
             text-align: center;
-            margin: 5vw 0 3vw 0;
+            margin: 3rem 0;
             color: $green;
         }
 
         hr {
-            -webkit-box-shadow: 0 10px 6px -6px #777;
-            -moz-box-shadow: 0 10px 6px -6px #777;
-            box-shadow: 0 10px 6px -6px #777;
+            color: rgba(black, 0.1);
         }
 
         &__info {
-            margin-top: 3vw;
+            margin: 4rem 0;
 
             ul {
                 list-style: none;
 
-                li{
+                li {
                     margin: 2vw 0 0 3.5rem;
                     position: relative;
 
-                    &::after{
-                        content: '';
+                    &::after {
+                        content: "";
                         display: block;
                         position: absolute;
                         @include centerlize;
                         left: -3rem;
                         top: 50%;
-                        height: 2.5rem;
-                        width: 2.5rem;
+                        height: 2rem;
+                        width: 2rem;
                     }
 
-
-
-                    &:nth-child(1)::after{
+                    &:nth-child(1)::after {
                         background: {
-                            image: url('../img/SVG/tour_page_icons/location.svg');
-                            size:cover;
+                            image: url("../img/SVG/tour_page_icons/location.svg");
+                            size: cover;
                             repeat: no-repeat;
                         }
                     }
 
-                    &:nth-child(2)::after{
+                    &:nth-child(2)::after {
                         background: {
-                            image: url('../img/SVG/tour_page_icons/laptop.svg');
-                            size:cover;
+                            image: url("../img/SVG/tour_page_icons/laptop.svg");
+                            size: cover;
                             repeat: no-repeat;
                         }
                     }
 
-                    &:nth-child(3)::after{
+                    &:nth-child(3)::after {
                         background: {
-                            image: url('../img/SVG/tour_page_icons/email.svg');
-                            size:cover;
+                            image: url("../img/SVG/tour_page_icons/email.svg");
+                            size: cover;
                             repeat: no-repeat;
                         }
                     }
 
-                    &:nth-child(4)::after{
+                    &:nth-child(4)::after {
                         background: {
-                            image: url('../img/SVG/tour_page_icons/phone.svg');
-                            size:cover;
+                            image: url("../img/SVG/tour_page_icons/phone.svg");
+                            size: cover;
                             repeat: no-repeat;
                         }
                     }
                 }
             }
         }
+
+        &__map {
+            width: 100% !important;
+            margin-top: 4rem;
+            position: relative;
+            bottom: 0;
+            height: 26rem;
+            overflow: hidden;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+
+            &--map{
+                height: 100% !important;
+            }
+        }
     }
+
+    .mapouter {
+        height: 100% !important;
+        width: 100% !important;
+        .gmap_canvas {
+            // height: 20rem !important;
+            height: 100% !important;
+        }
+         
+        #gmap_canvas {
+            height: 100% !important;
+            width: 100% !important;
+        }
+    }
+    
+    
+  
 }
+
+

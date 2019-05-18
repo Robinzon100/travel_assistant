@@ -1,5 +1,4 @@
 .navigation {
-
     .navigation__content {
         display: flex;
         justify-content: space-between;
@@ -8,23 +7,11 @@
         &__logo {
             width: 18vw;
         }
-
-        &__links {
-            ul {
-                li {
-                    a {}
-                }
-            }
-        }
     }
 }
 
-
-
 .hero {
     display: flex;
-
-
 
     &__slogan_btn {
         display: flex;
@@ -32,19 +19,13 @@
     }
 }
 
-
 .icons {
-
     &__icon {
         display: flex;
         flex-direction: column;
         align-items: center;
-
-        &__heading {}
     }
 }
-
-
 
 .about {
     display: flex;
@@ -59,21 +40,17 @@
     }
 }
 
-
 .slider-section {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-
-
 .slider-section {
     height: 100vh;
     position: relative;
 
     .slider {
-
         &__display {
             display: flex;
             align-items: center;
@@ -89,5 +66,4 @@
             flex-direction: row;
         }
     }
-
 }

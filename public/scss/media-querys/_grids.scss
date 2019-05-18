@@ -4,8 +4,6 @@
             grid-row-gap: 20vw;
         }
     }
-
-    
 }
 
 @media all and (max-width: 736px) {
@@ -88,5 +86,53 @@
                 grid-template-columns: 1fr;
             }
         }
+    }
+
+    .tour_info {
+        height: initial;
+
+        &__panel {
+            position: initial;
+            height: 63rem;
+
+            &__info {
+                margin-top: 5rem;
+                ul {
+                    li {
+                        margin: 2rem 0 0 3.5rem;
+                    }
+                }
+            }
+
+            &__price {
+                margin: 4rem 0;
+            }
+
+            &__map {
+                margin-top: 0;
+            }
+
+            &__content {
+                padding: 0 6vw;
+            }
+        }
+
+        &__includes {
+            &--cheks {
+                margin-top: 5rem;
+
+                li{
+                    margin-left: 12vw;
+                }
+            }
+        }
+    }
+
+  
+    .tour_info__panel > ul:nth-child(1) {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
     }
 }
