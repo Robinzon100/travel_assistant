@@ -107,7 +107,7 @@
         background: url("../../img/our_mission.jpg");
         background-size: cover !important;
         background-position: center !important;
-        
+
         transform-origin: bottom;
         transition: all 0.2s ease-in;
         transform: translateX(-50%);
@@ -203,23 +203,6 @@
                     background-size: cover;
                     background-position: top center;
                     background-repeat: no-repeat;
-                    background-image: url("../../img/slider images/slider_1.jpg");
-                }
-
-                &__image:nth-child(1) {
-                    background-image: url("../../img/slider images/slider_1.jpg");
-                }
-                &__image:nth-child(2) {
-                    background-image: url("../../img/slider images/slider_2.jpg");
-                }
-                &__image:nth-child(3) {
-                    background-image: url("../../img/slider images/slider_3.jpg");
-                }
-                &__image:nth-child(4) {
-                    background-image: url("../../img/slider images/slider_4.jpg");
-                }
-                &__image:nth-child(5) {
-                    background-image: url("../../img/slider images/slider_5.jpg");
                 }
             }
 
@@ -280,6 +263,15 @@
                 width: calc(100% / 5);
                 height: 100%;
             }
+
+            // div {
+                //     width: calc(100% / 5);
+                //     height: 100%;
+                //     background: {
+                //         size:cover;
+                //         position: center;
+                //     }
+                // }
         }
     }
 }

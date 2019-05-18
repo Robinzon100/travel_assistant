@@ -135,18 +135,36 @@
             height: 30vw;
             top: initial;
             bottom: 0 !important;
-            
-            &__image:first-child{
+
+            &__image:first-child {
                 border-top-left-radius: 8px;
             }
-            
-            &__image:last-child{
+
+            &__image:last-child {
                 border-top-right-radius: 8px;
             }
- 
         }
     }
 }
 
 @media all and (max-width: 980px) {
+    .tour_info__text {
+        grid-row-gap: 8vh;
+        grid-row: 2/4;
+    }
+    .tour_info {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr; 
+        grid-column-gap: 0;
+        grid-row-gap: 20vh;
+    }
+    .tour_info__panel {
+        grid-column: 1/2;
+        grid-row: 1/2;
+    }
+    .tour_info__includes--cheks {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, 1fr);
+        margin-top: 5rem;
+    }
 }

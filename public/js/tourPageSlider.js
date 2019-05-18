@@ -16,13 +16,11 @@ if (tourHero) {
             const notselectedImages = otherImages.filter(el => el != elem);
             
             notselectedImages.forEach(elem => {
-                elem.style.border = "none";
-                elem.style.boxShadow = "none";
+                elem.classList.remove('highlighted-Thumbnail');
             });
 
             
-            elem.style.border = "2px solid #21E6C1";
-            elem.style.boxShadow = "4px -4px 20px #21E6C1";
+            elem.classList.add('highlighted-Thumbnail');
             tourHero.style.backgroundImage = `url("${showcaseImageUrl}")`;
         })        
     }
