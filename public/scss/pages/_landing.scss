@@ -254,24 +254,21 @@
         &__small-images {
             position: absolute;
             left: 0;
+            height: 10rem;
             width: 40%;
             background-color: gray;
             display: flex;
             flex-direction: row;
 
-            img {
-                width: calc(100% / 5);
-                height: 100%;
-            }
-
-            // div {
-                //     width: calc(100% / 5);
-                //     height: 100%;
-                //     background: {
-                //         size:cover;
-                //         position: center;
-                //     }
-                // }
+             
+            div {
+                    width: calc(100% / 5);
+                    height: 100%;
+                    background: {
+                        size:cover;
+                        position: center;
+                    }
+                }
         }
     }
 }

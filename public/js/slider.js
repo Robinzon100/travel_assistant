@@ -7,7 +7,7 @@ const sliderImages = document.querySelector(".slider__display__image-container")
 
 //thumbnail images array
 const sliderThumbnailImages = document.querySelectorAll("#sliderThumbnailImages");
-const sliderThumbnailImage = document.querySelectorAll("#sliderThumbnailImages img");
+const sliderThumbnailImage = document.querySelectorAll("#sliderThumbnailImages div");
 
 //buttons
 const sliderBtnPrev = document.querySelector("#sliderBtnPrev");
@@ -30,18 +30,15 @@ if (sliderImages) {
         const Urls = [];
 
         sliderThumbnailImage.forEach(elem => {
-            Urls.push(elem.src);
+            Urls.push(elem.style.backgroundImage.slice(4, -1).replace(/"/g, ""));
         });
-
-        // const imageShowcaseArray = [];
 
         for (let i = 0; i < Urls.length; i++) {
             const imageShowcase = document.createElement('div');
-            imageShowcase.classList.add('slider__display__image-container__image');
 
-            imageShowcase.style.backgroundImage = `${Urls[i]}`;
-            sliderImages.appendChild(imageShowcase);
-            console.log(Urls[i])        
+            imageShowcase.classList.add('slider__display__image-container__image');
+            imageShowcase.style.backgroundImage = `url("${Urls[i]}")`;
+            sliderImages.appendChild(imageShowcase); 
         }
 
     }
@@ -72,17 +69,9 @@ if (sliderImages) {
 
 
     // const differentEelements = (array, element) =>{
-         
-
     //         const others = [...array];
     //         const notselected = others.filter(el => el != element);
-    //         // console.log(notselected);
-            
-            
-    //         notselected.forEach(elem => {
-    //             let diffArray
-    //             elem.classList.remove('highlighted-Thumbnail');
-    //         });
+    //         return notselected;
     // }
 
  
