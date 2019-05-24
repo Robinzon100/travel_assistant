@@ -8,13 +8,18 @@
 <br>
 <br>
 <br>
-<form action="signlogin" method="post">
+<% for (let error of errorMessage){ %>
+    <h1><%= error %></h1>
+<% } %>
+<form action="register" method="post">
     <input type="text" name="username" placeholder="enter username"> <br><br>
     <input type="email" name="email" placeholder="enter email"> <br><br>
     <input type="password" name="password" placeholder="enter password"> <br><br>
     <input type="password" name="repeatpassword" placeholder="repeat password"> <br><br>
     <button type="submit">register</button>
 </form>
+
+<a href="/login">already a member</a>
 
 
 <%- include('includes/bottom.ejs')  %>

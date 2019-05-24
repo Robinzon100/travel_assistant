@@ -4,7 +4,8 @@ const Tours = require('../models/tours');
 exports.getAddTour = (req, res, next) => {
     res.render('admin/add-tour', {
         pageTitle: "add-tour",
-        path: "/admin/add-tours"
+        path: "/admin/add-tours",
+        logedIn: req.session.logedIn
     });
 };
 

@@ -8,12 +8,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const volleyball = require("volleyball");
-const session = require("express-session");
+const session = require("express-session"); 
 const MongoDBStore = require("connect-mongodb-session")(session);
+const flash = require('connect-flash');
 
-//! MONGODB URI
-const MONGODB_URI =
-    "mongodb+srv://robinzon:rU0Hbn7IsLgLk4KF@travel-assistant-btaux.mongodb.net/travel-assistant";
+//! MONGODB URI 
+const MONGODB_URI = "mongodb+srv://robinzon:rU0Hbn7IsLgLk4KF@travel-assistant-btaux.mongodb.net/travel-assistant";
 
 //
 // ─── MY EXPORTS ─────────────────────────────────────────────────────────────────
@@ -50,7 +50,7 @@ const store = new MongoDBStore({
 });
 
 // USING the session for express
-app.use(
+app.use( 
     session({
         secret: "this is the secret",
         resave: false,
@@ -61,12 +61,14 @@ app.use(
 
 // using volleyball
 app.use(volleyball);
+//using CONNECT FLASH MESSAGE
+app.use(flash());
 
 // ─── ROUTES ─────────────────────────────────────────────────────────────────────
 const toursRouts = require("./routes/tours");
 const adminsRouts = require("./routes/admin");
 
-const registrationRoutes = require("./routes/registration");
+const registrationRoutes = require("./routes/auth");
 
 // ─── USING THE ROUTES ───────────────────────────────────────────────────────────
 app.use("/admin", adminsRouts);

@@ -12,7 +12,7 @@ const MONGODB_URI = require('../app').MONGODB_URI;
 let _db;
 
 const mongoConnect = cb => {
-  MongoClient.connect(
+  MongoClient.connect( 
       MONGODB_URI, 
       {useNewUrlParser: true})
     .then(client => {
