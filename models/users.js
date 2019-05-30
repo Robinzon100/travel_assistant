@@ -1,4 +1,5 @@
 const getDb = require('../utils/database').getDb;
+const mongodb = require('mongodb');
 
 
 class User {
@@ -13,6 +14,9 @@ class User {
         this.resetTokenExpiration = resetTokenExpiration;
     }
 
+    //
+    // ─── SAVE ───────────────────────────────────────────────────────────────────────
+    //
     save() {
         const db = getDb();
         return db.collection('user')
@@ -24,13 +28,13 @@ class User {
     }
 
 
-    static saveUserToken(email, resetToken) {
+    //
+    // ─── FIND ───────────────────────────────────────────────────────────────────────
+    //
+    static findUserByToken(token) {
         const db = getDb();
         return db.collection('user')
-            .updateOne(
-                { email: email },
-                { $set: {resetToken:  resetToken, resetTokenExpiration: new Date() * 3600000} }
-            )
+            .findOne({resetToken: token})
             .then(user => {
                 return user;
             })
@@ -39,7 +43,6 @@ class User {
             })
     }
     
-
 
     static findUser(email, password) {
         const db = getDb();
@@ -52,8 +55,6 @@ class User {
                 console.log(err);
             })
     }
-    
-
 
 
     static findByEmail(email) {
@@ -67,7 +68,61 @@ class User {
                 console.log(err);
             })
     }
+
+    static findById(userId) {
+        const db = getDb();
+        return db.collection('user')
+            .findOne({ _id: new mongodb.ObjectId(userId)})
+            .then(user => {
+                return user;
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+
+
+
+
+    //
+    // ─── UPDATE ─────────────────────────────────────────────────────────────────────
+    //
+    static saveAndUpdateUserToken(email, resetToken) {
+        const db = getDb();
+        return db.collection('user')
+            .updateOne(
+                { email: email },
+                { $set: {resetToken:  resetToken, resetTokenExpiration: new Date() * 3600000} }
+            )
+            .then(user => {
+                return user;
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+
+
+    static updateUserPassword(userId, newPassword) {
+        const db = getDb();
+        return db.collection('user')
+            .updateOne(
+                { _id: new mongodb.ObjectId(userId)},
+                { $set: {password:  newPassword} }
+            )
+            .then(user => {
+                return user;
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
 }
 
 
 module.exports = User;
+
+
+

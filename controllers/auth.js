@@ -9,25 +9,18 @@
 
 const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
-const sgMail = require("@sendgrid/mail");
-
-//? setting the meail api key
-
-sgMail.setApiKey(
-    "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"
-);
+const mailer = require("../utils/mailer.js");
 
 //! MODELS
 const Users = require("../models/users");
 
 //
-//? ─── REGISTRATION ───────────────────────────────────────────────────────────────
+//! ─── REGISTRATION ───────────────────────────────────────────────────────────────
 //
 
 //? get the /registration
-
 exports.getRegistration = (req, res, next) => {
-    res.render("register", {
+    res.render("auth/register", {
         pageTitle: "travel assistant",
         path: "/register",
         errors: [],
@@ -37,7 +30,6 @@ exports.getRegistration = (req, res, next) => {
 };
 
 //? POST the /registration
-
 exports.postRegistration = (req, res, next) => {
     const { username, email, password } = req.body;
 
@@ -55,14 +47,7 @@ exports.postRegistration = (req, res, next) => {
                             req.session.user = user;
                             res.redirect("/tours");
 
-                            const msg = {
-                                to: email,
-                                from: "robinzon@gmail.com",
-                                subject: "Sending with SendGrid is Fun",
-                                text: "mametyna",
-                                html: "mametyna"
-                            };
-                            sgMail.send(msg);
+                            mailer.registrationMail(email);
                         })
                         .catch(err => {
                             console.log(err);
@@ -74,13 +59,12 @@ exports.postRegistration = (req, res, next) => {
 };
 
 //
-//?─── LOGIN ──────────────────────────────────────────────────────────────────────
+//!─── LOGIN ──────────────────────────────────────────────────────────────────────
 //
 
 //? GET the /login
-
 exports.getLogin = (req, res, next) => {
-    res.render("login", {
+    res.render("auth/login", {
         pageTitle: "login",
         path: "/register",
         errors: [],
@@ -90,7 +74,6 @@ exports.getLogin = (req, res, next) => {
 };
 
 //? POST the /singlogin
-
 exports.postLogin = (req, res, next) => {
     const { email, password } = req.body;
 
@@ -124,7 +107,7 @@ exports.postLogin = (req, res, next) => {
 };
 
 //
-//?─── LOGOUT ─────────────────────────────────────────────────────────────────────
+//!─── LOGOUT ─────────────────────────────────────────────────────────────────────
 //
 
 exports.postLogout = (req, res, next) => {
@@ -135,13 +118,12 @@ exports.postLogout = (req, res, next) => {
 };
 
 //
-//?─── RESET-PASSWORD ──────────────────────────────────────────────────────────────────────
+//!─── RESET-PASSWORD ──────────────────────────────────────────────────────────────────────
 //
 
 //? GET the /reset-password
-
 exports.getResetPassword = (req, res, next) => {
-    res.render("reset-password", {
+    res.render("auth/reset-password", {
         pageTitle: "reset password",
         path: "/reset-password",
         errors: [],
@@ -151,7 +133,6 @@ exports.getResetPassword = (req, res, next) => {
 };
 
 //? POST the /reset-password
-
 exports.postResetPassword = (req, res, next) => {
     const { email } = req.body;
 
@@ -165,14 +146,71 @@ exports.postResetPassword = (req, res, next) => {
             Users.findByEmail(email)
                 .then(user => {
                     if (!user) {
-                        req.flash("error","no acount found found with that email");
+                        req.flash(
+                            "error",
+                            "no acount found found with that email"
+                        );
                         res.redirect("/reset-password");
-                    }else{
-                        Users.saveUserToken(email, token)
+                    } else {
+                        mailer.resetPasswordMail(email, token);
+                        Users.saveAndUpdateUserToken(email, token);
                         res.redirect("/reset-password");
                     }
                 })
                 .catch(err => console.log(err));
         }
     });
+};
+
+//
+//!─── NEW-PASSWORD ──────────────────────────────────────────────────────────────────────
+//
+
+//? GET the /reset-password
+exports.getNewPassword = (req, res, next) => {
+    const token = req.params.token;
+
+    Users.findUserByToken(token)
+        .then(user => {
+            if (user) {
+                res.render("auth/new-password", {
+                    pageTitle: "new password",
+                    path: "/new-password",
+                    errors: [],
+                    logedIn: req.session.logedIn,
+                    errorMessage: req.flash("error"),
+                    userId: user._id
+                });
+            } else {
+                req.flash("error", "no acount found found with that email");
+                res.redirect("/reset-password");
+            }
+        })
+        .catch(err => console.log(err));
+};
+
+//? POST the /reset-password
+exports.postNewPassword = (req, res, next) => {
+    const { userId } = req.body;
+    const token = req.params.token;
+    const newPassword = req.body.password;
+
+    Users.findById(userId)
+        .then(user => {
+            if (!user) {
+                req.flash("error", "the user you provided is not valide");
+                res.redirect(`/new-password/${token}`);
+            } else {
+                return bcrypt.hash(newPassword, 12).then(hashedPassword => {
+                    Users.updateUserPassword(userId, hashedPassword)
+                        .then(user => {
+                            res.redirect("/login");
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        });
+                });
+            }
+        })
+        .catch(err => console.log(err));
 };

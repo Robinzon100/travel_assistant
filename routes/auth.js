@@ -24,6 +24,19 @@ router.get("/reset-password", auth.getResetPassword);
 router.post("/reset-password", auth.postResetPassword);
 
 
+//
+// ?─── NEW PASSWORD  ROUTES ────────────────────────────────────────────────────────────
+//
+router.get("/new-password/:token", auth.getNewPassword);
+router.post("/new-password/:token", auth.postNewPassword);
+
+
+
+
+
+//
+// ?─── LOG OUT  ROUTES ────────────────────────────────────────────────────────────
+//
 router.post("/logout", auth.postLogout);
 
 module.exports = router;
