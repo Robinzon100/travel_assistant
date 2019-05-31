@@ -10,6 +10,7 @@
 const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
 const mailer = require("../utils/mailer.js");
+const {validationResult} = require('express-validator/check');
 
 //! MODELS
 const Users = require("../models/users");
@@ -32,6 +33,20 @@ exports.getRegistration = (req, res, next) => {
 //? POST the /registration
 exports.postRegistration = (req, res, next) => {
     const { username, email, password } = req.body;
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        console.log(errors.array());
+        
+        return res.status(422)
+        .render("auth/register", {
+            pageTitle: "travel assistant",
+            path: "/register",
+            errors: [],
+            logedIn: req.session.logedIn,
+            errorMessage: errors.array()
+        });        
+    }
 
     Users.findByEmail(email)
         .then(user => {
@@ -47,7 +62,7 @@ exports.postRegistration = (req, res, next) => {
                             req.session.user = user;
                             res.redirect("/tours");
 
-                            mailer.registrationMail(email);
+                            // mailer.registrationMail(email);
                         })
                         .catch(err => {
                             console.log(err);

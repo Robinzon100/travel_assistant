@@ -24,6 +24,7 @@ module.exports = {
 
 // ─── MY IMPORTS ─────────────────────────────────────────────────────────────────
 const mongoConnect = require("./utils/database").mongoConnect;
+const Users = require('./models/users');
 
 
 
@@ -63,6 +64,30 @@ app.use(
 app.use(volleyball);
 //using CONNECT FLASH MESSAGE
 app.use(flash());
+
+
+
+
+
+
+//user middleware
+app.use((req, res, next) => {
+    if (!req.session.user) {
+        return next()
+    }else{
+        Users.findById(req.session.user._id)
+            .then((user) => {
+                req.user = user;
+                next();
+            }).catch((err) => console.log(err));
+    }
+});
+
+
+
+
+
+
 
 // ─── ROUTES ─────────────────────────────────────────────────────────────────────
 const toursRouts = require("./routes/tours");

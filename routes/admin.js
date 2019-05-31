@@ -8,10 +8,10 @@ const adminControllers = require('../controllers/admin');
 //
 // ─── MIDDLEWARE ─────────────────────────────────────────────────────────────────
 //
-// const isAuth = require('../models/middleware/is-auth');
+const isAuth = require('../models/middleware/is-auth');
 
-router.get("/add-tour",adminControllers.getAddTour);
-router.post("/add-tour", adminControllers.postAddTour);
+router.get("/add-tour",isAuth.adminAuth, adminControllers.getAddTour);
+router.post("/add-tour",isAuth.adminAuth, adminControllers.postAddTour);
 
 
 module.exports = router;
