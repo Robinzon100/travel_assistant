@@ -5,11 +5,10 @@
 <br>
 <br>
 <br>
-<form action="/admin/add-tour" method="post">
-    <input type="text" name="title" placeholder="title"> <br> <br>
+<form action="/admin/add-tour" method="post" enctype="multipart/form-data">
+    <input type="text" name="title" placeholder="title" > <br> <br>
     <input type="number" name="price" placeholder="price"> <br> <br>
     <input type="text" name="description" placeholder="description"> <br> <br>
-    <input type="text" name="image" placeholder="image"> <br> <br>
     <input type="text" name="locations" placeholder="locations"> <br> <br>
     <input type="text" name="locationLink" placeholder="locationLink"> <br> <br>
     <input type="text" name="website" placeholder="website"> <br> <br>
@@ -22,7 +21,10 @@
         <option value="hotels">hotels</option>
         <option value="bike rides">bike rides</option>
         <option value="campings">campings</option>
-    </select> <br> <br>
+    </select> <br> <br> <br><br>
+
+    <label for="images">upload images</label>
+    <input type="file" name="images" id=""  multiple="multiple">
     <button type="submit">add tour</button>
 </form>
 

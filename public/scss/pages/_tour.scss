@@ -20,9 +20,9 @@
         @extend %font-heading-1;
 
         &--sub {
-            margin-top: 4vw;
+            margin-top: 2vw;
             font-family: opensans-regular;
-            color: darken(white, 10%);
+            color: #dadada;
             line-height: 1.6;
         }
     }

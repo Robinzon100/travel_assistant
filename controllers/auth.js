@@ -10,7 +10,7 @@
 const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
 const mailer = require("../utils/mailer.js");
-const {validationResult} = require('express-validator/check');
+const { validationResult } = require("express-validator/check");
 
 //! MODELS
 const Users = require("../models/users");
@@ -26,51 +26,53 @@ exports.getRegistration = (req, res, next) => {
         path: "/register",
         errors: [],
         logedIn: req.session.logedIn,
-        errorMessage: req.flash("error")
+        errorMessage: req.flash("error"),
+        oldInputValues: {
+            email: "",
+            password: "",
+            repeatPassword: ""
+        }
     });
 };
 
 //? POST the /registration
 exports.postRegistration = (req, res, next) => {
-    const { username, email, password } = req.body;
+    const { username, email, password, repeatPassword } = req.body;
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
         console.log(errors.array());
-        
-        return res.status(422)
-        .render("auth/register", {
+
+        return res.status(422).render("auth/register", {
             pageTitle: "travel assistant",
             path: "/register",
             errors: [],
             logedIn: req.session.logedIn,
-            errorMessage: errors.array()
-        });        
+            errorMessage: errors.array(),
+            oldInputValues: {
+                username: username,
+                email: email,
+                password: password,
+                repeatPassword: repeatPassword
+            }
+        });
     }
 
-    Users.findByEmail(email)
-        .then(user => {
-            if (user) {
-                req.flash("error", "user already exists");
-                res.redirect("/register");
-            } else {
-                return bcrypt.hash(password, 12).then(hashedPassword => {
-                    const user = new Users(username, email, hashedPassword);
-                    user.save()
-                        .then(() => {
-                            req.session.logedIn = true;
-                            req.session.user = user;
-                            res.redirect("/tours");
+    bcrypt.hash(password, 12).then(hashedPassword => {
+        const user = new Users(username, email, hashedPassword);
 
-                            // mailer.registrationMail(email);
-                        })
-                        .catch(err => {
-                            console.log(err);
-                        });
-                });
-            }
-        })
-        .catch(err => console.log(err));
+        user.save()
+            .then(() => {
+                req.session.logedIn = true;
+                req.session.user = user;
+                res.redirect("/tours");
+
+                // mailer.registrationMail(email);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    });
 };
 
 //
@@ -84,7 +86,11 @@ exports.getLogin = (req, res, next) => {
         path: "/register",
         errors: [],
         logedIn: req.session.logedIn,
-        errorMessage: req.flash("error")
+        errorMessage: req.flash("error"),
+        oldInputValues: {
+            email: req.email,
+            password: req.password
+        }
     });
 };
 
@@ -108,12 +114,33 @@ exports.postLogin = (req, res, next) => {
                         } else {
                             req.flash("error", "invalid email or password");
                             res.redirect("/login");
+                            res.render("auth/login", {
+                                pageTitle: "login",
+                                path: "/register",
+                                errors: [],
+                                logedIn: req.session.logedIn,
+                                errorMessage: req.flash("error"),
+                                oldInputValues: {
+                                    email: email,
+                                    password: password
+                                }
+                            });
                         }
                     })
                     .catch(err => console.log(err));
             } else {
                 req.flash("error", "invalid email or password");
-                res.redirect("/login");
+                res.render("auth/login", {
+                    pageTitle: "login",
+                    path: "/register",
+                    errors: [],
+                    logedIn: req.session.logedIn,
+                    errorMessage: req.flash("error"),
+                    oldInputValues: {
+                        email: email,
+                        password: password
+                    }
+                });
             }
         })
         .catch(err => {
@@ -187,7 +214,7 @@ exports.getNewPassword = (req, res, next) => {
 
     Users.findUserByToken(token)
         .then(user => {
-            if (user) {
+            if (user && user.resetTokenExpiration > Date.now()) {
                 res.render("auth/new-password", {
                     pageTitle: "new password",
                     path: "/new-password",
@@ -219,6 +246,7 @@ exports.postNewPassword = (req, res, next) => {
                 return bcrypt.hash(newPassword, 12).then(hashedPassword => {
                     Users.updateUserPassword(userId, hashedPassword)
                         .then(user => {
+                            user.resetToken = undefined;
                             res.redirect("/login");
                         })
                         .catch(err => {

@@ -12,11 +12,33 @@
     <h1><%= error.msg %></h1>
 <% } %>
 <form action="register" method="post" novalidate>
-    <input type="text" name="username" placeholder="enter username"> <br><br>
-    <input type="email" name="email" placeholder="enter email" > <br><br>
-    <input type="password" name="password" placeholder="enter password"> <br><br>
-    <input type="password" name="repeatPassword" placeholder="repeat password"> <br><br>
-    <button type="submit">register</button>
+    <input 
+        class="<%= errorMessage.find(e => e.param === 'email') ? 'invalid' : '' %>"
+        type="text" 
+        name="username" 
+        value="<%= oldInputValues.username %>" 
+        placeholder="enter username"> <br><br>
+
+    <input 
+        type="email" 
+        name="email" 
+        value="<%= oldInputValues.email %>" 
+        placeholder="enter email" > <br><br>
+
+    <input 
+        type="password" 
+        name="password" 
+        value="<%= oldInputValues.password %>" 
+        placeholder="enter password"> <br><br>
+
+    <input 
+        type="password" 
+        name="repeatPassword" 
+        value="<%= oldInputValues.repeatPassword %>" 
+        placeholder="repeat password"> <br><br>
+
+    <button 
+        type="submit">register</button>
 </form>
 
 <a href="/login">already a member</a>

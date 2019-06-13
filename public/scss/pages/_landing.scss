@@ -170,6 +170,29 @@
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+
 .slider-section {
     height: 100vh;
     position: relative;
@@ -252,23 +275,24 @@
         }
 
         &__small-images {
+            width: 100%;
             position: absolute;
             left: 0;
-            height: 10rem;
-            width: 40%;
+            height: 10rem; 
             background-color: gray;
-            display: flex;
-            flex-direction: row;
+            display: grid;
+            grid-template-columns: repeat(20, 10vw);
+            overflow: scroll;
+            overflow-y: hidden;
 
-             
             div {
-                    width: calc(100% / 5);
-                    height: 100%;
-                    background: {
-                        size:cover;
-                        position: center;
-                    }
+                width: 100%;
+                height: 100%;
+                background: {
+                    size: cover;
+                    position: center;
                 }
+            }
         }
     }
 }

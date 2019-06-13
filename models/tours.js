@@ -7,19 +7,18 @@ class Tours {
         title,
         price,
         description,
-        image,
         locations,
         locationLink,
         website,
         telephone,
         email,
         ratting,
-        category
+        category,
+        imageUrls
     ) {
         this.title = title;
         this.price = price;
         this.description = description;
-        this.image = image;
         this.locations = locations;
         this.locationLink = locationLink;
         this.website = website;
@@ -27,6 +26,7 @@ class Tours {
         this.email = email;
         this.ratting = ratting;
         this.category = category;
+        this.imageUrls = imageUrls;
     }
     
     // === === === === === 
@@ -40,7 +40,7 @@ class Tours {
             .insertOne(this)
             .then(tour => {
                 let savedtour = tour;
-                console.log(tour);
+                // console.log(tour);
             })
             .catch(err => {
                 console.log(err);
@@ -60,7 +60,7 @@ class Tours {
             .find({ _id: new mongodb.ObjectId(tourId) })
             .next()
             .then(tour => {
-                console.log(tour);
+                // console.log(tour);
                 return tour;
             })
             .catch(err => console.log(err));

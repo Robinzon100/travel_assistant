@@ -2,6 +2,11 @@ const express = require("express");
 const router = express.Router();
 const { check, body } = require("express-validator/check");
 
+//
+// ─── MY IMPORTS ─────────────────────────────────────────────────────────────────
+//
+const Users = require("../models/users");
+
 // ─── CONTROLERS ──────────────────────────────────────────────────────────────────
 const auth = require("../controllers/auth");
 
@@ -9,23 +14,34 @@ const auth = require("../controllers/auth");
 // ?─── REGISTRATION ROUTES ────────────────────────────────────────────────────────────
 //
 router.get("/register", auth.getRegistration);
-router.post(
-    "/register",
+router.post("/register",
     [
-        //Eamil
-        check("email","plese enter a valide Email")
-            .isEmail(),
+        //Email
+        check("email")
+            .not()
+            .isEmpty()
+            .withMessage('email musnt be empty')
+            .trim()
+            .isEmail()
+            .withMessage('enter a valid email')
+            .custom((value, { req }) => {
+                return Users.findByEmail(value).then(user => {
+                    if (user) {
+                        return Promise.reject("User Already Exists");
+                    }
+                });
+            }),
 
         //Password
-        body('password', "password must be at leaset 5characters long")
-            .isLength({min: 5, max: 20}),
+        body("password", "password must be at least 5 characters long")
+            .trim()
+            .isLength({ min: 5, max: 20 }),
 
         //Repeat password
-        body('repeatPassword')
-            .custom((value, {req})=>{
+        body("repeatPassword").custom((value, { req }) => {
             if (value !== req.body.password) {
-                throw new Error('Passwords must match !')
-            }else{
+                throw new Error("Passwords must match !");
+            } else {
                 return true;
             }
         })

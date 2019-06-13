@@ -11,6 +11,7 @@ const volleyball = require("volleyball");
 const session = require("express-session"); 
 const MongoDBStore = require("connect-mongodb-session")(session);
 const flash = require('connect-flash');
+const multer = require('multer');
 
 //! MONGODB URI 
 const MONGODB_URI = "mongodb+srv://robinzon:rU0Hbn7IsLgLk4KF@travel-assistant-btaux.mongodb.net/travel-assistant";
@@ -30,15 +31,36 @@ const Users = require('./models/users');
 
 
 
+
+
 // ─── VIEW ENGINE ────────────────────────────────────────────────────────────────
 app.set("view engine", "ejs");
 app.set("views", "views");
 
-// ─── BODY PARSER ────────────────────────────────────────────────────────────────
+// ─── BODY PARSER AND MULTER ────────────────────────────────────────────────────────────────
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
+
+
+
+// ─── FILE STORAGE OPTIONS FOR MULTER ────────────────────────────────────────────    
+const fileStorage = multer.diskStorage({
+    destination: (req, file, cb) =>{
+        cb(null, 'images')
+    },
+    filename: (req, file, cb) =>{
+        cb(null, new Date().toISOString() +'-'+ file.originalname);
+    }
+})
+
+// const cpUpload = multer.fields([{ name: 'avatar', maxCount: 1 }, { name: 'gallery', maxCount: 8 }])
+
+app.use(multer({storage : fileStorage}).array('images'));
 
 // reading public folder
 app.use(express.static(path.join(__dirname, "public")));
+app.use('/images',express.static(path.join(__dirname, "images")));
 
 
 

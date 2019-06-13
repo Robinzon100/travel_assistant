@@ -35,7 +35,7 @@ exports.getTours = (req, res, next) => {
 
 
 //=== === === === === 
-//! GET a single tour page
+// ?GET a single tour page
 //=== === === === === 
 exports.getTour = (req, res, next) => {
     const tourId = req.params.singleTourId;
@@ -54,7 +54,7 @@ exports.getTour = (req, res, next) => {
 
 
 //=== === === === === 
-//! POST a single tour page
+//? POST a single tour page
 //=== === === === === 
 exports.postTours = (req, res, next) => {
     res.render("tours/tours", {

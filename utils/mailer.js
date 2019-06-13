@@ -1,7 +1,7 @@
 const sgMail = require("@sendgrid/mail");
 
-sgMail.setApiKey("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");
-
+sgMail.setApiKey("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");
+//d-409275b9852244c6ab5beb34a11fff1b
 
 const resetPasswordMail = (to,token) => {
     const msg = {
@@ -11,7 +11,7 @@ const resetPasswordMail = (to,token) => {
         text: "mametyna",
         html: `
             <h1>to reset your password plese follow the link bellow</h1>
-            <a href="http://localhost:3000/reset-password/${token}"></a>
+            <a href="http://localhost:3000/new-password/${token}">reset password</a>
         `
     };
     sgMail.send(msg);

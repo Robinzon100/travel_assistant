@@ -10,12 +10,18 @@ exports.getAddTour = (req, res, next) => {
 };
 
 
-exports.postAddTour = (req, res, next) =>{
-    const {title, price, description, image, locations, locationLink, website, telephone, email, ratting, category} = req.body;
+exports.postAddTour = (req, res, next) => {
+    const { title, price, description, locations, locationLink, website, telephone, email, ratting, category } = req.body;
+    const images = [...req.files];
+    const imageUrls = [];
 
+    images.forEach(image => {
+        imageUrls.push(image.path);
+    });
+    // console.log(imageUrls)
 
-    const tour = new Tours(title, price, description, image, locations, locationLink, website, telephone, email, ratting, category);
-    
+    const tour = new Tours(title, price, description, locations, locationLink, website, telephone, email, ratting, category, imageUrls);
+
 
     tour.save()
         .then(tour => {
