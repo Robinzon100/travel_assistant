@@ -1,11 +1,12 @@
 .link-underline {
    text-decoration: none;
-   background-image: linear-gradient(to top, $dark, $dark);
-   -webkit-text-fill-color: transparent;
-   -webkit-background-clip: text;
    position: relative;
    transition: all 0.2s ease-in;
-   background-size: 200% auto;
+   color: $dark;
+   // background-image: linear-gradient(to top, $dark, $dark);
+   // -webkit-text-fill-color: transparent;
+   // -webkit-background-clip: text;
+   // background-size: 200% auto;
 
    &:after {
       content: "";
@@ -37,12 +38,15 @@
 
 .link-apear-underline {
    text-decoration: none;
-   background-image: linear-gradient(to top, $dark, $dark);
-   -webkit-text-fill-color: transparent;
-   -webkit-background-clip: text;
    position: relative;
    transition: all 0.2s ease-in;
-   background-size: 200% auto;
+   color: $dark;
+   // background-image: linear-gradient(to top, $dark, $dark);
+   // -webkit-text-fill-color: transparent;
+   // -webkit-background-clip: text;
+   // position: relative;
+   // transition: all 0.2s ease-in;
+   // background-size: 200% auto;
 
    &:after {
       content: "";

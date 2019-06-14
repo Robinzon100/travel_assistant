@@ -38,13 +38,13 @@
 				if (tour.category == "tour"){ %>
 					<div class="card-small glide__slide">
 						<a href="tours/<%= tour._id %>">
-							<div class="card-small__image" style='background-image: url("<%= tour.imageUrls[0] %>")'></div>
+							<div class="card-small__image" style='background-image: url("<%= tour.cardImageUrl %>")'></div>
 						</a>
 						<a href="tours/<%= tour._id %>" class="card-small__text">
 							<h2 class="card-small__text__title"><%= tour.title %> </h2>
 							<p class="card-small__text__price"><%= tour.price %>$</p>
-							<div class="card-small__text__description"><%= tour.description %></div>
-							<p class="card-small__text__views"> <span>👁</span> 120</p>
+							<div class="card-small__text__description"><%= tour.small_description %></div>
+							<p class="card-small__text__views"> <span>👁</span> <%= tour.views %></p>
 							<div class="card-small__text__rating">
 								<% for(let i = 0; i < tour.ratting; i++){ %>
 									<img class="card-small__text__rating__star" src="./img/SVG/star.svg" alt="">
@@ -84,16 +84,16 @@
 			<% for (let tour of tours) {  %>
 			<div class="card-large glide__slide">
 				<a href="tours/<%= tour._id %>">
-					<div class="card-large__image" style="background-image: url(<%= tour.image %>)"></div>
+					<div class="card-large__image" style="background-image: url(<%=  tour.cardImageUrl %>)"></div>
 				</a>
 				<a href="tours/<%= tour._id %>" class="card-large__text">
 					<h2 class="card-large__text__title"><%= tour.title %> </h2>
 					<p class="card-large__text__price"><%= tour.price %>$</p>
-					<div class="card-large__text__description"><%= tour.description %></div>
-					<p class="card-large__text__views"> <span>👁</span> 120</p>
+					<div class="card-large__text__description"><%=  tour.small_description %></div>
+					<p class="card-large__text__views"> <span>👁</span> <%= tour.views %></p>
 					<div class="card-large__text__rating">
 						<% for(let i = 0; i < tour.ratting; i++){ %>
-						<img class="card-large__text__rating__star" src="./img/SVG/star.svg" alt="">
+							<img class="card-large__text__rating__star" src="./img/SVG/star.svg" alt="">
 						<% } %>
 					</div>
 
@@ -129,13 +129,13 @@
 			<% for (let tour of tours) {  %>
 			<div class="card-small glide__slide">
 				<a href="tours/<%= tour._id %>">
-					<div class="card-small__image" style="background-image: url(<%= tour.image %>)"></div>
+					<div class="card-small__image" style="background-image: url(<%=  tour.cardImageUrl %>)"></div>
 				</a>
 				<a href="tours/<%= tour._id %>" class="card-small__text">
 					<h2 class="card-small__text__title"><%= tour.title %> </h2>
 					<p class="card-small__text__price"><%= tour.price %>$</p>
-					<div class="card-small__text__description"><%= tour.description %></div>
-					<p class="card-small__text__views"> <span>👁</span> 120</p>
+					<div class="card-small__text__description"><%=  tour.small_description %></div>
+					<p class="card-small__text__views"> <span>👁</span>  <%= tour.views %></p>
 					<div class="card-small__text__rating">
 						<% for(let i = 0; i < tour.ratting; i++){ %>
 						<img class="card-small__text__rating__star" src="./img/SVG/star.svg" alt="">

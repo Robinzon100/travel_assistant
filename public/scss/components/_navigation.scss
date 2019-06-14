@@ -31,14 +31,33 @@
 
         &__links {
             ul {
+
+                form{ 
+                    display: inline-block;
+
+                    input {
+                        font-size: calc(16px + (20 - 16) * ((100vw - 300px) / (1900 - 700))) !important;
+                        font-family: opensans-regular;
+                        font-weight: 200;
+                        border: none;
+                        cursor: pointer;
+                        color: $red;
+                        background-color: transparent;
+
+                        &:hover + ::after {
+                            color: $primary-light;
+                        }
+                    }
+                }
+
+
+
                 li {
                     display: inline-block;
                     margin-left: 3vw;
 
                     a {
-                        font-size: calc(
-                            16px + (20 - 16) * ((100vw - 300px) / (1900 - 700))
-                        ) !important;
+                        font-size: calc(16px + (20 - 16) * ((100vw - 300px) / (1900 - 700))) !important;
                         font-family: opensans-regular;
                         font-weight: 200;
 

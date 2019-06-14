@@ -11,16 +11,22 @@ exports.getAddTour = (req, res, next) => {
 
 
 exports.postAddTour = (req, res, next) => {
-    const { title, price, description, locations, locationLink, website, telephone, email, ratting, category } = req.body;
-    const images = [...req.files];
-    const imageUrls = [];
+    const { title, price, small_description, long_description__title, long_description__text, includes, location, locationLink, website, email, telephone, ratting, category, views} = req.body;
+    const allImages = req.files;
 
-    images.forEach(image => {
-        imageUrls.push(image.path);
-    });
-    // console.log(imageUrls)
+    const cardImageUrl = allImages.card_image[0].path; // CARD IMAGE URL
 
-    const tour = new Tours(title, price, description, locations, locationLink, website, telephone, email, ratting, category, imageUrls);
+    const showcaseImages = allImages.showcase_images;
+    const showcaseImagesUrls = [] // SHOWCASE IMAGE URLS
+    showcaseImages.forEach(image => showcaseImagesUrls.push(image.path));
+
+
+    const sliderImages = allImages.slider_images;
+    const sliderImagesUrls = [] // SLIDER IMAGE URLS
+    sliderImages.forEach(image => sliderImagesUrls.push(image.path));
+
+
+    const tour = new Tours(title, price, small_description,long_description__title, long_description__text, includes, location, locationLink, website, email, telephone, ratting, category, views, cardImageUrl, showcaseImagesUrls, sliderImagesUrls);
 
 
     tour.save()

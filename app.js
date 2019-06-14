@@ -8,7 +8,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const volleyball = require("volleyball");
-const session = require("express-session"); 
+const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const flash = require('connect-flash');
 const multer = require('multer');
@@ -46,21 +46,28 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // ─── FILE STORAGE OPTIONS FOR MULTER ────────────────────────────────────────────    
 const fileStorage = multer.diskStorage({
-    destination: (req, file, cb) =>{
+    destination: (req, file, cb) => {
         cb(null, 'images')
     },
-    filename: (req, file, cb) =>{
-        cb(null, new Date().toISOString() +'-'+ file.originalname);
+    filename: (req, file, cb) => {
+        cb(null, new Date().toISOString() + '-' + file.originalname);
     }
 })
 
 // const cpUpload = multer.fields([{ name: 'avatar', maxCount: 1 }, { name: 'gallery', maxCount: 8 }])
+const upload = multer({ storage: fileStorage }).fields(
+    [
+        { name: 'card_image', maxCount: 1 },
+        { name: 'showcase_images', maxCount: 6 },
+        { name: 'slider_images', maxCount: 20 },
+        { name: 'profile_image', maxCount: 1 }
+    ]);
 
-app.use(multer({storage : fileStorage}).array('images'));
+app.use(upload);
 
 // reading public folder
 app.use(express.static(path.join(__dirname, "public")));
-app.use('/images',express.static(path.join(__dirname, "images")));
+app.use('/images', express.static(path.join(__dirname, "images")));
 
 
 
@@ -73,7 +80,7 @@ const store = new MongoDBStore({
 });
 
 // USING the session for express
-app.use( 
+app.use(
     session({
         secret: "this is the secret",
         resave: false,
@@ -96,7 +103,7 @@ app.use(flash());
 app.use((req, res, next) => {
     if (!req.session.user) {
         return next()
-    }else{
+    } else {
         Users.findById(req.session.user._id)
             .then((user) => {
                 req.user = user;
@@ -129,9 +136,9 @@ app.use((req, res, next) => {
 // const server = http2.createSecureServer({cert, key});
 
 // server.listen(8443);
-  
-mongoConnect(() => {  
+
+mongoConnect(() => {
     // console.log(client);
     console.log("connected !");
-    app.listen(3000); 
+    app.listen(3000);
 });

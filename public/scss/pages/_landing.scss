@@ -13,6 +13,7 @@
         &__slogan {
             color: $dark;
             @extend %font-heading-1;
+            margin-bottom: 4vw;
         }
     }
 
@@ -170,29 +171,6 @@
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
- 
-
 .slider-section {
     height: 100vh;
     position: relative;
@@ -278,7 +256,7 @@
             width: 100%;
             position: absolute;
             left: 0;
-            height: 10rem; 
+            height: 10rem;
             background-color: gray;
             display: grid;
             grid-template-columns: repeat(20, 10vw);
