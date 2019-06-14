@@ -1,42 +1,59 @@
 const Tours = require('../models/tours');
+const { validationResult } = require("express-validator/check");
+
 
 
 exports.getAddTour = (req, res, next) => {
     res.render('admin/add-tour', {
         pageTitle: "add-tour",
         path: "/admin/add-tours",
-        logedIn: req.session.logedIn
+        logedIn: req.session.logedIn,
+        errorMessage: req.flash("error")
     });
 };
 
 
 exports.postAddTour = (req, res, next) => {
-    const { title, price, small_description, long_description__title, long_description__text, includes, location, locationLink, website, email, telephone, ratting, category, views} = req.body;
-    const allImages = req.files;
+    const { title, price, small_description, long_description__title, long_description__text, includes, location, locationLink, website, email, telephone, ratting, category, views } = req.body;
+    const errors = validationResult(req);
 
-    const cardImageUrl = allImages.card_image[0].path; // CARD IMAGE URL
+    if (errors.isEmpty()) {
+        const allImages = req.files;
+        const cardImageUrl = allImages.card_image[0].path; // CARD IMAGE URL
 
-    const showcaseImages = allImages.showcase_images;
-    const showcaseImagesUrls = [] // SHOWCASE IMAGE URLS
-    showcaseImages.forEach(image => showcaseImagesUrls.push(image.path));
-
-
-    const sliderImages = allImages.slider_images;
-    const sliderImagesUrls = [] // SLIDER IMAGE URLS
-    sliderImages.forEach(image => sliderImagesUrls.push(image.path));
+        const showcaseImages = allImages.showcase_images;
+        const showcaseImagesUrls = [] // SHOWCASE IMAGE URLS
+        showcaseImages.forEach(image => showcaseImagesUrls.push(image.path));
 
 
-    const tour = new Tours(title, price, small_description,long_description__title, long_description__text, includes, location, locationLink, website, email, telephone, ratting, category, views, cardImageUrl, showcaseImagesUrls, sliderImagesUrls);
+        const sliderImages = allImages.slider_images;
+        const sliderImagesUrls = [] // SLIDER IMAGE URLS
+        sliderImages.forEach(image => sliderImagesUrls.push(image.path));
 
 
-    tour.save()
-        .then(tour => {
-            res.redirect('/tours');
-        })
-        .catch(err => {
-            console.log(err);
+        const tour = new Tours(title, price, small_description, long_description__title, long_description__text, includes, location, locationLink, website, email, telephone, ratting, category, views, cardImageUrl, showcaseImagesUrls, sliderImagesUrls);
+
+
+        tour.save()
+            .then(tour => {
+                res.redirect('/tours');
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    } else {
+        // console.log(errors.array());
+        return res.status(422).render('admin/add-tour', {
+            pageTitle: "add-tour",
+            path: "/admin/add-tours",
+            logedIn: req.session.logedIn,
+            errorMessage: errors.array()
         });
-};
+    }
+}
+
+
+ 
 
 
 // exports.postAddTours = (req, res, next) =>{

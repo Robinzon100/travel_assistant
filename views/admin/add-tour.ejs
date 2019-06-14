@@ -26,14 +26,41 @@
  -->
 <br>
 <br>
+<style>
+
+input{
+    color: white;
+}
+
+textarea{
+    color: white;
+}
+
+h3{
+    color: rgb(190, 12, 12);
+}
+</style>
+
+<% for (let error of errorMessage){ %>
+    <p style="color:red" ><%= error.msg %></p>
+<% } %>
+
+
 <form action="/admin/add-tour" method="post" enctype="multipart/form-data">
     <!-- text -->
+    <h3>must be 7 or less words</h3>
     <input type="text" name="title" placeholder="title"> <br> <br>
     <input type="number" name="price" placeholder="price"> <br> <br>
+    <h3>must be 8-9 or less words</h3>
     <input type="text" name="small_description" placeholder="small_description"> <br> <br>
-    <input type="text" name="long_description__title" placeholder="long_description"> <br> <br>
-    <input type="text" name="long_description__text" placeholder="long_description"> <br> <br>
-
+    <h3>must be 9-10 or less words</h3>
+    <input type="text" name="long_description__title" placeholder="long_description__title"> <br> <br>
+    <h3>must be 40-50 or less words</h3>
+    <textarea name="long_description__text" placeholder="long_description__text" id="" cols="30" rows="10"></textarea>
+    <!-- <input type="text" name="long_description__text" placeholder="long_description__text"> <br> <br> -->
+    
+    
+    <h3>all must be includes</h3>
     <h2>includes </h2>
     <ul>
         <li>
@@ -56,7 +83,12 @@
         </li>
     </ul> <br> <br> <br>
 
-    <input type="text" name="location" placeholder="location"> <br> <br>
+    <select name="location">
+        <option value="Tbilisi">Tbilisi</option>
+        <option value="Mcxeta">Mcxeta</option>
+        <option value="Svaneti">Svaneti</option>
+        <option value="Qutaisi">Qutaisi</option>
+    </select>
     <input type="text" name="locationLink" placeholder="locationLink"> <br> <br>
     <input type="text" name="website" placeholder="website"> <br> <br>
     <input type="email" name="email" placeholder="email"> <br> <br>
