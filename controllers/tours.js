@@ -6,9 +6,9 @@ const Tours = require("./../models/tours");
 //
 exports.getLanding = (req, res, next) => {
     res.render("landing", {
-        logedIn: req.session.logedIn, 
+        logedIn: req.session.logedIn,
         pageTitle: "travel assistant",
-        path: "/" 
+        path: "/"
     });
 };
 
@@ -38,17 +38,56 @@ exports.getTours = (req, res, next) => {
 // ?GET a single tour page
 //=== === === === === 
 exports.getTour = (req, res, next) => {
+    // console.log(req.connection.remoteAddress);
+    // var ipuser = JSON.parse(body) 
     const tourId = req.params.singleTourId;
-    Tours.findById(tourId)
-        .then(tour => {
-            res.render("tours/tour", {
-                logedIn: req.session.logedIn,
-                tour: tour,
-                pageTitle: tour.title,
-                path: "/tours"
+    const visitorIp = req.socket.localAddress;
+
+    Tours.isVisited(tourId)
+        .then(visitedIps => {
+            console.log(visitedIps);
+
+            let isVisited = false;
+
+            visitedIps.forEach(el => {
+                if (el == visitorIp) {
+                    isVisited = true;
+                }
             });
-        })
-        .catch(err => console.log(err));
+
+            if (isVisited) {
+                Tours.findById(tourId)
+                    .then(tour => {
+                        res.render("tours/tour", {
+                            logedIn: req.session.logedIn,
+                            tour: tour,
+                            pageTitle: tour.title,
+                            path: "/tours"
+                        });
+                    })
+                    .catch(err => console.log(err));
+
+            } else {
+                Tours.findById(tourId)
+                    .then(tour => {
+                        Tours.addViews(tourId, visitorIp);
+
+                        res.render("tours/tour", {
+                            logedIn: req.session.logedIn,
+                            tour: tour,
+                            pageTitle: tour.title,
+                            path: "/tours"
+                        });
+                    })
+                    .catch(err => console.log(err));
+            }
+        });
+
+
+
+
+
+
 };
 
 
@@ -63,3 +102,7 @@ exports.postTours = (req, res, next) => {
         path: "/tours"
     });
 };
+
+
+
+

@@ -3,7 +3,7 @@ const mongoId = require("mongodb").ObjectID;
 const mongodb = require("mongodb");
 
 class Tours {
-    constructor(title, price, small_description,long_description__title, long_description__text, includes, location, locationLink, website, email, telephone, ratting, category, views, cardImageUrl, showcaseImagesUrls, sliderImagesUrls) {
+    constructor(title, price, small_description, long_description__title, long_description__text, includes, location, locationLink, website, email, telephone, ratting, category, views, cardImageUrl, showcaseImagesUrls, sliderImagesUrls) {
         this.title = title;
         this.price = price;
         this.date_created = Date();
@@ -22,7 +22,7 @@ class Tours {
         this.cardImageUrl = cardImageUrl;
         this.showcaseImagesUrls = showcaseImagesUrls;
         this.sliderImagesUrls = sliderImagesUrls;
-        
+
     }
 
     // === === === === === 
@@ -81,6 +81,41 @@ class Tours {
             .catch(err => {
                 console.log(err);
             });
+    }
+
+
+
+
+
+    // === === === === === 
+    //!  ADDING TO THE VIEWS
+    // === === === === === 
+    static isVisited(tourId) {
+        const db = getDb();
+        return db.collection("tours")
+            .findOne({ _id: new mongodb.ObjectId(tourId) })
+            .then(tour => {
+                return tour.visitors
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
+
+
+    static addViews(tourId, visitedIp) {
+        const db = getDb();
+        return db
+            .collection("tours")
+            .findOneAndUpdate(
+                { _id: new mongodb.ObjectId(tourId) },
+                { $inc: { "views": 1 }, $push: { visitors: visitedIp } }
+            )
+            .then(tour => {
+                return tour;
+            })
+            .catch(err => console.log(err));
     }
 }
 
