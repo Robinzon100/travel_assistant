@@ -3,7 +3,7 @@ const mongoId = require("mongodb").ObjectID;
 const mongodb = require("mongodb");
 
 class Tours {
-    constructor(title, price, small_description, long_description__title, long_description__text, includes, location, locationLink, website, email, telephone, ratting, category, views, cardImageUrl, showcaseImagesUrls, sliderImagesUrls) {
+    constructor(title, price, small_description, long_description__title, long_description__text, includes, location, locationLink, website, email, telephone, ratting, category, views, visitors, cardImageUrl, showcaseImagesUrls, sliderImagesUrls) {
         this.title = title;
         this.price = price;
         this.date_created = Date();
@@ -19,6 +19,7 @@ class Tours {
         this.ratting = ratting;
         this.category = category;
         this.views = views;
+        this.visitors = visitors;
         this.cardImageUrl = cardImageUrl;
         this.showcaseImagesUrls = showcaseImagesUrls;
         this.sliderImagesUrls = sliderImagesUrls;

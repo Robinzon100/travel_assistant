@@ -95,11 +95,11 @@ exports.getTour = (req, res, next) => {
 //=== === === === === 
 //? POST a single tour page
 //=== === === === === 
-exports.postTours = (req, res, next) => {
-    res.render("tours/tours", {
+exports.getSearch = (req, res, next) => {
+    res.render("tours/search", {
         logedIn: req.session.logedIn,
-        pageTitle: "tours",
-        path: "/tours"
+        pageTitle: "search",
+        path: "/search"
     });
 };
 

@@ -15,6 +15,7 @@ exports.getAddTour = (req, res, next) => {
 
 exports.postAddTour = (req, res, next) => {
     const { title, price, small_description, long_description__title, long_description__text, includes, location, locationLink, website, email, telephone, ratting, category, views } = req.body;
+    let viewsInt = parseInt(views);
     const errors = validationResult(req);
 
     if (errors.isEmpty()) {
@@ -30,8 +31,10 @@ exports.postAddTour = (req, res, next) => {
         const sliderImagesUrls = [] // SLIDER IMAGE URLS
         sliderImages.forEach(image => sliderImagesUrls.push(image.path));
 
+        //visitors array
+        let visitors = [];
 
-        const tour = new Tours(title, price, small_description, long_description__title, long_description__text, includes, location, locationLink, website, email, telephone, ratting, category, views, cardImageUrl, showcaseImagesUrls, sliderImagesUrls);
+        const tour = new Tours(title, price, small_description, long_description__title, long_description__text, includes, location, locationLink, website, email, telephone, ratting, category, viewsInt, visitors, cardImageUrl, showcaseImagesUrls, sliderImagesUrls);
 
 
         tour.save()

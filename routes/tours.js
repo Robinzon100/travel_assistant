@@ -11,7 +11,7 @@ router.get('/', toursControllers.getLanding);
 router.get('/tours', toursControllers.getTours); 
 router.get('/tours/:singleTourId', toursControllers.getTour); 
 
-router.post('/tours', toursControllers.postTours);
+router.get('/search', toursControllers.getSearch);
 
 
 module.exports = router;
