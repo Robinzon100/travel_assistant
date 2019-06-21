@@ -24,7 +24,7 @@ exports.getTours = (req, res, next) => {
                 logedIn: req.session.logedIn,
                 tours: tours,
                 pageTitle: "tours",
-                path: "/tours"
+                path: "/explore"
             });
         })
         .catch(err => {
@@ -62,7 +62,7 @@ exports.getTour = (req, res, next) => {
                             logedIn: req.session.logedIn,
                             tour: tour,
                             pageTitle: tour.title,
-                            path: "/tours"
+                            path: "/explore"
                         });
                     })
                     .catch(err => console.log(err));
@@ -76,7 +76,7 @@ exports.getTour = (req, res, next) => {
                             logedIn: req.session.logedIn,
                             tour: tour,
                             pageTitle: tour.title,
-                            path: "/tours"
+                            path: "/explore"
                         });
                     })
                     .catch(err => console.log(err));

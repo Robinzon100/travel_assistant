@@ -8,8 +8,8 @@ const toursControllers = require('../controllers/tours');
 
 
 router.get('/', toursControllers.getLanding);
-router.get('/tours', toursControllers.getTours); 
-router.get('/tours/:singleTourId', toursControllers.getTour); 
+router.get('/explore', toursControllers.getTours); 
+router.get('/explore/:singleTourId', toursControllers.getTour); 
 
 router.get('/search', toursControllers.getSearch);
 

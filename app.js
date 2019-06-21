@@ -30,9 +30,6 @@ const Users = require('./models/users');
 
 
 
-
-
-
 // ─── VIEW ENGINE ────────────────────────────────────────────────────────────────
 app.set("view engine", "ejs");
 app.set("views", "views");

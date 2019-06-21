@@ -11,7 +11,7 @@ class Tours {
         this.long_description__title = long_description__title;
         this.long_description__text = long_description__text;
         this.includes = includes;
-        this.location = location;
+        this.location = location; 
         this.locationLink = locationLink;
         this.website = website;
         this.email = email;
