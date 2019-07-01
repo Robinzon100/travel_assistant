@@ -32,6 +32,9 @@
 			data-glide-dir=">">next</button>
 	</div>
 
+
+	 
+
 	<div class="glide__track" data-glide-el="track"> 
 		<div class="glide__slides">
 			<% for (let tour of tours) {  
@@ -54,6 +57,11 @@
 							<p href="#" class="card-small__text__location"><img src="img/SVG/SVG/ratting.svg" alt="">tbilisi</p>
 
 						</a>
+
+						<form action="explore" method="post">
+							<button type="submit">add to boockmarks</button>
+							<input type="hidden" name="tourId" value="<%= tour._id %>">
+						</form>
 					</div>
 			<% } 
 		}%>

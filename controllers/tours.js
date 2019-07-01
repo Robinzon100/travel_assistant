@@ -1,4 +1,5 @@
 const Tours = require("./../models/tours");
+const Users = require('./../models/users')
 
 
 //
@@ -17,11 +18,13 @@ exports.getLanding = (req, res, next) => {
 //? ─── TOURS ──────────────────────────────────────────────────────────────────────
 //
 exports.getTours = (req, res, next) => {
-    console.log(req.session.logedIn)
+    // console.log(req.user)
+    // console.log(req.session.logedIn)
     Tours.fetchAll()
         .then(tours => {
             res.render("tours/tours", {
                 logedIn: req.session.logedIn,
+                user: req.session.user,
                 tours: tours,
                 pageTitle: "tours",
                 path: "/explore"
@@ -33,10 +36,31 @@ exports.getTours = (req, res, next) => {
 };
 
 
+exports.postTourToBookmark = (req, res, next) => {
+    const { addedPost, tourId } = req.body;
+    let curentUser = req.session.user._id;
 
-//=== === === === === 
+    // if (addedPost) {
+        Tours.findById(tourId)
+            .then((tour) => {
+                Users.findById(curentUser._id)
+                    .then((user) => {
+                        req.user.addToBookmark(tour);
+                        res.redirect('/explore');
+                    }).catch((err) => {
+                        console.log(err)
+                    });
+            }).catch((err) => {
+                console.log(err)
+            });
+
+
+    // }
+};
+
+
+
 // ?GET a single tour page
-//=== === === === === 
 exports.getTour = (req, res, next) => {
     // console.log(req.connection.remoteAddress);
     // var ipuser = JSON.parse(body) 
@@ -91,10 +115,9 @@ exports.getTour = (req, res, next) => {
 };
 
 
-
-//=== === === === === 
-//? POST a single tour page
-//=== === === === === 
+//
+//? ─── SEARCH ─────────────────────────────────────────────────────────────────────
+//
 exports.getSearch = (req, res, next) => {
     res.render("tours/search", {
         logedIn: req.session.logedIn,

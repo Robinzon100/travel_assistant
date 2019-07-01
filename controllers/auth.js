@@ -37,7 +37,7 @@ exports.getRegistration = (req, res, next) => {
 
 //? POST the /registration
 exports.postRegistration = (req, res, next) => {
-    const { username, email, password, repeatPassword } = req.body;
+    const { username, email, password, phone_number, repeatPassword } = req.body;
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -52,27 +52,32 @@ exports.postRegistration = (req, res, next) => {
             oldInputValues: {
                 username: username,
                 email: email,
+                phone_number: phone_number,
                 password: password,
                 repeatPassword: repeatPassword
             }
         });
+    } else {
+
+        bcrypt.hash(password, 12).then(hashedPassword => {
+            const bookmarks = {
+                items: []
+            };
+            const user = new Users(username, email, hashedPassword, phone_number, bookmarks);
+
+            user.save()
+                .then(() => {
+                    req.session.logedIn = true;
+                    req.session.user = user;
+                    res.redirect("/explore");
+
+                    // mailer.registrationMail(email);
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        });
     }
-
-    bcrypt.hash(password, 12).then(hashedPassword => {
-        const user = new Users(username, email, hashedPassword);
-
-        user.save()
-            .then(() => {
-                req.session.logedIn = true;
-                req.session.user = user;
-                res.redirect("/tours");
-
-                // mailer.registrationMail(email);
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    });
 };
 
 //
@@ -109,11 +114,11 @@ exports.postLogin = (req, res, next) => {
                             req.session.logedIn = true;
                             req.session.save(err => {
                                 console.log(err);
-                                res.redirect("/tours");
+                                res.redirect("/explore");
                             });
                         } else {
                             req.flash("error", "invalid email or password");
-                            res.redirect("/login");
+                            // res.redirect("/login");
                             res.render("auth/login", {
                                 pageTitle: "login",
                                 path: "/register",
@@ -155,7 +160,7 @@ exports.postLogin = (req, res, next) => {
 exports.postLogout = (req, res, next) => {
     req.session.destroy(() => {
         console.log(req.session);
-        res.redirect("/tours");
+        res.redirect("/explore");
     });
 };
 

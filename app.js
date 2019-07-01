@@ -13,6 +13,7 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 const flash = require('connect-flash');
 const multer = require('multer');
 
+
 //! MONGODB URI 
 const MONGODB_URI = "mongodb+srv://robinzon:rU0Hbn7IsLgLk4KF@travel-assistant-btaux.mongodb.net/travel-assistant";
 
@@ -94,21 +95,21 @@ app.use(flash());
 
 
 
-
+//username, email, password, bookmarks, id, resetToken, resetTokenExpiration
 
 //user middleware
 app.use((req, res, next) => {
     if (!req.session.user) {
-        return next()
-    } else {
+        return next();
+      }
         Users.findById(req.session.user._id)
             .then((user) => {
-                req.user = user;
+                req.user = new Users(user.username, user.email, user.password, user.phone_number,  user.bookmarks, user._id, user.resetToken, user.resetTokenExpiration);
                 next();
             }).catch((err) => console.log(err));
-    }
+    
 });
-
+ 
 
 
 
