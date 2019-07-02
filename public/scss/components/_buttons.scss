@@ -1,0 +1,49 @@
+.btn-big {
+    color: white;
+    font-size: calc(
+        16px + (25 - 16) * ((100vw - 300px) / (1900 - 700))
+    ) !important;
+    background-color: darken($color: $primary-light, $amount: 3) ;
+    padding: 4.5%;
+    border-radius: 5px;
+    text-align: center;
+    transition: all 0.3s 0.05s ease; 
+    @include fixanimation;
+
+    &:hover {
+        transform: translateY(-7%) scale(1.02);
+        box-shadow: 0 13px 10px -6px transparentize($color: $primary-light, $amount: 0.2);
+    }
+
+    &:active {
+        transform: translateY(-2%) scale(1.02);
+        box-shadow: 0 13px 10px -6px transparentize($color: $primary-light, $amount: 1);
+    }
+}
+
+.btn-small {
+    padding: 0.3rem 1.3rem;
+    background-color: #071e3d;
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    margin: 0.8rem 0;
+    transition: all 0.2s;
+    width: 12.2rem;
+    font-size: calc(
+        14px + (16 - 14) * ((100vw - 300px) / (1900 - 700))
+    ) !important;
+
+    & > * {
+        display: inline-block;
+    }
+
+    p {
+        transition: all 0.2s;
+        color: white;
+    }
+
+    &:hover p {
+        transform: translatex(50%);
+    }
+}

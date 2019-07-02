@@ -1,0 +1,18 @@
+
+.scale{
+	transform: scale(2.7) !important;
+}
+
+
+// ANIMATIONS
+.js-text-disappear{
+	transform: translatey(-30%);
+	opacity: 0;
+}
+
+.js-active-button{
+	opacity: 1 !important;
+	transform: translate(-50%,-50%) !important;
+	transition-delay:  0.1s !important;
+}
+

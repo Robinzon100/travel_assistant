@@ -1,0 +1,33 @@
+.link-thin-arrow {
+    transition: all 0.3s ease !important;
+
+    // &::after{
+    //     background: rgba($primary-dark, 20%) !important;
+    // }
+
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        transform: translate(130%, -50%);
+        right: 0;
+        top: 50%;
+        width: 3vw;
+        height: 2rem;
+        background-image: url("../../img/SVG/SVG/thin_arrow.svg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        transition: all 0.3s ease !important;
+    }
+
+    &:hover {
+        color: darken($color: $primary-dark, $amount: 0.5);
+
+        &::before {
+            transform: translate(150%, -50%);
+            opacity: 0;
+            fill: $primary-light;
+        }
+    }
+}

@@ -1,0 +1,194 @@
+<%- include("../includes/head.ejs") %>
+<%- include("../includes/navigation.ejs") %>
+
+
+<div class="explore_header_categories">
+	<h1 class="explore_header_categories__title">LET US HELP YOU, ENJOY  <br>
+		<span class="underline-1">YOUR JOURNEY</span>
+	</h1>
+	
+	<div class="explore_header_categories__navigation">
+		<div class="explore_header_categories__navigation__categories-nav">
+			<ul>
+				<li><a href=""><img src="" alt=""></a></li>
+				<li><a href=""><img src="" alt=""></a></li>
+				<li><a href=""><img src="" alt=""></a></li>
+				<li><a href=""><img src="" alt=""></a></li>
+				<li><a href=""><img src="" alt=""></a></li>
+				<li><a href=""><img src="" alt=""></a></li>
+				<li><a href=""><img src="" alt=""></a></li>
+			</ul>
+		</div>
+	</div> 
+</div>
+ 
+
+<div class="medium-card-container glide" id="medium-card-container-tours">
+	<h1 class="underline-headings medium-card-container__title"><a class="link-thin-arrow " href=""> TOURS </a></h1>
+	<div class="glide__arrows medium-card-container__buttons" data-glide-el="controls">
+		<button class="glide__arrow glide__arrow--left medium-card-container__buttons__left"
+			data-glide-dir="<">prev</button>
+		<button class="glide__arrow glide__arrow--right medium-card-container__buttons__right"
+			data-glide-dir=">">next</button>
+	</div>
+
+
+	 
+
+	<div class="glide__track" data-glide-el="track"> 
+		<div class="glide__slides">
+			<% for (let tour of tours) {  
+				if (tour.category == "tour"){ %>
+					<div class="card-small glide__slide">
+						<a href="explore/<%= tour._id %>">
+							<div class="card-small__image" style='background-image: url("<%= tour.cardImageUrl %>")'></div>
+						</a>
+						<a href="explore/<%= tour._id %>" class="card-small__text">
+							<h2 class="card-small__text__title"><%= tour.title %> </h2>
+							<p class="card-small__text__price"><%= tour.price %>$</p>
+							<div class="card-small__text__description"><%= tour.small_description %></div>
+							<p class="card-small__text__views"> <span>👁</span> <%= tour.views %></p>
+							<div class="card-small__text__rating">
+								<% for(let i = 0; i < tour.ratting; i++){ %>
+									<img class="card-small__text__rating__star" src="./img/SVG/star.svg" alt="">
+								<% } %>
+							</div>
+
+							<p href="#" class="card-small__text__location"><img src="img/SVG/SVG/ratting.svg" alt="">tbilisi</p>
+
+						</a>
+
+						<form action="explore" method="post">
+							<button type="submit">add to boockmarks</button>
+							<input type="hidden" name="tourId" value="<%= tour._id %>">
+						</form>
+					</div>
+			<% } 
+		}%>
+
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="large-card-container glide" id="large-card-container-specialOffers">
+	<h1 class="underline-headings large-card-container__title"><a class="link-thin-arrow" href=""> SPECIALS</a></h1>
+	<div class="glide__arrows large-card-container__buttons" data-glide-el="controls">
+		<button class="glide__arrow glide__arrow--left large-card-container__buttons__left"
+			data-glide-dir="<">prev</button>
+		<button class="glide__arrow glide__arrow--right large-card-container__buttons__right"
+			data-glide-dir=">">next</button>
+	</div>
+
+	<div class="glide__track" data-glide-el="track">
+		<div class="glide__slides">
+			<% for (let tour of tours) {  %>
+			<div class="card-large glide__slide">
+				<a href="tours/<%= tour._id %>">
+					<div class="card-large__image" style="background-image: url(<%=  tour.cardImageUrl %>)"></div>
+				</a>
+				<a href="tours/<%= tour._id %>" class="card-large__text">
+					<h2 class="card-large__text__title"><%= tour.title %> </h2>
+					<p class="card-large__text__price"><%= tour.price %>$</p>
+					<div class="card-large__text__description"><%=  tour.small_description %></div>
+					<p class="card-large__text__views"> <span>👁</span> <%= tour.views %></p>
+					<div class="card-large__text__rating">
+						<% for(let i = 0; i < tour.ratting; i++){ %>
+							<img class="card-large__text__rating__star" src="./img/SVG/star.svg" alt="">
+						<% } %>
+					</div>
+
+					<p href="#" class="card-large__text__location"><img src="img/SVG/SVG/ratting.svg" alt="">tbilisi</p>
+
+				</a>
+			</div>
+			<% } %>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+<div class="medium-card-container glide" id="medium-card-container-expeditions">
+	<h1 class="underline-headings medium-card-container__title"><a class="link-thin-arrow " href=""> EXPEDITIONS </a>
+	</h1>
+
+	<div class="glide__arrows medium-card-container__buttons" data-glide-el="controls">
+		<button class="glide__arrow glide__arrow--left medium-card-container__buttons__left"
+			data-glide-dir="<">prev</button>
+		<button class="glide__arrow glide__arrow--right medium-card-container__buttons__right"
+			data-glide-dir=">">next</button>
+	</div>
+
+	<div class="glide__track" data-glide-el="track">
+		<div class="glide__slides">
+			<% for (let tour of tours) {  %>
+			<div class="card-small glide__slide">
+				<a href="tours/<%= tour._id %>">
+					<div class="card-small__image" style="background-image: url(<%=  tour.cardImageUrl %>)"></div>
+				</a>
+				<a href="tours/<%= tour._id %>" class="card-small__text">
+					<h2 class="card-small__text__title"><%= tour.title %> </h2>
+					<p class="card-small__text__price"><%= tour.price %>$</p>
+					<div class="card-small__text__description"><%=  tour.small_description %></div>
+					<p class="card-small__text__views"> <span>👁</span>  <%= tour.views %></p>
+					<div class="card-small__text__rating">
+						<% for(let i = 0; i < tour.ratting; i++){ %>
+						<img class="card-small__text__rating__star" src="./img/SVG/star.svg" alt="">
+						<% } %>
+					</div>
+
+					<p href="#" class="card-small__text__location"><img src="img/SVG/SVG/ratting.svg" alt="">tbilisi</p>
+
+				</a>
+			</div>
+			<% } %>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+<!-- 
+<div class="glide">
+	<div class="glide__track" data-glide-el="track">
+		<ul class="glide__slides">
+			<li class="glide__slide">0</li>
+			<li class="glide__slide" style="padding: 5rem; background-color: magenta">1</li>
+			<li class="glide__slide" style="padding: 5rem; background-color: blueviolet">2</li>
+			<li class="glide__slide" style="padding: 5rem; background-color: red">0</li>
+			<li class="glide__slide" style="padding: 5rem; background-color: magenta">1</li>
+			<li class="glide__slide" style="padding: 5rem; background-color: blueviolet">2</li>
+			<li class="glide__slide" style="padding: 5rem; background-color: red">0</li>
+			<li class="glide__slide" style="padding: 5rem; background-color: magenta">1</li>
+			<li class="glide__slide" style="padding: 5rem; background-color: blueviolet">2</li>
+		</ul>
+	</div>
+
+	<div class="glide__arrows" data-glide-el="controls">
+		<button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
+		<button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
+	</div>
+</div> -->
+
+
+
+
+<script src="/js libraries/glide.min.js"></script>
+<script src="/js libraries/Glidejs_sliders.js"></script>
+<%- include("../includes/bottom.ejs") %>

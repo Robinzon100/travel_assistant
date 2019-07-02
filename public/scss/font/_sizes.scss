@@ -1,0 +1,105 @@
+p {
+    font-size: calc(14px + (17 - 14) * ((100vw - 300px) / (1900 - 700))) !important;
+    // line-height: 1.7;
+} 
+
+.p-big {
+    font-size: calc(16px + (20 - 16) * ((100vw - 300px) / (1900 - 700))) !important;
+    letter-spacing: 1.1px;
+    line-height: 3.3rem;
+} 
+
+a { 
+    // font-size: calc(14px + (18 - 14) * ((100vw - 300px) / (1900 - 700))) !important;
+}
+
+h1 {
+    font-size: calc(18px + (45 - 18) * ((100vw - 300px) / (1900 - 700))) !important;
+}
+
+h2 {
+    font-size: calc(22px + (36 - 22) * ((100vw - 300px) / (1900 - 700))) !important;
+}
+
+h3 {
+    font-size: calc(18px + (26 - 18) * ((100vw - 300px) / (1900 - 700))) !important;
+}
+
+
+
+
+
+.card-small { 
+ 
+ 
+    // STYLES
+    &__text {
+ 
+
+        &__title {
+            font-size: calc(13px + (14 - 13) * ((100vw - 300px)/ (1900 - 700))) !important;
+        }
+
+        &__price {
+            font-size: calc(18px + (20 - 18) * ((100vw - 300px)/ (1900 - 700))) !important;
+        }
+
+        &__description {
+            font-size: calc(12px + (14 - 12) * ((100vw - 300px) / (1900 - 700))) !important;
+        }
+
+        &__location {
+            font-size: calc(14px + (14 - 14) * ((100vw - 300px) / (1900 - 700))) !important;
+        }
+
+    }
+
+}
+
+.card-large { 
+ 
+ 
+    // STYLES
+    &__text {
+ 
+
+        &__title {
+            font-size: calc(13px + (20 - 13) * ((100vw - 300px)/ (1900 - 700))) !important;
+        }
+
+        &__price {
+            font-size: calc(18px + (24 - 18) * ((100vw - 300px)/ (1900 - 700))) !important;
+        }
+
+        &__description {
+            font-size: calc(12px + (16 - 12) * ((100vw - 300px) / (1900 - 700))) !important;
+        }
+
+        &__location {
+            font-size: calc(13px + (18 - 13) * ((100vw - 300px)/ (1900 - 700))) !important;
+        }
+
+        &__views{
+            font-size: calc(12px + (18 - 12) * ((100vw - 300px) / (1900 - 700))) !important;            
+        }
+
+    }
+
+}
+
+  
+
+
+
+
+.tour_hero {
+
+
+    &__title{
+        font-size: calc(22px + (65 - 22) * ((100vw - 300px) / (1900 - 700))) !important;
+
+        &--sub{
+            font-size: calc(16px + (30 - 16) * ((100vw - 300px) / (1900 - 700))) !important;
+        }
+    }
+}

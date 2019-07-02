@@ -1,0 +1,84 @@
+.navigation {
+    width: 100%;
+    padding: 0.5rem 0;
+    // filter: drop-shadow(0px 3px 15px rgba(0, 0, 0, 0.3));
+    background-color: rgba(white, 0.949);
+    position: fixed;
+    z-index: 99999;
+    transition: all 0.2s ease;
+    top: 0;
+
+    // &::before {
+    //     background: url(https://i.ytimg.com/vi/eq7Adzo4QAE/maxresdefault.jpg) 0 / cover fixed;
+    //     content: '';
+    //     margin: -35px;
+    //     position: absolute;
+    //     top: 0;
+    //     right: 0;
+    //     bottom: 0;
+    //     left: 0;
+    //     filter: blur(20px);
+    //     z-index: -1;
+    // }
+
+    .navigation__content {
+        max-width: $max-width;
+        margin: 0 auto;
+
+        &__logo {
+            width: 18vw;
+        }
+
+        &__links {
+            ul {
+
+                form{ 
+                    display: inline-block;
+
+                    input {
+                        font-size: calc(16px + (20 - 16) * ((100vw - 300px) / (1900 - 700))) !important;
+                        font-family: opensans-regular;
+                        font-weight: 200;
+                        border: none;
+                        cursor: pointer;
+                        color: $red;
+                        background-color: transparent;
+
+                        &:hover + ::after {
+                            color: $primary-light;
+                        }
+                    }
+                }
+
+
+
+                li {
+                    display: inline-block;
+                    margin-left: 3vw;
+
+                    a {
+                        font-size: calc(16px + (20 - 16) * ((100vw - 300px) / (1900 - 700))) !important;
+                        font-family: opensans-regular;
+                        font-weight: 200;
+
+                        &:hover + ::after {
+                            color: $primary-light;
+                        }
+                    }
+                }
+            }
+        }
+
+        &__hamburger {
+            display: none;
+        }
+    }
+}
+
+.ham {
+    width: 13vw;
+}
+
+.navigation__content__hamburger {
+    transform: translateX(23%);
+}

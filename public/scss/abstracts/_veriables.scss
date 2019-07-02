@@ -1,0 +1,38 @@
+
+$primary-light: #21E6C1;
+$primary-dark: #21B2C1;
+
+$dark: #071E3D;
+$dark-light: rgba($dark, .64);
+$light-dark: #1F4287;
+$green: #00CF1C;
+$red: #ea4468;
+
+$max-width-vw: 80vw; 
+$max-width: 80%;
+$max-width-rem: 132rem;
+
+%font-heading-1{
+    font-family: gilroy-extrabold;
+    font-weight: 300;
+}
+
+%font-heading-2{
+    font-family: gilroy-light;
+    font-weight: 400;
+}
+
+
+
+
+
+$font-heading-1: 'montserat-bold';
+$font-heading-2: 'montserat-semibold';
+$font-secondary: 'montserrat-alternates-regular';
+
+$font-heading-keep-calm: 'keep-calm-medium';
+$font-paragraph-light: 'opensans-light';
+$font-paragraph: 'opensans-regular';
+// lato-regular
+// lato-light
+// lato-bold

@@ -1,0 +1,162 @@
+<%- include('../includes/head.ejs')  %>
+<%- include('../includes/navigation.ejs')  %>
+
+
+
+<div class="tour_hero">
+    <h1 class="tour_hero__title"><%= tour.title%> <br>
+        <p class="tour_hero__title--sub"><%= tour.small_description %></p>
+    </h1>
+    <ul class="tour_hero__showcase-images">
+
+        <% for(let i = 0; i < tour.showcaseImagesUrls.length; i++){ %>
+        <li class="tour_hero__showcase-images__image" style='background-image: url("/<%= tour.showcaseImagesUrls[i] %>" )'></li>
+        <% } %>
+    </ul>
+</div>
+
+<main class="tour_main">
+    <div class="tour_info">
+        <div class="tour_info__text">
+            <div class="tour_info__slogan-and-description">
+                <h1 class="tour_info__slogan-and-description--slogan"><%= tour.long_description__title %></h1>
+                <p class="tour_info__slogan-and-description--description"><%= tour.long_description__text %>
+                </p>
+            </div>
+
+
+            <div class="tour_info__includes">
+                <h2 class="tour_info__includes--title">what includes</h2>
+                <ul class="tour_info__includes--cheks">
+                    <% for(i = 0; i < tour.includes.length; i++){ %>
+                        <li>
+                            <p> <%= tour.includes[i] %></p>
+                        </li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+
+
+
+        <div class="tour_info__panel">
+
+            <ul>
+                <li class="tour_info__panel__content">
+                    <!-- <div class="tour_info__panel__img" style="background-image: url('/img/slider images/slider_2.jpg')"></div> -->
+                    <h2 class="tour_info__panel__price">$<%= tour.price %></h2>
+                    <hr>
+
+                    <div class="tour_info__panel__info">
+                        <ul>
+                            <li><a href="">
+                                    <p> <%= tour.location %> </p>
+                                </a></li>
+                            <li><a href="http://<%=tour.website %>">
+                                    <p> website </p>
+                                </a></li>
+                            <li><a href="mailto:<%= tour.email %>">
+                                    <p> email </p>
+                                </a></li>
+                            <li><a href="tel:<%= tour.telephone %>">
+                                    <p> <%= tour.telephone %> </p>
+                                </a></li>
+                        </ul>
+                    </div>
+                </li>
+
+
+                <li class="tour_info__panel__map">
+                    <div class="tour_info__panel__map--map">
+                        <div class="mapouter">
+                            <div class="gmap_canvas"> 
+                                    <iframe  id="gmap_canvas" src="<%= tour.locationLink %>" width="500" height="500" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                <style>
+                                    .mapouter {
+                                        position: relative;
+                                        text-align: right;
+                                        height: 500px;
+                                        width: 500px;
+                                    }
+
+                                    .gmap_canvas {
+                                        overflow: hidden;
+                                        background: none !important;
+                                        height: 100%;
+                                        width: 100%;
+                                        bottom: 0
+                                    }
+                                </style>
+                            </div>
+                        </div>
+                        <!-- <div class="mapouter">
+                            <div class="gmap_canvas"><iframe width="500" height="500" id="gmap_canvas"
+                                    src="https://maps.google.com/maps?q=<%= tour.locationLink %>&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                                    frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                                <style>
+                                    .mapouter {
+                                        position: relative;
+                                        text-align: right;
+                                        height: 500px;
+                                        width: 500px;
+                                    }
+
+                                    .gmap_canvas {
+                                        overflow: hidden;
+                                        background: none !important;
+                                        height: 100%;
+                                        width: 100%;
+                                        bottom: 0
+                                    }
+                                </style>
+                            </div>
+                        </div> -->
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+
+
+
+    <section class="slider-section">
+        <div class="slider" id="slider">
+            <div class="slider__display" id="sliderDisplay">
+                <div class="slider__display__image-container">
+
+                </div>
+
+                <div class="buttons-container">
+                    <div class="buttons-container__prev" id="sliderBtnPrev"></div>
+                    <div class="buttons-container__next" id="sliderBtnnext"></div>
+                </div>
+            </div>
+
+            <div class="slider__small-images" id="sliderThumbnailImages">
+
+                    <% for(let i = 0; i < tour.sliderImagesUrls.length; i++){ %>
+                        <div  style='background-image: url("/<%= tour.sliderImagesUrls[i] %>" )'></div>    
+                    <% } %>
+                
+                 
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+    
+</main>
+
+
+<!-- <div class=""  style='background-image: url("<%= tour.image %>)'></div>
+<h2 class=""><%= tour.title %> </h2>
+<p class=""><%= tour.price %>$</p>
+<div class=""><%= tour.description %></div> -->
+
+
+
+<%- include('../includes/bottom.ejs')  %>
