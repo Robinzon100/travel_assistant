@@ -3,7 +3,7 @@ const mongodb = require('mongodb');
 
 //username, email, phone_number, bookmarks, hashedPassword
 class User {
-    constructor(username, email, password, phone_number, bookmarks, id, resetToken, resetTokenExpiration) {
+    constructor(username, email, password, phone_number, bookmarks, id, resetToken, resetTokenExpiration, role) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -13,18 +13,9 @@ class User {
         this._id = id;
         this.resetToken = resetToken;
         this.resetTokenExpiration = resetTokenExpiration;
+        this.role = "user";
     }
-    // username, email, phone_number, bookmarks, hashedPassword
-    /*
-        username
-        email
-        password
-        phone_number
-        bookmarks
-        roles
-        user_image
-        creaed_at
-    */
+ 
 
     //
     // ─── SAVE ───────────────────────────────────────────────────────────────────────

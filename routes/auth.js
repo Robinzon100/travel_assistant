@@ -11,8 +11,10 @@ const Users = require("../models/users");
 const auth = require("../controllers/auth");
 
 //
-// ?─── REGISTRATION ROUTES ────────────────────────────────────────────────────────────
+// ?─── REGISTRATION ROUTES ────────────────────────────────────
 //
+//? company registration
+
 router.get("/register", auth.getRegistration);
 router.post("/register",
     [
@@ -49,46 +51,67 @@ router.post("/register",
     auth.postRegistration
 );
 
+
+//? company registration
+
+router.get("/register-company", auth.getRegistrationCompany);
+router.post("/register-company",
+    [
+        //Email
+        check("email")
+            .not()
+            .isEmpty()
+            .withMessage('email musnt be empty')
+            .trim()
+            .isEmail()
+            .withMessage('enter a valid email')
+            .custom((value, { req }) => {
+                return Users.findByEmail(value).then(user => {
+                    if (user) {
+                        return Promise.reject("User Already Exists");
+                    }
+                });
+            }),
+
+        //Password
+        body("password", "password must be at least 5 characters long")
+            .trim()
+            .isLength({ min: 5, max: 20 }),
+
+        //Repeat password
+        body("repeatPassword").custom((value, { req }) => {
+            if (value !== req.body.password) {
+                throw new Error("Passwords must match !");
+            } else {
+                return true;
+            }
+        })
+    ],
+    auth.postRegistration
+);
+
+
 //
-// ?─── LOGIN ROUTES ────────────────────────────────────────────────────────────
+// ?─── LOGIN ROUTES ────────────────────────────────────
 //
 router.get("/login", auth.getLogin);
 router.post("/login", auth.postLogin);
 
 //
-// ?─── RESET PASSWORD  ROUTES ────────────────────────────────────────────────────────────
+// ?─── RESET PASSWORD  ROUTES ────────────────────────────────────
 //
 router.get("/reset-password", auth.getResetPassword);
 router.post("/reset-password", auth.postResetPassword);
 
 //
-// ?─── NEW PASSWORD  ROUTES ────────────────────────────────────────────────────────────
+// ?─── NEW PASSWORD  ROUTES ────────────────────────────────────
 //
 router.get("/new-password/:token", auth.getNewPassword);
 router.post("/new-password/:token", auth.postNewPassword);
 
 //
-// ?─── LOG OUT  ROUTES ────────────────────────────────────────────────────────────
+// ?─── LOG OUT  ROUTES ────────────────────────────────────
 //
 router.post("/logout", auth.postLogout);
 
 module.exports = router;
-
-// router.get(
-//     "/signlogin",
-//     [
-//         check("email").custom(value => {
-//             return User.findByEmail(value).then(user => {
-//                 if (user) {
-//                     return Promise.reject("E-mail already in use");
-//                 }
-//             });
-//         }),
-//         check("password").custom((value, { req }) => {
-//             if (value !== req.body.passwordConfirmation) {
-//                 throw new Error("Password confirmation is incorrect");
-//             }
-//         })
-//     ],
-//     auth.getRegistration
-// );

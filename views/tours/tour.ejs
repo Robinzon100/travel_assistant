@@ -10,7 +10,7 @@
     <ul class="tour_hero__showcase-images">
 
         <% for(let i = 0; i < tour.showcaseImagesUrls.length; i++){ %>
-        <li class="tour_hero__showcase-images__image" style='background-image: url("/<%= tour.showcaseImagesUrls[i] %>" )'></li>
+        <li class="tour_hero__showcase-images__image" style='background-image: url("/images/<%= tour.showcaseImagesUrls[i] %>" )'></li>
         <% } %>
     </ul>
 </div>
@@ -43,7 +43,7 @@
 
             <ul>
                 <li class="tour_info__panel__content">
-                    <!-- <div class="tour_info__panel__img" style="background-image: url('/img/slider images/slider_2.jpg')"></div> -->
+                    <!-- <div class="tour_info__panel__img" style="background-image: url('/img/slider /images/slider_2.jpg')"></div> -->
                     <h2 class="tour_info__panel__price">$<%= tour.price %></h2>
                     <hr>
 
@@ -136,7 +136,7 @@
             <div class="slider__small-images" id="sliderThumbnailImages">
 
                     <% for(let i = 0; i < tour.sliderImagesUrls.length; i++){ %>
-                        <div  style='background-image: url("/<%= tour.sliderImagesUrls[i] %>" )'></div>    
+                        <div  style='background-image: url("/images/<%= tour.sliderImagesUrls[i] %>" )'></div>    
                     <% } %>
                 
                  

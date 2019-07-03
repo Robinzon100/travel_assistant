@@ -12,10 +12,12 @@ const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const flash = require('connect-flash');
 const multer = require('multer');
-
+// const compression = require('compression');
+require('dotenv').config()
 
 //! MONGODB URI 
 const MONGODB_URI = "mongodb+srv://robinzon:rU0Hbn7IsLgLk4KF@travel-assistant-btaux.mongodb.net/travel-assistant";
+
 
 //
 // ─── MY EXPORTS ─────────────────────────────────────────────────────────────────
@@ -30,6 +32,7 @@ const Users = require('./models/users');
 
 
 
+// app.use(compression)
 
 // ─── VIEW ENGINE ────────────────────────────────────────────────────────────────
 app.set("view engine", "ejs");
@@ -48,21 +51,20 @@ const fileStorage = multer.diskStorage({
         cb(null, 'images')
     },
     filename: (req, file, cb) => {
-        cb(null, new Date().toISOString() + '-' + file.originalname);
+        cb(null, '(' + new Date().getTime() + ')--' + file.originalname);
     }
 })
 
 // const cpUpload = multer.fields([{ name: 'avatar', maxCount: 1 }, { name: 'gallery', maxCount: 8 }])
-const upload = multer({ storage: fileStorage }).fields(
-    [
+const upload = multer({ storage: fileStorage }).fields([
         { name: 'card_image', maxCount: 1 },
         { name: 'showcase_images', maxCount: 6 },
         { name: 'slider_images', maxCount: 20 },
         { name: 'profile_image', maxCount: 1 }
     ]);
-
+ 
 app.use(upload);
-
+ 
 // reading public folder
 app.use(express.static(path.join(__dirname, "public")));
 app.use('/images', express.static(path.join(__dirname, "images")));
@@ -70,10 +72,8 @@ app.use('/images', express.static(path.join(__dirname, "images")));
 
 
 
-
-
 const store = new MongoDBStore({
-    uri: MONGODB_URI,
+    uri: process.env.MONGODB_URI,
     collection: "sessions"
 });
 

@@ -14,32 +14,71 @@ exports.getAddTour = (req, res, next) => {
 
 
 exports.postAddTour = (req, res, next) => {
-    const { title, price, small_description, long_description__title, long_description__text, includes, location, locationLink, website, email, telephone, ratting, category, views } = req.body;
+    const {
+        title,
+        price,
+        small_description,
+        long_description__title,
+        long_description__text,
+        includes,
+        location,
+        locationLink,
+        website,
+        email,
+        telephone,
+        ratting,
+        category,
+        views
+    } = req.body;
+
     let viewsInt = parseInt(views);
     const errors = validationResult(req);
 
     if (errors.isEmpty()) {
         const allImages = req.files;
-        const cardImageUrl = allImages.card_image[0].path; // CARD IMAGE URL
+        const cardImageUrl = allImages.card_image[0].filename; // CARD IMAGE URL
 
         const showcaseImages = allImages.showcase_images;
         const showcaseImagesUrls = [] // SHOWCASE IMAGE URLS
-        showcaseImages.forEach(image => showcaseImagesUrls.push(image.path));
+        showcaseImages.forEach(image => showcaseImagesUrls.push(image.filename));
 
 
         const sliderImages = allImages.slider_images;
         const sliderImagesUrls = [] // SLIDER IMAGE URLS
-        sliderImages.forEach(image => sliderImagesUrls.push(image.path));
+        sliderImages.forEach(image => sliderImagesUrls.push(image.filename));
 
         //visitors array
         let visitors = [];
 
-        const tour = new Tours(title, price, small_description, long_description__title, long_description__text, includes, location, locationLink, website, email, telephone, ratting, category, viewsInt, visitors, cardImageUrl, showcaseImagesUrls, sliderImagesUrls);
+        // console.log(cardImageUrl,
+        //     showcaseImagesUrls,
+        //     sliderImagesUrls)
 
+        const tour = new Tours(
+            title,
+            price,
+            small_description,
+            long_description__title,
+            long_description__text,
+            includes,
+            location,
+            locationLink,
+            website,
+            email,
+            telephone,
+            ratting,
+            category,
+            viewsInt,
+            visitors,
+            cardImageUrl,
+            showcaseImagesUrls,
+            sliderImagesUrls
+        );
 
+            //  res.redirect('admin/add-tour');
         tour.save()
             .then(tour => {
-                res.redirect('/tours');
+                res.redirect('/explore');
             })
             .catch(err => {
                 console.log(err);
@@ -50,13 +89,29 @@ exports.postAddTour = (req, res, next) => {
             pageTitle: "add-tour",
             path: "/admin/add-tours",
             logedIn: req.session.logedIn,
-            errorMessage: errors.array()
+            errorMessage: errors.array(),
+            oldInputValues: {
+                title: title,
+                price: price,
+                small_description: small_description,
+                long_description__title: long_description__title,
+                long_description__text: long_description__text,
+                includes: includes,
+                location: location,
+                locationLink: locationLink,
+                website: website,
+                email: email,
+                telephone: telephone,
+                ratting: ratting,
+                category: category,
+                viewsInt: viewsInt
+            }
         });
     }
 }
 
 
- 
+
 
 
 // exports.postAddTours = (req, res, next) =>{

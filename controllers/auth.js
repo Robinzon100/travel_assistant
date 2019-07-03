@@ -35,6 +35,27 @@ exports.getRegistration = (req, res, next) => {
     });
 };
 
+
+
+//? get the /registration
+exports.getRegistrationCompany = (req, res, next) => {
+console.log(process.env.MONGODB_URI)
+
+    res.render("auth/register-company", {
+        pageTitle: "register a company",
+        path: "/register",
+        errors: [],
+        logedIn: req.session.logedIn,
+        errorMessage: req.flash("error"),
+        oldInputValues: {
+            email: "",
+            password: "",
+            repeatPassword: ""
+        }
+    });
+};
+
+
 //? POST the /registration
 exports.postRegistration = (req, res, next) => {
     const { username, email, password, phone_number, repeatPassword } = req.body;

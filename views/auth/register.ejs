@@ -17,37 +17,48 @@
         type="text" 
         name="username" 
         value="<%= oldInputValues.username %>" 
-        placeholder="enter username"> <br><br>
+        placeholder="enter username"> 
+        <br><br>
 
     <input 
         type="email" 
         name="email" 
         value="<%= oldInputValues.email %>" 
-        placeholder="enter email" > <br><br>
+        placeholder="enter email" > 
+        <br><br>
     
     <input 
         type="tel" 
         name="phone_number" 
         value="<%= oldInputValues.phone_number %>" 
-        placeholder="enter email" > <br><br>
+        placeholder="enter phone number" > 
+        <br><br>
 
     <input 
         type="password" 
         name="password" 
         value="<%= oldInputValues.password %>" 
-        placeholder="enter password"> <br><br>
+        placeholder="enter password"> 
+        <br><br>
 
     <input 
         type="password" 
         name="repeatPassword" 
         value="<%= oldInputValues.repeatPassword %>" 
-        placeholder="repeat password"> <br><br>
+        placeholder="repeat password"> 
+        <br><br>
 
     <button 
         type="submit">register</button>
 </form>
 
 <a href="/login">already a member</a>
+<br>
+<br>
+<br>
+<br>
+<br>
+<a href="/register-company">register a company</a>
 
 
 <%- include('../includes/bottom.ejs')  %>
