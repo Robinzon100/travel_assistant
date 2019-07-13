@@ -10,10 +10,10 @@ const Users = require("../models/users");
 // ─── CONTROLERS ──────────────────────────────────────────────────────────────────
 const auth = require("../controllers/auth");
 
-//
+
 // ?─── REGISTRATION ROUTES ────────────────────────────────────
 //
-//? company registration
+//? USER registration
 
 router.get("/register", auth.getRegistration);
 router.post("/register",
@@ -52,7 +52,7 @@ router.post("/register",
 );
 
 
-//? company registration
+//? COMPANY registration
 
 router.get("/register-company", auth.getRegistrationCompany);
 router.post("/register-company",
@@ -64,14 +64,14 @@ router.post("/register-company",
             .withMessage('email musnt be empty')
             .trim()
             .isEmail()
-            .withMessage('enter a valid email')
-            .custom((value, { req }) => {
-                return Users.findByEmail(value).then(user => {
-                    if (user) {
-                        return Promise.reject("User Already Exists");
-                    }
-                });
-            }),
+            .withMessage('enter a valid email'),
+            // .custom((value, { req }) => {
+            //     return Users.findByEmail(value).then(user => {
+            //         if (user) {
+            //             return Promise.reject("User Already Exists");
+            //         }
+            //     });
+            // })
 
         //Password
         body("password", "password must be at least 5 characters long")
@@ -86,32 +86,36 @@ router.post("/register-company",
                 return true;
             }
         })
-    ],
-    auth.postRegistration
-);
+    ], 
+    auth.postRegistrationCompany);
 
 
-//
+
 // ?─── LOGIN ROUTES ────────────────────────────────────
 //
 router.get("/login", auth.getLogin);
 router.post("/login", auth.postLogin);
 
-//
+
 // ?─── RESET PASSWORD  ROUTES ────────────────────────────────────
 //
 router.get("/reset-password", auth.getResetPassword);
 router.post("/reset-password", auth.postResetPassword);
 
-//
+
 // ?─── NEW PASSWORD  ROUTES ────────────────────────────────────
 //
 router.get("/new-password/:token", auth.getNewPassword);
 router.post("/new-password/:token", auth.postNewPassword);
 
-//
+
 // ?─── LOG OUT  ROUTES ────────────────────────────────────
 //
 router.post("/logout", auth.postLogout);
 
 module.exports = router;
+
+
+
+
+//?company validation

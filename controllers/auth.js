@@ -14,12 +14,13 @@ const { validationResult } = require("express-validator/check");
 
 //! MODELS
 const Users = require("../models/users");
+const Companies = require("../models/companies");
 
 //
 //! ─── REGISTRATION ───────────────────────────────────────────────────────────────
 //
 
-//? get the /registration
+//? get the /registration-COMPANY
 exports.getRegistration = (req, res, next) => {
     res.render("auth/register", {
         pageTitle: "travel assistant",
@@ -39,7 +40,7 @@ exports.getRegistration = (req, res, next) => {
 
 //? get the /registration
 exports.getRegistrationCompany = (req, res, next) => {
-console.log(process.env.MONGODB_URI)
+    console.log(process.env.MONGODB_URI)
 
     res.render("auth/register-company", {
         pageTitle: "register a company",
@@ -54,6 +55,7 @@ console.log(process.env.MONGODB_URI)
         }
     });
 };
+
 
 
 //? POST the /registration
@@ -92,6 +94,51 @@ exports.postRegistration = (req, res, next) => {
                     req.session.user = user;
                     res.redirect("/explore");
 
+                    // mailer.registrationMail(email);
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        });
+    }
+};
+
+
+
+
+exports.postRegistrationCompany = (req, res, next) => {
+    const { name, email, password, repeatPassword, telephone, website, type } = req.body;
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        console.log(errors.array());
+
+        return res.status(422).render("auth/register-company", {
+            pageTitle: "registe a company",
+            path: "/register-company",
+            errors: [],
+            logedIn: req.session.logedIn,
+            errorMessage: errors.array(),
+            oldInputValues: {
+                name: name,
+                email: email,
+                password: password,
+                telephone: telephone,
+                repeatPassword: repeatPassword,
+                website: website,
+                type: type
+            }
+        });
+    } else {
+
+        bcrypt.hash(password, 12).then(hashedPassword => {
+            const company = new Companies(email, hashedPassword, name, website, telephone, type);
+
+            company.save()
+                .then(() => {
+                    req.session.logedIn = true;
+                    req.session.company = company;
+                    res.redirect("/explore");
                     // mailer.registrationMail(email);
                 })
                 .catch(err => {

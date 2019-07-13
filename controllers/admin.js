@@ -75,7 +75,7 @@ exports.postAddTour = (req, res, next) => {
             sliderImagesUrls
         );
 
-            //  res.redirect('admin/add-tour');
+        //  res.redirect('admin/add-tour');
         tour.save()
             .then(tour => {
                 res.redirect('/explore');

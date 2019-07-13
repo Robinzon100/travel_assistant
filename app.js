@@ -29,6 +29,7 @@ module.exports = {
 // ─── MY IMPORTS ─────────────────────────────────────────────────────────────────
 const mongoConnect = require("./utils/database").mongoConnect;
 const Users = require('./models/users');
+const Companies = require('./models/companies');
 
 
 
@@ -57,14 +58,14 @@ const fileStorage = multer.diskStorage({
 
 // const cpUpload = multer.fields([{ name: 'avatar', maxCount: 1 }, { name: 'gallery', maxCount: 8 }])
 const upload = multer({ storage: fileStorage }).fields([
-        { name: 'card_image', maxCount: 1 },
-        { name: 'showcase_images', maxCount: 6 },
-        { name: 'slider_images', maxCount: 20 },
-        { name: 'profile_image', maxCount: 1 }
-    ]);
- 
+    { name: 'card_image', maxCount: 1 },
+    { name: 'showcase_images', maxCount: 6 },
+    { name: 'slider_images', maxCount: 20 },
+    { name: 'profile_image', maxCount: 1 }
+]);
+
 app.use(upload);
- 
+
 // reading public folder
 app.use(express.static(path.join(__dirname, "public")));
 app.use('/images', express.static(path.join(__dirname, "images")));
@@ -97,19 +98,27 @@ app.use(flash());
 
 //username, email, password, bookmarks, id, resetToken, resetTokenExpiration
 
-//user middleware
+//user and companies middleware
 app.use((req, res, next) => {
-    if (!req.session.user) {
+    if (!req.session.user || !req.session.company) {
         return next();
-      }
-        Users.findById(req.session.user._id)
-            .then((user) => {
-                req.user = new Users(user.username, user.email, user.password, user.phone_number,  user.bookmarks, user._id, user.resetToken, user.resetTokenExpiration);
-                next();
-            }).catch((err) => console.log(err));
-    
+    }
+    Users.findById(req.session.user._id)
+        .then((user) => {
+            req.user = new Users(user.username, user.email, user.password, user.phone_number, user.bookmarks, user._id, user.resetToken, user.resetTokenExpiration);
+            next();
+        }).catch((err) => console.log(err));
+
+    // Companies.findById(req.session.company._id)
+    //     .then((company) => {
+    //         req.company = new Companies(company.name, company.email, company.password, company.website, company.telephone, company.type, company.posts, company.role);
+    //         next();
+    //     }).catch((err) => console.log(err));
+
+
+
 });
- 
+
 
 
 
