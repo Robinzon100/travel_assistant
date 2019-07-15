@@ -14,6 +14,21 @@ class UserAndHostQueries {
                 console.log(err);
             });
     }
+
+
+
+    static findById(collection, objectId) {
+        const db = getDb();
+        return db.collection(collection)
+            .findOne({ _id: new mongodb.ObjectId(objectId) })
+            .then(result => {
+                return result;
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
 }
 
 

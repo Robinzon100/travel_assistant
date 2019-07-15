@@ -43,17 +43,17 @@ class Host {
     // ─── FIND ───────────────────────────────────────────────────────────────────────
     //
 
-    static findById(companyId) {
-        const db = getDb();
-        return db.collection('companies')
-            .findOne({ _id: new mongodb.ObjectId(companyId) })
-            .then(company => {
-                return company;
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    }
+    // static findById(companyId) {
+    //     const db = getDb();
+    //     return db.collection('companies')
+    //         .findOne({ _id: new mongodb.ObjectId(companyId) })
+    //         .then(company => {
+    //             return company;
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         })
+    // }
 
 
     static findCompany(email, password) {
