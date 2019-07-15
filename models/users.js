@@ -32,7 +32,7 @@ class User {
     save() {
         const db = getDb();
         return db
-            .collection("user")
+            .collection("users")
             .insertOne(this)
             .then(user => {
                 let resultUser = user;
@@ -77,7 +77,7 @@ class User {
 
             const db = getDb();
             return db
-                .collection("user")
+                .collection("users")
                 .updateOne(
                     { _id: new mongodb.ObjectId(this._id) },
                     { $set: { bookmarks: updatedbookmarks } }
@@ -95,7 +95,7 @@ class User {
     static findUserByToken(token) {
         const db = getDb();
         return db
-            .collection("user")
+            .collection("users")
             .findOne({ resetToken: token })
             .then(user => {
                 return user;
@@ -108,7 +108,7 @@ class User {
     static findUser(email, password) {
         const db = getDb();
         return db
-            .collection("user")
+            .collection("users")
             .findOne({ email: email, password: password })
             .then(user => {
                 return user;
@@ -121,7 +121,7 @@ class User {
     static findByEmail(email) {
         const db = getDb();
         return db
-            .collection("user")
+            .collection("users")
             .findOne({ email: email })
             .then(user => {
                 return user;
@@ -134,7 +134,7 @@ class User {
     static findById(userId) {
         const db = getDb();
         return db
-            .collection("user")
+            .collection("users")
             .findOne({ _id: new mongodb.ObjectId(userId) })
             .then(user => {
                 return user;
@@ -150,7 +150,7 @@ class User {
     static saveAndUpdateUserToken(email, resetToken) {
         const db = getDb();
         return db
-            .collection("user")
+            .collection("users")
             .updateOne(
                 { email: email },
                 {
@@ -171,7 +171,7 @@ class User {
     static updateUserPassword(userId, newPassword) {
         const db = getDb();
         return db
-            .collection("user")
+            .collection("users")
             .updateOne(
                 { _id: new mongodb.ObjectId(userId) },
                 { $set: { password: newPassword, resetToken: null } }

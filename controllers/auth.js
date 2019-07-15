@@ -21,6 +21,7 @@ const UserAndHostQueries = require("../queries/usersAndHost");
 //! ─── REGISTRATION ───────────────────────────────────────────────────────────────
 //
 
+//!USER
 //? get the /registration-user
 exports.getRegistration = (req, res, next) => {
     res.render("auth/register", {
@@ -39,13 +40,7 @@ exports.getRegistration = (req, res, next) => {
 
 //? POST the /registration
 exports.postRegistration = (req, res, next) => {
-    const {
-        username,
-        email,
-        password,
-        phone_number,
-        repeatPassword
-    } = req.body;
+    const { username, email, password, phone_number, repeatPassword } = req.body;
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -70,15 +65,9 @@ exports.postRegistration = (req, res, next) => {
             const bookmarks = {
                 items: []
             };
-            const user = new Users(
-                username,
-                email,
-                hashedPassword,
-                phone_number,
-                bookmarks
-            );
+            const user = new Users(username, email, hashedPassword, phone_number, bookmarks);
 
-            user.save()
+            UserAndHostQueries.save("users", user)
                 .then(() => {
                     req.session.logedIn = true;
                     req.session.user = user;
@@ -93,6 +82,8 @@ exports.postRegistration = (req, res, next) => {
     }
 };
 
+
+//!HOST
 //? get the /registration-HOST
 exports.getRegistrationHost = (req, res, next) => {
     res.render("auth/register-host", {
@@ -135,7 +126,7 @@ exports.postRegistrationHost = (req, res, next) => {
         });
     } else {
         bcrypt.hash(password, 12).then(hashedPassword => {
-            const host = new Host( email, hashedPassword, name, website, telephone, type );
+            const host = new Host(email, hashedPassword, name, website, telephone, type);
 
             UserAndHostQueries.save("hosts", host)
                 .then(() => {

@@ -1,65 +1,67 @@
-<%- include('../includes/head.ejs')  %>
-<%- include('../includes/navigation.ejs')  %>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<%- include('../includes/head.ejs') %> <%- include('../includes/navigation.ejs')
+%>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 <% for (let error of errorMessage){ %>
-    <h1><%= error.msg %></h1>
+<h1><%= error.msg %></h1>
 <% } %>
 <form action="register" method="post" novalidate>
-    <input 
+    <input
         class="<%= errorMessage.find(e => e.param === 'email') ? 'invalid' : '' %>"
-        type="text" 
-        name="username" 
-        value="<%= oldInputValues.username %>" 
-        placeholder="enter username"> 
-        <br><br>
+        type="text"
+        name="username"
+        value="<%= oldInputValues.username %>"
+        placeholder="enter username"
+    />
+    <br /><br />
 
-    <input 
-        type="email" 
-        name="email" 
-        value="<%= oldInputValues.email %>" 
-        placeholder="enter email" > 
-        <br><br>
+    <input
+        type="email"
+        name="email"
+        value="<%= oldInputValues.email %>"
+        placeholder="enter email"
+    />
+    <br /><br />
 
-    <input 
-        type="password" 
-        name="password" 
-        value="<%= oldInputValues.password %>" 
-        placeholder="enter password"> 
-    <br><br>
+    <input
+        type="tel"
+        name="phone_number"
+        value="<%= oldInputValues.phone_number %>"
+        placeholder="enter phone number"
+    />
+    <br /><br />
 
-    <input 
-        type="tel" 
-        name="phone_number" 
-        value="<%= oldInputValues.phone_number %>" 
-        placeholder="enter phone number" > 
-        <br><br>
+    <input
+        type="password"
+        name="password"
+        value="<%= oldInputValues.password %>"
+        placeholder="enter password"
+    />
+    <br /><br />
 
+    <input
+        type="password"
+        name="repeatPassword"
+        value="<%= oldInputValues.repeatPassword %>"
+        placeholder="repeat password"
+    />
+    <br /><br />
 
-    <input 
-        type="password" 
-        name="repeatPassword" 
-        value="<%= oldInputValues.repeatPassword %>" 
-        placeholder="repeat password"> 
-        <br><br>
-
-    <button 
-        type="submit">register</button>
+    <button type="submit">register</button>
 </form>
 
 <a href="/login">already a member</a>
-<br>
-<br>
-<br>
-<br>
-<br>
+<br />
+<br />
+<br />
+<br />
+<br />
 <a href="/register-host">register as a host</a>
 
-
-<%- include('../includes/bottom.ejs')  %>
+<%- include('../includes/bottom.ejs') %>

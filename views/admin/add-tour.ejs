@@ -1,13 +1,12 @@
-<%- include('../includes/head.ejs')  %>
-<%- include('../includes/navigation.ejs')  %>
-<br>
-<br>
-<br>
-<br>
-<br>
+<%- include('../includes/head.ejs') %> <%- include('../includes/navigation.ejs')
+%>
+<br />
+<br />
+<br />
+<br />
+<br />
 <style>
-
-/* input{
+    /* input{
     color: white;
 }
 
@@ -21,66 +20,85 @@ h3{
 </style>
 
 <% for (let error of errorMessage){ %>
-    <p style="color:red" ><%= error.msg %></p>
+<p style="color:red"><%= error.msg %></p>
 <% } %>
-
 
 <form action="/admin/add-tour" method="post" enctype="multipart/form-data">
     <!-- text -->
     <h3>must be 7 or less words</h3>
-    <input 
-        type="text" 
-        name="title" 
-        value="<%= oldInputValues.title %>" 
-        placeholder="title"> <br> <br>
-    <input 
-        type="number" 
-        name="price" 
-        value="<%= oldInputValues.price %>" 
-        placeholder="price"> <br> <br>
+    <input
+        type="text"
+        name="title"
+        value="<%= oldInputValues.title %>"
+        placeholder="title"
+    />
+    <br />
+    <br />
+    <input
+        type="number"
+        name="price"
+        value="<%= oldInputValues.price %>"
+        placeholder="price"
+    />
+    <br />
+    <br />
     <h3>must be 8-9 or less words</h3>
-    <input 
-        type="text" 
-        name="small_description" 
-        value="<%= oldInputValues.small_description %>" 
-        placeholder="small_description"> <br> <br>
+    <input
+        type="text"
+        name="small_description"
+        value="<%= oldInputValues.small_description %>"
+        placeholder="small_description"
+    />
+    <br />
+    <br />
     <h3>must be 9-10 or less words</h3>
-    <input 
-        type="text" 
-        name="long_description__title" 
-        value="<%= oldInputValues.long_description__title %>" 
-        placeholder="long_description__title"> <br> <br>
+    <input
+        type="text"
+        name="long_description__title"
+        value="<%= oldInputValues.long_description__title %>"
+        placeholder="long_description__title"
+    />
+    <br />
+    <br />
     <h3>must be 40-50 or less words</h3>
-    <textarea name="long_description__text" placeholder="long_description__text" id="" cols="30" rows="10"></textarea>
+    <textarea
+        name="long_description__text"
+        placeholder="long_description__text"
+        id=""
+        cols="30"
+        rows="10"
+    ></textarea>
     <!-- <input 
             type="text" 
             name="long_description__text" 
             value="<%= oldInputValues.long_description__text %>" 
             placeholder="long_description__text"> <br> <br> -->
-    
-    
+
     <h3>all must be includes</h3>
-    <h2>includes </h2>
+    <h2>includes</h2>
     <ul>
         <li>
-            <input type="text" name="includes">
+            <input type="text" name="includes" />
         </li>
         <li>
-            <input type="text" name="includes">
+            <input type="text" name="includes" />
         </li>
         <li>
-            <input type="text" name="includes">
+            <input type="text" name="includes" />
         </li>
         <li>
-            <input type="text" name="includes">
+            <input type="text" name="includes" />
         </li>
         <li>
-            <input type="text" name="includes">
+            <input type="text" name="includes" />
         </li>
         <li>
-            <input type="text" name="includes">
+            <input type="text" name="includes" />
         </li>
-    </ul> <br> <br> <br>
+    </ul>
+    <br />
+    <br />
+    <br />
 
     <select name="location">
         <option value="Tbilisi">Tbilisi</option>
@@ -89,37 +107,54 @@ h3{
         <option value="Qutaisi">Qutaisi</option>
     </select>
 
-    
-    <input 
-        type="text" 
-        name="locationLink" 
-        value="<%= oldInputValues.locationLink %>" 
-        placeholder="locationLink"> <br> <br>
-    <input 
-        type="text" 
-        name="website" 
-        value="<%= oldInputValues.website %>" 
-        placeholder="website"> <br> <br>
-    <input 
-        type="email" 
-        name="email" 
-        value="<%= oldInputValues.email %>" 
-        placeholder="email"> <br> <br>
-    <input 
-        type="text" 
-        name="telephone" 
-        value="<%= oldInputValues.telephone %>" 
-        placeholder="telephone"> <br> <br>
-    <input 
-        type="number" 
-        name="ratting" 
-        value="<%= oldInputValues.ratting %>" 
-        placeholder="ratting"> <br> <br>
-    <input 
-        type="number" 
-        name="views" 
-        value="<%= oldInputValues.views %>" 
-        placeholder="views"> <br> <br>
+    <input
+        type="text"
+        name="locationLink"
+        value="<%= oldInputValues.locationLink %>"
+        placeholder="locationLink"
+    />
+    <br />
+    <br />
+    <input
+        type="text"
+        name="website"
+        value="<%= oldInputValues.website %>"
+        placeholder="website"
+    />
+    <br />
+    <br />
+    <input
+        type="email"
+        name="email"
+        value="<%= oldInputValues.email %>"
+        placeholder="email"
+    />
+    <br />
+    <br />
+    <input
+        type="text"
+        name="telephone"
+        value="<%= oldInputValues.telephone %>"
+        placeholder="telephone"
+    />
+    <br />
+    <br />
+    <input
+        type="number"
+        name="ratting"
+        value="<%= oldInputValues.ratting %>"
+        placeholder="ratting"
+    />
+    <br />
+    <br />
+    <input
+        type="number"
+        name="views"
+        value="<%= oldInputValues.views %>"
+        placeholder="views"
+    />
+    <br />
+    <br />
 
     <select name="category">
         <option value="tour">tours</option>
@@ -127,34 +162,41 @@ h3{
         <option value="hotels">hotels</option>
         <option value="bike rides">bike rides</option>
         <option value="campings">campings</option>
-    </select> <br> <br> <br><br>
-
+    </select>
+    <br />
+    <br />
+    <br /><br />
 
     <label for="images">upload card image</label>
-    <input 
-        type="file" 
-        name="card_image" 
-        value="<%= oldInputValues.card_image %>" 
-        id=""> <br>
+    <input
+        type="file"
+        name="card_image"
+        value="<%= oldInputValues.card_image %>"
+        id=""
+    />
+    <br />
 
     <label for="images">showcase images</label>
-    <input 
-        type="file" 
-        name="showcase_images" 
-        value="<%= oldInputValues.showcase_images %>" 
-        id="" multiple="multiple"> <br>
-    
+    <input
+        type="file"
+        name="showcase_images"
+        value="<%= oldInputValues.showcase_images %>"
+        id=""
+        multiple="multiple"
+    />
+    <br />
+
     <label for="images">slider images</label>
-    <input 
-        type="file" 
-        name="slider_images" 
-        value="<%= oldInputValues.slider_images %>" 
-        id="" multiple="multiple"> <br>
-
-
-
+    <input
+        type="file"
+        name="slider_images"
+        value="<%= oldInputValues.slider_images %>"
+        id=""
+        multiple="multiple"
+    />
+    <br />
 
     <button type="submit">add tour</button>
 </form>
 
-<%- include('../includes/bottom.ejs')  %>
+<%- include('../includes/bottom.ejs') %>

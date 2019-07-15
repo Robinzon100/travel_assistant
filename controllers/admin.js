@@ -1,17 +1,30 @@
-const Tours = require('../models/tours');
+const Tours = require("../models/tours");
 const { validationResult } = require("express-validator/check");
 
-
-
 exports.getAddTour = (req, res, next) => {
-    res.render('admin/add-tour', {
+    res.render("admin/add-tour", {
         pageTitle: "add-tour",
         path: "/admin/add-tours",
         logedIn: req.session.logedIn,
-        errorMessage: req.flash("error")
+        errorMessage: req.flash("error"),
+        oldInputValues: {
+            title: '',
+            price: '',
+            small_description: '',
+            long_description__title: '',
+            long_description__text: '',
+            includes: '',
+            location: '',
+            locationLink: '',
+            website: '',
+            email: '',
+            telephone: '',
+            ratting: '',
+            category: '',
+            viewsInt: ''
+        }
     });
 };
-
 
 exports.postAddTour = (req, res, next) => {
     const {
@@ -39,12 +52,13 @@ exports.postAddTour = (req, res, next) => {
         const cardImageUrl = allImages.card_image[0].filename; // CARD IMAGE URL
 
         const showcaseImages = allImages.showcase_images;
-        const showcaseImagesUrls = [] // SHOWCASE IMAGE URLS
-        showcaseImages.forEach(image => showcaseImagesUrls.push(image.filename));
-
+        const showcaseImagesUrls = []; // SHOWCASE IMAGE URLS
+        showcaseImages.forEach(image =>
+            showcaseImagesUrls.push(image.filename)
+        );
 
         const sliderImages = allImages.slider_images;
-        const sliderImagesUrls = [] // SLIDER IMAGE URLS
+        const sliderImagesUrls = []; // SLIDER IMAGE URLS
         sliderImages.forEach(image => sliderImagesUrls.push(image.filename));
 
         //visitors array
@@ -78,14 +92,14 @@ exports.postAddTour = (req, res, next) => {
         //  res.redirect('admin/add-tour');
         tour.save()
             .then(tour => {
-                res.redirect('/explore');
+                res.redirect("/explore");
             })
             .catch(err => {
                 console.log(err);
             });
     } else {
         // console.log(errors.array());
-        return res.status(422).render('admin/add-tour', {
+        return res.status(422).render("admin/add-tour", {
             pageTitle: "add-tour",
             path: "/admin/add-tours",
             logedIn: req.session.logedIn,
@@ -108,11 +122,7 @@ exports.postAddTour = (req, res, next) => {
             }
         });
     }
-}
-
-
-
-
+};
 
 // exports.postAddTours = (req, res, next) =>{
 //     const title = req.body.title;
@@ -135,6 +145,5 @@ exports.postAddTour = (req, res, next) => {
 //         .catch(err => {
 //             console.log(err);
 //         });
-
 
 // };
