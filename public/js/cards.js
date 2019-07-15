@@ -6,7 +6,7 @@
 // let visitBtn = document.querySelector('.card-small__text__button');
 // let visitBtnHidden = document.querySelectorAll('.card-small__text__overlay-button');
 
-// let toggled = false; 
+// let toggled = false;          
  
 // for(let i = 0; i < cardImage.length; i++ ){
 // 	cardImage[i].addEventListener('click',  () =>{

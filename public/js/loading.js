@@ -1,6 +1,6 @@
 const loadingScreen = document.querySelector('.loading_screen')
 
-
+ 
 // document.addEventListener('DOMContentLoaded', () => {
 //     loadingScreen.style.display = 'none'
 // });

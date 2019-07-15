@@ -13,7 +13,7 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 const flash = require('connect-flash');
 const multer = require('multer');
 // const compression = require('compression');
-require('dotenv').config()
+require('dotenv').config()  
 
 //! MONGODB URI 
 const MONGODB_URI = "mongodb+srv://robinzon:rU0Hbn7IsLgLk4KF@travel-assistant-btaux.mongodb.net/travel-assistant";

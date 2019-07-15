@@ -3,14 +3,15 @@
 
 
 
-<div class="tour_hero">
+<div class="tour_hero "data-rate="-0.06">
     <h1 class="tour_hero__title"><%= tour.title%> <br>
         <p class="tour_hero__title--sub"><%= tour.small_description %></p>
     </h1>
     <ul class="tour_hero__showcase-images">
 
         <% for(let i = 0; i < tour.showcaseImagesUrls.length; i++){ %>
-        <li class="tour_hero__showcase-images__image" style='background-image: url("/images/<%= tour.showcaseImagesUrls[i] %>" )'></li>
+        <li class="tour_hero__showcase-images__image"
+            style='background-image: url("/images/<%= tour.showcaseImagesUrls[i] %>" )'></li>
         <% } %>
     </ul>
 </div>
@@ -29,9 +30,9 @@
                 <h2 class="tour_info__includes--title">what includes</h2>
                 <ul class="tour_info__includes--cheks">
                     <% for(i = 0; i < tour.includes.length; i++){ %>
-                        <li>
-                            <p> <%= tour.includes[i] %></p>
-                        </li>
+                    <li>
+                        <p> <%= tour.includes[i] %></p>
+                    </li>
                     <% } %>
                 </ul>
             </div>
@@ -69,8 +70,9 @@
                 <li class="tour_info__panel__map">
                     <div class="tour_info__panel__map--map">
                         <div class="mapouter">
-                            <div class="gmap_canvas"> 
-                                    <iframe  id="gmap_canvas" src="<%= tour.locationLink %>" width="500" height="500" frameborder="0" style="border:0" allowfullscreen></iframe>
+                            <div class="gmap_canvas">
+                                <iframe id="gmap_canvas" src="<%= tour.locationLink %>" width="500" height="500"
+                                    frameborder="0" style="border:0" allowfullscreen></iframe>
                                 <style>
                                     .mapouter {
                                         position: relative;
@@ -135,11 +137,11 @@
 
             <div class="slider__small-images" id="sliderThumbnailImages">
 
-                    <% for(let i = 0; i < tour.sliderImagesUrls.length; i++){ %>
-                        <div  style='background-image: url("/images/<%= tour.sliderImagesUrls[i] %>" )'></div>    
-                    <% } %>
-                
-                 
+                <% for(let i = 0; i < tour.sliderImagesUrls.length; i++){ %>
+                <div style='background-image: url("/images/<%= tour.sliderImagesUrls[i] %>" )'></div>
+                <% } %>
+
+
             </div>
 
         </div>
@@ -148,7 +150,7 @@
 
 
 
-    
+
 </main>
 
 

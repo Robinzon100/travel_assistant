@@ -9,7 +9,6 @@ const menu = document.querySelector('#menu-js');
 let navigation = document.querySelector('.navigation');
 
 
-
 // 
 // ─── DROPDOWN FUNCTIONS ─────────────────────────────────────────────────────────
 //
