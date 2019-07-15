@@ -18,7 +18,7 @@ exports.getLanding = (req, res, next) => {
 //? ─── TOURS ──────────────────────────────────────────────────────────────────────
 //
 exports.getTours = (req, res, next) => {
-    // console.log(req.user)
+    // console.log(req.session)
     // console.log(req.session.logedIn)
     Tours.fetchAll()
         .then(tours => {

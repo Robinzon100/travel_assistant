@@ -52,10 +52,10 @@ router.post("/register",
 );
 
 
-//? COMPANY registration
+//? host registration
 
-router.get("/register-company", auth.getRegistrationCompany);
-router.post("/register-company",
+router.get("/register-host", auth.getRegistrationHost);
+router.post("/register-host",
     [
         //Email
         check("email")
@@ -87,7 +87,7 @@ router.post("/register-company",
             }
         })
     ], 
-    auth.postRegistrationCompany);
+    auth.postRegistrationHost);
 
 
 

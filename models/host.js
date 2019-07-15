@@ -3,7 +3,7 @@ const mongodb = require('mongodb');
 
 
 
-class Company {
+class Host {
     constructor(email, password, name, website, telephone, type, comments, posts, created_at, roles) {
         this.email = email;
         this.password = password;
@@ -22,16 +22,19 @@ class Company {
     //
     // ─── SAVE ───────────────────────────────────────────────────────────────────────
     //
-    save() {
-        const db = getDb();
-        return db.collection('companies') 
-            .insertOne(this)
-            .then((company) => {
-                console.log(company);
-            }).catch((err) => {
-                console.log(err);
-            });
-    }
+    
+
+
+    // save() {
+    //     const db = getDb();
+    //     return db.collection('companies') 
+    //         .insertOne(this)
+    //         .then((company) => {
+    //             console.log(company);
+    //         }).catch((err) => {
+    //             console.log(err);
+    //         });
+    // }
 
 
 
@@ -98,4 +101,4 @@ class Company {
 
 
 
-module.exports = Company;
+module.exports = Host;

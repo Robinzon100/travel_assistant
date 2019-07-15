@@ -14,13 +14,14 @@ const { validationResult } = require("express-validator/check");
 
 //! MODELS
 const Users = require("../models/users");
-const Companies = require("../models/companies");
+const Host = require("../models/host");
+const UserAndHostQueries = require("../queries/usersAndHost");
 
 //
 //! ─── REGISTRATION ───────────────────────────────────────────────────────────────
 //
 
-//? get the /registration-COMPANY
+//? get the /registration-user
 exports.getRegistration = (req, res, next) => {
     res.render("auth/register", {
         pageTitle: "travel assistant",
@@ -36,31 +37,15 @@ exports.getRegistration = (req, res, next) => {
     });
 };
 
-
-
-//? get the /registration
-exports.getRegistrationCompany = (req, res, next) => {
-    console.log(process.env.MONGODB_URI)
-
-    res.render("auth/register-company", {
-        pageTitle: "register a company",
-        path: "/register",
-        errors: [],
-        logedIn: req.session.logedIn,
-        errorMessage: req.flash("error"),
-        oldInputValues: {
-            email: "",
-            password: "",
-            repeatPassword: ""
-        }
-    });
-};
-
-
-
 //? POST the /registration
 exports.postRegistration = (req, res, next) => {
-    const { username, email, password, phone_number, repeatPassword } = req.body;
+    const {
+        username,
+        email,
+        password,
+        phone_number,
+        repeatPassword
+    } = req.body;
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -81,12 +66,17 @@ exports.postRegistration = (req, res, next) => {
             }
         });
     } else {
-
         bcrypt.hash(password, 12).then(hashedPassword => {
             const bookmarks = {
                 items: []
             };
-            const user = new Users(username, email, hashedPassword, phone_number, bookmarks);
+            const user = new Users(
+                username,
+                email,
+                hashedPassword,
+                phone_number,
+                bookmarks
+            );
 
             user.save()
                 .then(() => {
@@ -103,19 +93,33 @@ exports.postRegistration = (req, res, next) => {
     }
 };
 
+//? get the /registration-HOST
+exports.getRegistrationHost = (req, res, next) => {
+    res.render("auth/register-host", {
+        pageTitle: "register a host",
+        path: "/register",
+        errors: [],
+        logedIn: req.session.logedIn,
+        errorMessage: req.flash("error"),
+        oldInputValues: {
+            email: "",
+            password: "",
+            repeatPassword: ""
+        }
+    });
+};
 
-
-
-exports.postRegistrationCompany = (req, res, next) => {
+//? POST the /registration-HOST
+exports.postRegistrationHost = (req, res, next) => {
     const { name, email, password, repeatPassword, telephone, website, type } = req.body;
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
         console.log(errors.array());
 
-        return res.status(422).render("auth/register-company", {
-            pageTitle: "registe a company",
-            path: "/register-company",
+        return res.status(422).render("auth/register-host", {
+            pageTitle: "registe a host",
+            path: "/register-host",
             errors: [],
             logedIn: req.session.logedIn,
             errorMessage: errors.array(),
@@ -130,14 +134,13 @@ exports.postRegistrationCompany = (req, res, next) => {
             }
         });
     } else {
-
         bcrypt.hash(password, 12).then(hashedPassword => {
-            const company = new Companies(email, hashedPassword, name, website, telephone, type);
+            const host = new Host( email, hashedPassword, name, website, telephone, type );
 
-            company.save()
+            UserAndHostQueries.save("hosts", host)
                 .then(() => {
                     req.session.logedIn = true;
-                    req.session.company = company;
+                    req.session.host = host;
                     res.redirect("/explore");
                     // mailer.registrationMail(email);
                 })

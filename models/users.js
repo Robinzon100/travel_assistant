@@ -1,9 +1,19 @@
-const getDb = require('../utils/database').getDb;
-const mongodb = require('mongodb');
+const getDb = require("../utils/database").getDb;
+const mongodb = require("mongodb");
 
 //username, email, phone_number, bookmarks, hashedPassword
 class User {
-    constructor(username, email, password, phone_number, bookmarks, id, resetToken, resetTokenExpiration, role) {
+    constructor(
+        username,
+        email,
+        password,
+        phone_number,
+        bookmarks,
+        id,
+        resetToken,
+        resetTokenExpiration,
+        role
+    ) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -15,14 +25,14 @@ class User {
         this.resetTokenExpiration = resetTokenExpiration;
         this.role = "user";
     }
- 
 
     //
     // ─── SAVE ───────────────────────────────────────────────────────────────────────
     //
     save() {
         const db = getDb();
-        return db.collection('user')
+        return db
+            .collection("user")
             .insertOne(this)
             .then(user => {
                 let resultUser = user;
@@ -30,10 +40,9 @@ class User {
             .catch(err => console.log(err));
     }
 
-
     addToBookmark(receavedPost) {
         const receavedId = receavedPost._id;
-        const existingItems = this.bookmarks.items
+        const existingItems = this.bookmarks.items;
 
         // console.log(receavedId)
         // console.log(this.bookmarks.items)
@@ -49,14 +58,12 @@ class User {
             }
         }
 
-
-
         if (exists) {
-            console.log('exists or not : ' + exists);
+            console.log("exists or not : " + exists);
             return;
         } else {
-            console.log('xeiiiiiiiii');
-            console.log('exists or not : ' + exists);
+            console.log("xeiiiiiiiii");
+            console.log("exists or not : " + exists);
 
             // pushing the postId
             existingItems.push({
@@ -70,105 +77,101 @@ class User {
 
             const db = getDb();
             return db
-                .collection('user')
+                .collection("user")
                 .updateOne(
                     { _id: new mongodb.ObjectId(this._id) },
                     { $set: { bookmarks: updatedbookmarks } }
                 );
-
-
-
         }
-
 
         // console.log(updatedbookmarksItems);
 
-        console.log(this._id)
-
-
+        console.log(this._id);
     }
-
 
     //
     // ─── FIND ───────────────────────────────────────────────────────────────────────
     //
     static findUserByToken(token) {
         const db = getDb();
-        return db.collection('user')
+        return db
+            .collection("user")
             .findOne({ resetToken: token })
             .then(user => {
                 return user;
             })
             .catch(err => {
                 console.log(err);
-            })
+            });
     }
-
 
     static findUser(email, password) {
         const db = getDb();
-        return db.collection('user')
+        return db
+            .collection("user")
             .findOne({ email: email, password: password })
             .then(user => {
                 return user;
             })
             .catch(err => {
                 console.log(err);
-            })
+            });
     }
-
 
     static findByEmail(email) {
         const db = getDb();
-        return db.collection('user')
+        return db
+            .collection("user")
             .findOne({ email: email })
             .then(user => {
                 return user;
             })
             .catch(err => {
                 console.log(err);
-            })
+            });
     }
 
     static findById(userId) {
         const db = getDb();
-        return db.collection('user')
+        return db
+            .collection("user")
             .findOne({ _id: new mongodb.ObjectId(userId) })
             .then(user => {
                 return user;
             })
             .catch(err => {
                 console.log(err);
-            })
+            });
     }
-
-
-
-
 
     //
     // ─── UPDATE ─────────────────────────────────────────────────────────────────────
     //
     static saveAndUpdateUserToken(email, resetToken) {
         const db = getDb();
-        return db.collection('user')
+        return db
+            .collection("user")
             .updateOne(
                 { email: email },
-                { $set: { resetToken: resetToken, resetTokenExpiration: new Date() * 3600000 } }
+                {
+                    $set: {
+                        resetToken: resetToken,
+                        resetTokenExpiration: new Date() * 3600000
+                    }
+                }
             )
             .then(user => {
                 return user;
             })
             .catch(err => {
                 console.log(err);
-            })
+            });
     }
-
-
 
     static updateUserPassword(userId, newPassword) {
         const db = getDb();
-        return db.collection('user')
+        return db
+            .collection("user")
             .updateOne(
                 { _id: new mongodb.ObjectId(userId) },
                 { $set: { password: newPassword, resetToken: null } }
@@ -178,12 +181,8 @@ class User {
             })
             .catch(err => {
                 console.log(err);
-            })
+            });
     }
 }
 
-
 module.exports = User;
-
-
-

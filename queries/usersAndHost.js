@@ -2,14 +2,14 @@ const getDb = require('../utils/database').getDb;
 const mongodb = require('mongodb');
 
 
-class UserAndCompanyQueries {
+class UserAndHostQueries {
 
     static save(collection, object) {
         const db = getDb();
         return db.collection(collection)
             .insertOne(object)
-            .then((company) => {
-                console.log(company);
+            .then((docs) => {
+                const result = docs;
             }).catch((err) => {
                 console.log(err);
             });
@@ -18,6 +18,7 @@ class UserAndCompanyQueries {
 
 
 
+module.exports = UserAndHostQueries;
 //
 // ─── SAVE ───────────────────────────────────────────────────────────────────────
 //
@@ -80,7 +81,3 @@ class UserAndCompanyQueries {
 // }
 
 
-
-module.exports = {
-    save
-}

@@ -13,7 +13,7 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 const flash = require('connect-flash');
 const multer = require('multer');
 // const compression = require('compression');
-require('dotenv').config()  
+require('dotenv').config()
 
 //! MONGODB URI 
 const MONGODB_URI = "mongodb+srv://robinzon:rU0Hbn7IsLgLk4KF@travel-assistant-btaux.mongodb.net/travel-assistant";
@@ -29,7 +29,7 @@ module.exports = {
 // ─── MY IMPORTS ─────────────────────────────────────────────────────────────────
 const mongoConnect = require("./utils/database").mongoConnect;
 const Users = require('./models/users');
-const Companies = require('./models/companies');
+const Host = require('./models/host');
 
 
 
@@ -102,21 +102,19 @@ app.use(flash());
 app.use((req, res, next) => {
     if (!req.session.user || !req.session.company) {
         return next();
+    } else {
+        Users.findById(req.session.user._id)
+            .then((user) => {
+                req.user = new Users(user.username, user.email, user.password, user.phone_number, user.bookmarks, user._id, user.resetToken, user.resetTokenExpiration);
+                next();
+            }).catch((err) => console.log(err));
+
+        Host.findById(req.session.host._id)
+            .then((host) => {
+                req.host = new Host(host.name, host.email, host.password, host.website, host.telephone, host.type, host.posts, host.role);
+                next();
+            }).catch((err) => console.log(err));
     }
-    Users.findById(req.session.user._id)
-        .then((user) => {
-            req.user = new Users(user.username, user.email, user.password, user.phone_number, user.bookmarks, user._id, user.resetToken, user.resetTokenExpiration);
-            next();
-        }).catch((err) => console.log(err));
-
-    // Companies.findById(req.session.company._id)
-    //     .then((company) => {
-    //         req.company = new Companies(company.name, company.email, company.password, company.website, company.telephone, company.type, company.posts, company.role);
-    //         next();
-    //     }).catch((err) => console.log(err));
-
-
-
 });
 
 
