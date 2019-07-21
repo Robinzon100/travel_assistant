@@ -12,14 +12,12 @@ exports.getLanding = (req, res, next) => {
         path: "/"
     });
 };
-
+ 
 
 //
 //? ─── TOURS ──────────────────────────────────────────────────────────────────────
 //
 exports.getTours = (req, res, next) => {
-    // console.log(req.session)
-    // console.log(req.session.logedIn)
     Tours.fetchAll()
         .then(tours => {
             res.render("tours/tours", {

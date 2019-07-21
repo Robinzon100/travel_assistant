@@ -6,6 +6,7 @@ const { check, body } = require("express-validator/check");
 // ─── MY IMPORTS ─────────────────────────────────────────────────────────────────
 //
 const Users = require("../models/users");
+const userAndHostQueries = require('../queries/usersAndHost');
 
 // ─── CONTROLERS ──────────────────────────────────────────────────────────────────
 const auth = require("../controllers/auth");
@@ -64,14 +65,16 @@ router.post("/register-host",
             .withMessage('email musnt be empty')
             .trim()
             .isEmail()
-            .withMessage('enter a valid email'),
-            // .custom((value, { req }) => {
-            //     return Users.findByEmail(value).then(user => {
-            //         if (user) {
-            //             return Promise.reject("User Already Exists");
-            //         }
-            //     });
-            // })
+            .withMessage('enter a valid email')
+            .custom((email, { req }) => {
+                return userAndHostQueries.findByEmail("hosts", email)
+                    .then(host => {
+                        if (host) {
+                            return Promise.reject("host Already Exists");
+                        }
+                    });
+            }),
+            
 
         //Password
         body("password", "password must be at least 5 characters long")
@@ -86,7 +89,7 @@ router.post("/register-host",
                 return true;
             }
         })
-    ], 
+    ],
     auth.postRegistrationHost);
 
 

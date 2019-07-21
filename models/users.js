@@ -9,10 +9,10 @@ class User {
         password,
         phone_number,
         bookmarks,
-        id,
         resetToken,
         resetTokenExpiration,
-        role
+        role,
+        id
     ) {
         this.username = username;
         this.email = email;
@@ -20,10 +20,10 @@ class User {
         this.phone_number = phone_number;
         this.bookmarks = bookmarks;
         this.date = Date();
-        this._id = id;
         this.resetToken = resetToken;
         this.resetTokenExpiration = resetTokenExpiration;
         this.role = "user";
+        this._id = id;
     }
 
     //
@@ -74,6 +74,9 @@ class User {
             const updatedbookmarks = {
                 items: existingItems
             };
+
+            // console.table(this);
+            
 
             const db = getDb();
             return db

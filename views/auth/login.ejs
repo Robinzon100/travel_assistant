@@ -12,6 +12,7 @@
     <h1><%= errorMessage %></h1>
 <% } %>
 <form action="login" method="post">
+    <input type="checkbox" name="isAHost" id="is-a-host"> login as host <br>
     <input type="email" name="email" value="<%= oldInputValues.email %>" placeholder="enter email"> <br><br>
     <input type="password" name="password" value="<%= oldInputValues.password %>" placeholder="enter password"> <br><br>
     <button type="submit">login</button>

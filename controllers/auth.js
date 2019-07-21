@@ -22,7 +22,7 @@ const UserAndHostQueries = require("../queries/usersAndHost");
 //
 
 //!USER
-//? get the /registration-user
+//? get the /registration-user ---- USER
 exports.getRegistration = (req, res, next) => {
     res.render("auth/register", {
         pageTitle: "travel assistant",
@@ -38,7 +38,7 @@ exports.getRegistration = (req, res, next) => {
     });
 };
 
-//? POST the /registration
+//? POST the /registration ---- USER
 exports.postRegistration = (req, res, next) => {
     const { username, email, password, phone_number, repeatPassword } = req.body;
     const errors = validationResult(req);
@@ -84,7 +84,7 @@ exports.postRegistration = (req, res, next) => {
 
 
 //!HOST
-//? get the /registration-HOST
+//? get the /registration ---- HOST
 exports.getRegistrationHost = (req, res, next) => {
     res.render("auth/register-host", {
         pageTitle: "register a host",
@@ -93,14 +93,19 @@ exports.getRegistrationHost = (req, res, next) => {
         logedIn: req.session.logedIn,
         errorMessage: req.flash("error"),
         oldInputValues: {
-            email: "",
-            password: "",
-            repeatPassword: ""
+            email: '',
+            password: '',
+            name: '',
+            website: '',
+            telephone: '',
+            type: '',
+            isACompany: '',
+            bio: ''
         }
     });
 };
 
-//? POST the /registration-HOST
+//? POST the /registration ---- HOST
 exports.postRegistrationHost = (req, res, next) => {
     const { name, email, password, repeatPassword, telephone, website, type } = req.body;
     const errors = validationResult(req);
@@ -146,7 +151,7 @@ exports.postRegistrationHost = (req, res, next) => {
 //!─── LOGIN ──────────────────────────────────────────────────────────────────────
 //
 
-//? GET the /login
+//? GET the /login ---- USER
 exports.getLogin = (req, res, next) => {
     res.render("auth/login", {
         pageTitle: "login",
@@ -161,59 +166,100 @@ exports.getLogin = (req, res, next) => {
     });
 };
 
-//? POST the /singlogin
+//? POST the /singlogin ---- USER
 exports.postLogin = (req, res, next) => {
-    const { email, password } = req.body;
+    const { email, password, isAHost } = req.body;
 
-    Users.findByEmail(email)
-        .then(user => {
-            if (user) {
-                bcrypt
-                    .compare(password, user.password)
-                    .then(domatch => {
-                        if (domatch) {
-                            req.session.user = user;
-                            req.session.logedIn = true;
-                            req.session.save(err => {
-                                console.log(err);
-                                res.redirect("/explore");
-                            });
-                        } else {
-                            req.flash("error", "invalid email or password");
-                            // res.redirect("/login");
-                            res.render("auth/login", {
-                                pageTitle: "login",
-                                path: "/register",
-                                errors: [],
-                                logedIn: req.session.logedIn,
-                                errorMessage: req.flash("error"),
-                                oldInputValues: {
-                                    email: email,
-                                    password: password
-                                }
-                            });
+    if (isAHost == 'on') {
+        UserAndHostQueries.findByEmail('hosts', email)
+            .then(host => {
+                if (!host) {
+                    req.flash("error", "invalid email or password");
+                    res.render("auth/login", {
+                        pageTitle: "login",
+                        path: "/register",
+                        errors: [],
+                        logedIn: req.session.logedIn,
+                        errorMessage: req.flash("error"),
+                        oldInputValues: {
+                            email: email,
+                            password: password
                         }
                     })
-                    .catch(err => console.log(err));
-            } else {
-                req.flash("error", "invalid email or password");
-                res.render("auth/login", {
-                    pageTitle: "login",
-                    path: "/register",
-                    errors: [],
-                    logedIn: req.session.logedIn,
-                    errorMessage: req.flash("error"),
-                    oldInputValues: {
-                        email: email,
-                        password: password
-                    }
-                });
-            }
-        })
-        .catch(err => {
-            console.log(err);
-        });
+                } else {
+                    bcrypt
+                        .compare(password, host.password)
+                        .then(domatch => {
+                            if (domatch) {
+                                req.session.host = host;
+                                req.session.logedIn = true;
+                                req.session.save(err => {
+                                    console.log(err);
+                                    res.redirect("/explore");
+                                });
+                            }
+                        })
+
+                }
+
+            })
+
+    } else {
+        UserAndHostQueries.findByEmail("users",email)
+            .then(user => {
+                if (user) {
+                    bcrypt
+                        .compare(password, user.password)
+                        .then(domatch => {
+                            if (domatch) {
+                                req.session.user = user;
+                                req.session.logedIn = true;
+                                req.session.save(err => {
+                                    console.log(err);
+                                    res.redirect("/explore");
+                                });
+                            } else {
+                                req.flash("error", "invalid email or password");
+                                // res.redirect("/login");
+                                res.render("auth/login", {
+                                    pageTitle: "login",
+                                    path: "/register",
+                                    errors: [],
+                                    logedIn: req.session.logedIn,
+                                    errorMessage: req.flash("error"),
+                                    oldInputValues: {
+                                        email: email,
+                                        password: password
+                                    }
+                                });
+                            }
+                        })
+                        .catch(err => console.log(err));
+                } else {
+                    req.flash("error", "invalid email or password");
+                    res.render("auth/login", {
+                        pageTitle: "login",
+                        path: "/register",
+                        errors: [],
+                        logedIn: req.session.logedIn,
+                        errorMessage: req.flash("error"),
+                        oldInputValues: {
+                            email: email,
+                            password: password
+                        }
+                    });
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
+
 };
+
+
+
 
 //
 //!─── LOGOUT ─────────────────────────────────────────────────────────────────────

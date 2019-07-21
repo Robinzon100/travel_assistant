@@ -10,28 +10,18 @@ const app = express();
 const volleyball = require("volleyball");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
-const flash = require('connect-flash');
-const multer = require('multer');
+const flash = require("connect-flash");
+const multer = require("multer");
 // const compression = require('compression');
-require('dotenv').config()
-
-//! MONGODB URI 
-const MONGODB_URI = "mongodb+srv://robinzon:rU0Hbn7IsLgLk4KF@travel-assistant-btaux.mongodb.net/travel-assistant";
-
-
-//
-// ─── MY EXPORTS ─────────────────────────────────────────────────────────────────
-//
-module.exports = {
-    MONGODB_URI
-};
+require("dotenv").config();
 
 // ─── MY IMPORTS ─────────────────────────────────────────────────────────────────
 const mongoConnect = require("./utils/database").mongoConnect;
-const Users = require('./models/users');
-const Host = require('./models/host');
-
-
+//models
+const Users = require("./models/users");
+const Host = require("./models/host");
+//querys
+const userAndHostQuery = require("./queries/usersAndHost.js");
 
 // app.use(compression)
 
@@ -42,36 +32,29 @@ app.set("views", "views");
 // ─── BODY PARSER AND MULTER ────────────────────────────────────────────────────────────────
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-
-
-
-// ─── FILE STORAGE OPTIONS FOR MULTER ────────────────────────────────────────────    
+// ─── FILE STORAGE OPTIONS FOR MULTER ────────────────────────────────────────────
 const fileStorage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'images')
+        cb(null, "images");
     },
     filename: (req, file, cb) => {
-        cb(null, '(' + new Date().getTime() + ')--' + file.originalname);
+        cb(null, "(" + new Date().getTime() + ")--" + file.originalname);
     }
-})
+});
 
 // const cpUpload = multer.fields([{ name: 'avatar', maxCount: 1 }, { name: 'gallery', maxCount: 8 }])
 const upload = multer({ storage: fileStorage }).fields([
-    { name: 'card_image', maxCount: 1 },
-    { name: 'showcase_images', maxCount: 6 },
-    { name: 'slider_images', maxCount: 20 },
-    { name: 'profile_image', maxCount: 1 }
+    { name: "card_image", maxCount: 1 },
+    { name: "showcase_images", maxCount: 6 },
+    { name: "slider_images", maxCount: 20 },
+    { name: "profile_image", maxCount: 1 }
 ]);
 
 app.use(upload);
 
 // reading public folder
 app.use(express.static(path.join(__dirname, "public")));
-app.use('/images', express.static(path.join(__dirname, "images")));
-
-
-
+app.use("/images", express.static(path.join(__dirname, "images")));
 
 const store = new MongoDBStore({
     uri: process.env.MONGODB_URI,
@@ -93,35 +76,59 @@ app.use(volleyball);
 //using CONNECT FLASH MESSAGE
 app.use(flash());
 
-
-
-
 //username, email, password, bookmarks, id, resetToken, resetTokenExpiration
 
 //user and companies middleware
 app.use((req, res, next) => {
-    if (!req.session.user || !req.session.company) {
-        return next();
+    if (req.session.user == undefined) {
+        if (req.session.host == undefined) {
+            return next();
+        } else {
+            userAndHostQuery
+                .findById("hosts", req.session.host._id)
+                .then(host => {
+                    req.host = new Host(
+                        host.email,
+                        host.password,
+                        host.name,
+                        host.website,
+                        host.telephone,
+                        host.type,
+                        host.isACompany,
+                        host.bio,
+                        host.posts,
+                        host.reviews,
+                        host.comments,
+                        host.created_at,
+                        host.verified,
+                        host.trusted,
+                        host.roles,
+                        host.id
+                    );
+                    next();
+                })
+                .catch(err => console.log(err));
+        }
     } else {
-        Users.findById(req.session.user._id)
-            .then((user) => {
-                req.user = new Users(user.username, user.email, user.password, user.phone_number, user.bookmarks, user._id, user.resetToken, user.resetTokenExpiration);
+        userAndHostQuery
+            .findById("users", req.session.user._id)
+            .then(recevedUser => {
+                req.user = new Users(
+                    recevedUser.username,
+                    recevedUser.email,
+                    recevedUser.password,
+                    recevedUser.phone_number,
+                    recevedUser.bookmarks,
+                    recevedUser.resetToken,
+                    recevedUser.resetTokenExpiration,
+                    recevedUser.role,
+                    recevedUser._id
+                );
                 next();
-            }).catch((err) => console.log(err));
-
-        Host.findById(req.session.host._id)
-            .then((host) => {
-                req.host = new Host(host.name, host.email, host.password, host.website, host.telephone, host.type, host.posts, host.role);
-                next();
-            }).catch((err) => console.log(err));
+            })
+            .catch(err => console.log(err));
     }
 });
- 
-
-
-
-  
-
 
 // ─── ROUTES ─────────────────────────────────────────────────────────────────────
 const toursRouts = require("./routes/tours");

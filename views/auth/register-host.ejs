@@ -9,6 +9,69 @@
 <br />
 <br />
 <br />
+<style>
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+    }
+
+    input:checked + .slider {
+        background-color: #2196f3;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196f3;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+</style>
+
+
 
 <% for (let error of errorMessage){ %>
 <h1><%= error.msg %></h1>
@@ -52,6 +115,17 @@
     />
     <br /><br />
 
+    <!-- bio -->
+    <textarea
+        name="bio"
+        id="bio"
+        cols="30"
+        rows="10"
+        value="<%= oldInputValues.bio %>"
+        placeholder="enter your bio"
+    ></textarea>
+    <br /><br />
+
     <!-- telephone -->
     <input
         type="tel"
@@ -73,48 +147,54 @@
     <!-- type -->
     <label for="type">what type of comany are you</label><br />
     <select name="type" value="hotel">
-        
-        
-        <% 
-        let optionObjArr = [
-            {
-                value: 'Tour-Agency' ,
-                text: 'Tour-Agency'  
-            },
-            {
-                value: 'Hotel' ,
-                text: 'Hotel'  
-            },
-            {
-                value: 'Cafe' ,
-                text: 'Cafe'  
-            },
-            {
-                value: 'Restorant' ,
-                text: 'Restorant'  
-            },
-            {
-                value: 'Rent-Agency' ,
-                text: 'Rent-Agency'  
+            <% 
+            let optionObjArr = [
+                {
+                    value: 'Tour-Agency' ,
+                    text: 'Tour-Agency'  
+                },
+                {
+                    value: 'Hotel' ,
+                    text: 'Hotel'  
+                },
+                {
+                    value: 'Cafe' ,
+                    text: 'Cafe'  
+                },
+                {
+                    value: 'Restorant' ,
+                    text: 'Restorant'  
+                },
+                {
+                    value: 'Rent-Agency' ,
+                    text: 'Rent-Agency'  
+                }
+            ]
+    
+            
+            if(oldInputValues.type){
+                let repeatElemIndex = optionObjArr.map(e => e.value).indexOf(oldInputValues.type)
+                optionObjArr.splice(repeatElemIndex, 1);
+                optionObjArr.unshift({
+                    value: oldInputValues.type,
+                    text: oldInputValues.type
+                })
             }
-        ]
-
-        
-        if(oldInputValues.type){
-            let repeatElemIndex = optionObjArr.map(e => e.value).indexOf(oldInputValues.type)
-            optionObjArr.splice(repeatElemIndex, 1);
-            optionObjArr.unshift({
-                value: oldInputValues.type,
-                text: oldInputValues.type
-            })
-        }
-        
-        
-        for(i = 0; i < optionObjArr.length; i++){%> 
-            <option value="<%=  optionObjArr[i].value %>"><%= optionObjArr[i].text %></option>
-        <% } %>
+            
+            
+            for(i = 0; i < optionObjArr.length; i++){%> 
+                <option value="<%=  optionObjArr[i].value %>"><%= optionObjArr[i].text %></option>
+            <% } %>
     </select>
-
+    <br><br>
+    
+    <p>are you a company ?</p>
+    <label class="switch"> 
+        <input type="checkbox" name="isACompany" />
+        <span class="slider"></span>
+    </label>
+    <br><br>
+    
     <button type="submit">register</button>
 </form>
 

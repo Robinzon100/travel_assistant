@@ -7,13 +7,12 @@ const MongoClient = mongodb.MongoClient;
 //
 // ─── MY IMPORTS ─────────────────────────────────────────────────────────────────
 //
-const MONGODB_URI = require('../app').MONGODB_URI;
-
+ 
 let _db;
 
 const mongoConnect = cb => {
   MongoClient.connect( 
-      MONGODB_URI, 
+      process.env.MONGODB_URI, 
       {useNewUrlParser: true})
     .then(client => {
       _db = client.db();
