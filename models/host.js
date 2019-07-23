@@ -22,7 +22,6 @@ class Host {
         roles,
         id
     ) {
-
         this.email = email;
         this.password = password;
         this.name = name;
@@ -34,14 +33,20 @@ class Host {
         this.posts = {
             posts: []
         };
-        this.reviews = reviews;
+        this.reviews = {
+            satisfaction: [],
+            Cleanliness: [],
+            communication: [],
+            check_in: [],
+            value: []
+        };
         this.comments = [];
         this.created_at = new Date();
         this.verified = false;
         this.trusted = false;
         this.resetToken = resetToken;
         this.resetTokenExpiration = resetTokenExpiration;
-        this.roles = "company";
+        this.roles = "host";
         this._id = id;
     }
 

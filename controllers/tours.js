@@ -18,6 +18,7 @@ exports.getLanding = (req, res, next) => {
 //? ─── TOURS ──────────────────────────────────────────────────────────────────────
 //
 exports.getTours = (req, res, next) => {
+    console.log(req.Host)
     Tours.fetchAll()
         .then(tours => {
             res.render("tours/tours", {

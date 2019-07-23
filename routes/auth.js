@@ -108,8 +108,8 @@ router.post("/reset-password", auth.postResetPassword);
 
 // ?─── NEW PASSWORD  ROUTES ────────────────────────────────────
 //
-router.get("/new-password/:token", auth.getNewPassword);
-router.post("/new-password/:token", auth.postNewPassword);
+router.get("/new-password/:for/:token", auth.getNewPassword);
+router.post("/new-password/:for/:token", auth.postNewPassword);
 
 
 // ?─── LOG OUT  ROUTES ────────────────────────────────────

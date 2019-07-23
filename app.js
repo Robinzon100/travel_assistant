@@ -87,7 +87,8 @@ app.use((req, res, next) => {
             userAndHostQuery
                 .findById("hosts", req.session.host._id)
                 .then(host => {
-                    req.host = new Host(
+                    //host is with bit "H" becouse req.host is a hostname command
+                    req.Host = new Host(
                         host.email,
                         host.password,
                         host.name,
@@ -102,8 +103,10 @@ app.use((req, res, next) => {
                         host.created_at,
                         host.verified,
                         host.trusted,
+                        host.resetToken,
+                        host.resetTokenExpiration,
                         host.roles,
-                        host.id
+                        host._id
                     );
                     next();
                 })
@@ -142,7 +145,7 @@ app.use(toursRouts);
 app.use(registrationRoutes);
 
 app.use((req, res, next) => {
-    res.status(404).send("404 - Not Found!");
+    res.status(404).send("<h1>404 - Not Found!</h1>");
 });
 
 // const server = http2.createSecureServer({cert, key});

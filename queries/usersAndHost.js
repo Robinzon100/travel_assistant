@@ -137,7 +137,7 @@ class UserAndHostQueries {
             .collection(collection)
             .updateOne(
                 { _id: new mongodb.ObjectId(userId) },
-                { $set: { password: newPassword, resetToken: null } }
+                { $set: { password: newPassword, resetToken: null, resetTokenExpiration: null } }
             )
             .then(user => {
                 return user;

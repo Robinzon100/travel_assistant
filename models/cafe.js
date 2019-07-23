@@ -2,45 +2,79 @@ const getDb = require("../utils/database").getDb;
 const mongoId = require("mongodb").ObjectID;
 const mongodb = require("mongodb");
 
-class Tours {
+class Cafe {
     constructor(
         title,
-        price,
         small_description,
         long_description__title,
         long_description__text,
-        includes,
+        ammenities,
+        scleeping_arrangements,
+        rules,
+        keepInMind,
         location,
         locationLink,
         website,
         email,
         telephone,
-        ratting,
         category,
         views,
         visitors,
         cardImageUrl,
         showcaseImagesUrls,
-        sliderImagesUrls
+        sliderImagesUrls,
+        date_created,
+        ratting,
+        comments,
+        fitured,
+        highlyRated,
+        hostId
     ) {
         this.title = title;
-        this.price = price;
-        this.date_created = Date();
         this.small_description = small_description;
         this.long_description__title = long_description__title;
         this.long_description__text = long_description__text;
-        this.includes = includes;
+        this.ammenities = [];
+        this.scleeping_arrangements = scleeping_arrangements;
+        this.rules = [];
+        this.keepInMind = [];
         this.location = location;
         this.locationLink = locationLink;
         this.website = website;
         this.email = email;
         this.telephone = telephone;
-        this.ratting = ratting;
         this.category = category;
         this.views = views;
         this.visitors = visitors;
         this.cardImageUrl = cardImageUrl;
         this.showcaseImagesUrls = showcaseImagesUrls;
+        this.sliderImagesUrls = sliderImagesUrls;
+        this.date_created = Date();
+        this.ratting = {
+            satisfaction: [],
+            Cleanliness: [],
+            communication: [],
+            check_in: [],
+            value: []
+        };
+        this.comments = [
+            // {
+            //     commentId: mongoId.ObjectID(),
+            //     userId: null,
+            //     date: null,
+            //     text: "",
+            //     review: {
+            //         satisfaction: 0,
+            //         accuracy: 0,
+            //         communication: 0,
+            //         check_in: 0,
+            //         value: 0
+            //     }
+            // }
+        ];
+        this.fitured = fitured;
+        this.highlyRated = highlyRated;
+        this.hostId = hostId;
         this.sliderImagesUrls = sliderImagesUrls;
     }
 
@@ -70,7 +104,9 @@ class Tours {
         const db = getDb();
         return db
             .collection("tours")
-            .find({ _id: new mongodb.ObjectId(tourId) })
+            .find({
+                _id: new mongodb.ObjectId(tourId)
+            })
             .next()
             .then(tour => {
                 // console.log(tour);
@@ -104,7 +140,9 @@ class Tours {
         const db = getDb();
         return db
             .collection("tours")
-            .findOne({ _id: new mongodb.ObjectId(tourId) })
+            .findOne({
+                _id: new mongodb.ObjectId(tourId)
+            })
             .then(tour => {
                 return tour.visitors;
             })
@@ -118,8 +156,17 @@ class Tours {
         return db
             .collection("tours")
             .findOneAndUpdate(
-                { _id: new mongodb.ObjectId(tourId) },
-                { $inc: { views: 1 }, $push: { visitors: visitedIp } }
+                {
+                    _id: new mongodb.ObjectId(tourId)
+                },
+                {
+                    $inc: {
+                        views: 1
+                    },
+                    $push: {
+                        visitors: visitedIp
+                    }
+                }
             )
             .then(tour => {
                 return tour;

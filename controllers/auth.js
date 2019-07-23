@@ -107,7 +107,11 @@ exports.getRegistrationHost = (req, res, next) => {
 
 //? POST the /registration ---- HOST
 exports.postRegistrationHost = (req, res, next) => {
-    const { name, email, password, repeatPassword, telephone, website, type } = req.body;
+    let { email, password, name, website, telephone, type, isACompany, bio } = req.body;
+    if (isACompany == 'on') {
+        isACompany = true;
+    }
+
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -131,7 +135,7 @@ exports.postRegistrationHost = (req, res, next) => {
         });
     } else {
         bcrypt.hash(password, 12).then(hashedPassword => {
-            const host = new Host(email, hashedPassword, name, website, telephone, type);
+            const host = new Host(email, hashedPassword, name, website, telephone, type, isACompany, bio);
 
             UserAndHostQueries.save("hosts", host)
                 .then(() => {
@@ -205,7 +209,7 @@ exports.postLogin = (req, res, next) => {
             })
 
     } else {
-        UserAndHostQueries.findByEmail("users",email)
+        UserAndHostQueries.findByEmail("users", email)
             .then(user => {
                 if (user) {
                     bcrypt
@@ -289,7 +293,14 @@ exports.getResetPassword = (req, res, next) => {
 
 //? POST the /reset-password
 exports.postResetPassword = (req, res, next) => {
-    const { email } = req.body;
+    let { email, isAHost } = req.body;
+    let collection;
+    if (isAHost == 'on') {
+        collection = 'hosts';
+    } else {
+        collection = 'users';
+    }
+
 
     crypto.randomBytes(32, (err, buffer) => {
         if (err) {
@@ -298,21 +309,42 @@ exports.postResetPassword = (req, res, next) => {
         } else {
             const token = buffer.toString("hex");
 
-            Users.findByEmail(email)
-                .then(user => {
-                    if (!user) {
-                        req.flash(
-                            "error",
-                            "no acount found found with that email"
-                        );
-                        res.redirect("/reset-password");
-                    } else {
-                        mailer.resetPasswordMail(email, token);
-                        Users.saveAndUpdateUserToken(email, token);
-                        res.redirect("/reset-password");
-                    }
-                })
-                .catch(err => console.log(err));
+            
+                UserAndHostQueries.findByEmail(collection, email)
+                    .then(user => {
+                        if (!user) {
+                            req.flash(
+                                "error",
+                                "no acount found found with that email"
+                            );
+                            res.redirect("/reset-password");
+                        } else {
+                            mailer.resetPasswordMail(email,'hosts', token);
+                            UserAndHostQueries.saveAndUpdateToken(collection, email, token);
+                            res.redirect("/reset-password");
+                        }
+                    })
+                    .catch(err => console.log(err));
+            
+                // Users.findByEmail(email)
+                //     .then(user => {
+                //         if (!user) {
+                //             req.flash(
+                //                 "error",
+                //                 "no acount found found with that email"
+                //             );
+                //             res.redirect("/reset-password");
+                //         } else {
+                //             mailer.resetPasswordMail(email, token);
+                //             Users.saveAndUpdateUserToken(email, token);
+                //             res.redirect("/reset-password");
+                //         }
+                //     })
+                //     .catch(err => console.log(err));
+            
+
+
+
         }
     });
 };
@@ -324,8 +356,14 @@ exports.postResetPassword = (req, res, next) => {
 //? GET the /reset-password
 exports.getNewPassword = (req, res, next) => {
     const token = req.params.token;
+    const collection = req.params.for;
+    console.log(collection );
+    
 
-    Users.findUserByToken(token)
+
+    //TODO:
+    //pass withc collection i wish to update
+    UserAndHostQueries.findByToken(collection, token)
         .then(user => {
             if (user && user.resetTokenExpiration > Date.now()) {
                 res.render("auth/new-password", {
@@ -347,19 +385,22 @@ exports.getNewPassword = (req, res, next) => {
 //? POST the /reset-password
 exports.postNewPassword = (req, res, next) => {
     const { userId } = req.body;
-    const token = req.params.token;
     const newPassword = req.body.password;
+    //params
+    const token = req.params.token;
+    const collection = req.params.for;
 
-    Users.findById(userId)
+
+    UserAndHostQueries.findById(collection, userId)
         .then(user => {
             if (!user) {
                 req.flash("error", "the user you provided is not valide");
-                res.redirect(`/new-password/${token}`);
+                res.redirect(`/new-password/${collection}/${token}`);
             } else {
                 return bcrypt.hash(newPassword, 12).then(hashedPassword => {
-                    Users.updateUserPassword(userId, hashedPassword)
+                    UserAndHostQueries.updatePassword(collection, userId, hashedPassword)
                         .then(user => {
-                            user.resetToken = undefined;
+                            user.resetToken = null;
                             res.redirect("/login");
                         })
                         .catch(err => {
