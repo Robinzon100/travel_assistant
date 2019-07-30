@@ -35,17 +35,17 @@ class HotelApartment {
         this.long_description__text = long_description__text;
         this.ammenities = [];
         this.types_of_rooms = [
-            {
-                price_per_night: null,
-                beds: [
-                    {
-                        amount: null,
-                        types: null
-                    }
-                ],
-                numberOfRooms: null,
-                ammenities: null
-            }
+            // {
+            //     price_per_night: null,
+            //     beds: [
+            //         {
+            //             amount: null,
+            //             types: null
+            //         }
+            //     ],
+            //     numberOfRooms: null,
+            //     ammenities: null
+            // }
         ];
         this.rules = [];
         this.keepInMind = [];

@@ -12,7 +12,6 @@ const adminControllers = require('../controllers/admin');
 const isAuth = require('../models/middleware/is-auth');
 
 router.get("/add-tour", isAuth.adminAuth, adminControllers.getAddTour);
-
 router.post("/add-tour", isAuth.adminAuth,
     // [
     //     //title
@@ -73,6 +72,12 @@ router.post("/add-tour", isAuth.adminAuth,
     //     // })
     // ],
     adminControllers.postAddTour);
+
+
+
+
+    router.get('/add-cafe', adminControllers.getAddCafe);
+    router.post('/add-cafe', adminControllers.postAddCafe);
 
 
 module.exports = router;

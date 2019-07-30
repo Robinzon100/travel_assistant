@@ -1,6 +1,15 @@
 const Tours = require("../models/tours");
 const { validationResult } = require("express-validator/check");
 
+
+
+
+
+//
+//? ─── ADD ────────────────────────────────────────────────────────────────────────
+//
+
+//!  tour
 exports.getAddTour = (req, res, next) => {
     res.render("admin/add-tour", {
         pageTitle: "add-tour",
@@ -8,20 +17,20 @@ exports.getAddTour = (req, res, next) => {
         logedIn: req.session.logedIn,
         errorMessage: req.flash("error"),
         oldInputValues: {
-            title: '',
-            price: '',
-            small_description: '',
-            long_description__title: '',
-            long_description__text: '',
-            includes: '',
-            location: '',
-            locationLink: '',
-            website: '',
-            email: '',
-            telephone: '',
-            ratting: '',
-            category: '',
-            viewsInt: ''
+            title: "",
+            price: "",
+            small_description: "",
+            long_description__title: "",
+            long_description__text: "",
+            includes: "",
+            location: "",
+            locationLink: "",
+            website: "",
+            email: "",
+            telephone: "",
+            ratting: "",
+            category: "",
+            viewsInt: ""
         }
     });
 };
@@ -124,26 +133,40 @@ exports.postAddTour = (req, res, next) => {
     }
 };
 
-// exports.postAddTours = (req, res, next) =>{
-//     const title = req.body.title;
-//     const price = req.body.price;
-//     const description = req.body.description;
-//     const image = req.body.image;
-//     const locations = req.body.locations;
-//     const locationLink = req.body.locationLink;
-//     const website = req.body.website;
-//     const telephone = req.body.telephone;
-//     const email = req.body.email;
-//     const ratting = req.body.ratting;
 
-//     const tour = new Tours(title, price, description, image, locations, locationLink, website, telephone, email, ratting);
+//!  cafe
+exports.getAddCafe = (req, res, next) => {
+    res.render("admin/add-cafe", {
+        pageTitle: "add-cafe",
+        path: "/admin/add-cafe",
+        logedIn: req.session.logedIn,
+        errorMessage: req.flash("error"),
+        oldInputValues: {
+            title: "",
+            price: "",
+            small_description: "",
+            long_description__title: "",
+            long_description__text: "",
+            includes: "",
+            location: "",
+            locationLink: "",
+            website: "",
+            email: "",
+            telephone: "",
+            ratting: "",
+            category: "",
+            viewsInt: ""
+        }
+    });
+};
 
-//     tour.save()
-//         .then(tours => {
-//             console.log(tours);
-//         })
-//         .catch(err => {
-//             console.log(err);
-//         });
+exports.postAddCafe = (req, res, next) => {
+     
+    console.log(req.body.open_date);
+    res.redirect('/admin/add-cafe');
+};
 
-// };
+
+
+
+

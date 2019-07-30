@@ -6,10 +6,11 @@ class Cafe {
     constructor(
         title,
         small_description,
+        timeOfOpenAndClose,
         long_description__title,
         long_description__text,
         ammenities,
-        scleeping_arrangements,
+        menu,
         rules,
         keepInMind,
         location,
@@ -18,11 +19,11 @@ class Cafe {
         email,
         telephone,
         category,
-        views,
-        visitors,
         cardImageUrl,
         showcaseImagesUrls,
         sliderImagesUrls,
+        views,
+        visitors,
         date_created,
         ratting,
         comments,
@@ -32,10 +33,19 @@ class Cafe {
     ) {
         this.title = title;
         this.small_description = small_description;
+        this.timeOfOpenAndClose = {
+            opened: null,
+            closed: null,
+        },
         this.long_description__title = long_description__title;
         this.long_description__text = long_description__text;
         this.ammenities = [];
-        this.scleeping_arrangements = scleeping_arrangements;
+        this.menu = [{
+            imageUrl: null,
+            name: null,
+            description: null,
+            review: []
+        }];
         this.rules = [];
         this.keepInMind = [];
         this.location = location;
@@ -44,11 +54,11 @@ class Cafe {
         this.email = email;
         this.telephone = telephone;
         this.category = category;
-        this.views = views;
-        this.visitors = visitors;
         this.cardImageUrl = cardImageUrl;
         this.showcaseImagesUrls = showcaseImagesUrls;
         this.sliderImagesUrls = sliderImagesUrls;
+        this.views = views;
+        this.visitors = visitors;
         this.date_created = Date();
         this.ratting = {
             satisfaction: [],
@@ -75,7 +85,6 @@ class Cafe {
         this.fitured = fitured;
         this.highlyRated = highlyRated;
         this.hostId = hostId;
-        this.sliderImagesUrls = sliderImagesUrls;
     }
 
     // === === === === ===
