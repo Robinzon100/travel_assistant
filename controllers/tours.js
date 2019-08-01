@@ -17,6 +17,7 @@ exports.getLanding = (req, res, next) => {
 //
 //? ─── TOURS ──────────────────────────────────────────────────────────────────────
 //
+
 exports.getTours = (req, res, next) => {
     console.log(req.Host)
     Tours.fetchAll()
@@ -112,6 +113,149 @@ exports.getTour = (req, res, next) => {
 
 
 };
+
+
+//
+//? ─── CAFE ──────────────────────────────────────────────────────────────────────
+//
+//?  GET a single cafe page
+exports.getCafe = (req, res, next) =>{
+    let allAmenities = [
+        {
+            name: "Free Wireless Internet",
+            have: false
+        },
+        {
+            name: "Free Parking",
+            have: false
+        },
+        {
+            name: "Housekeeping",
+            have: false
+        },
+        {
+            name: "Towels",
+            have: false
+        },
+        {
+            name: "Complimentary Toiletries",
+            have: false
+        },
+        {
+            name: "Complimentary Breakfast",
+            have: false
+        },
+        {
+            name: "rosemary-hallett added Good Showers",
+            have: false
+        },
+        {
+            name: "Television Set",
+            have: false
+        },
+        {
+            name: "Refrigerator",
+            have: false
+        },
+        {
+            name: "Free Early Check-in",
+            have: false
+        },
+        {
+            name: "Luxury Bedding",
+            have: false
+        },
+        {
+            name: "Cable TV",
+            have: false
+        },
+        {
+            name: "Swimming Pool",
+            have: false
+        },
+        {
+            name: "Room Service",
+            have: false
+        },
+        {
+            name: "Complimentary Bottled Water",
+            have: false
+        },
+        {
+            name: "Free Coffee",
+            have: false
+        },
+        {
+            name: "On-site Restaurant",
+            have: false
+        },
+        {
+            name: "Hair Dryer",
+            have: false
+        },
+        {
+            name: "Vending Machines",
+            have: false
+        },
+        {
+            name: "Microwave",
+            have: false
+        },
+        {
+            name: "Coffeemaker",
+            have: false
+        },
+        {
+            name: "Indoor Swimming Pool",
+            have: false
+        },
+        {
+            name: "Shuttle Service",
+            have: false
+        },
+        {
+            name: "SNACKS",
+            have: false
+        },
+        {
+            name: "Satellite TV",
+            have: false
+        },
+        {
+            name: "Fitness Center",
+            have: false
+        },
+        {
+            name: "Satellite Internet access",
+            have: false
+        },
+        {
+            name: "View",
+            have: false
+        },
+        {
+            name: "psychicmoon added",
+            have: false
+        },
+        {
+            name: "Air Conditioning",
+            have: false
+        },
+        {
+            name: "Concierge",
+            have: false
+        },
+        {
+            name: "Spa",
+            have: false
+        },
+        {
+            name: "Hot Tub",
+            have: false
+        }
+    ];
+
+}
 
 
 //

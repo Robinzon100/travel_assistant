@@ -9,7 +9,6 @@ class Cafe {
         timeOfOpenAndClose,
         long_description__title,
         long_description__text,
-        ammenities,
         menu,
         rules,
         keepInMind,
@@ -18,54 +17,37 @@ class Cafe {
         website,
         email,
         telephone,
-        category,
         cardImageUrl,
         showcaseImagesUrls,
-        sliderImagesUrls,
+        aboutImage,
         views,
-        visitors,
-        date_created,
-        ratting,
-        comments,
-        fitured,
-        highlyRated,
         hostId
     ) {
         this.title = title;
         this.small_description = small_description;
-        this.timeOfOpenAndClose = {
-            opened: null,
-            closed: null,
-        },
+        this.timeOfOpenAndClose = timeOfOpenAndClose,
         this.long_description__title = long_description__title;
         this.long_description__text = long_description__text;
-        this.ammenities = [];
-        this.menu = [{
-            imageUrl: null,
-            name: null,
-            description: null,
-            review: []
-        }];
-        this.rules = [];
-        this.keepInMind = [];
+        this.menu = menu;
+        this.rules = rules;
+        this.keepInMind = keepInMind;
         this.location = location;
         this.locationLink = locationLink;
         this.website = website;
         this.email = email;
         this.telephone = telephone;
-        this.category = category;
         this.cardImageUrl = cardImageUrl;
         this.showcaseImagesUrls = showcaseImagesUrls;
-        this.sliderImagesUrls = sliderImagesUrls;
+        this.aboutImage = aboutImage;
         this.views = views;
-        this.visitors = visitors;
+        this.visitors = [];
         this.date_created = Date();
         this.ratting = {
-            satisfaction: [],
-            Cleanliness: [],
-            communication: [],
-            check_in: [],
-            value: []
+            satisfaction: [2], 
+            Cleanliness: [2],
+            communication: [2],
+            food: [2],
+            value: [2]
         };
         this.comments = [
             // {
@@ -82,28 +64,12 @@ class Cafe {
             //     }
             // }
         ];
-        this.fitured = fitured;
-        this.highlyRated = highlyRated;
+        this.fitured = false;
+        this.highlyRated = false;
         this.hostId = hostId;
     }
 
-    // === === === === ===
-    //!  SAVING SINGLE tour
-    // === === === === ===
-
-    save() {
-        const db = getDb();
-        return db
-            .collection("tours")
-            .insertOne(this)
-            .then(tour => {
-                let savedtour = tour;
-                // console.log(tour);
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    }
+    
 
     // === === === === ===
     //!  getting SINGLE tour
@@ -184,4 +150,4 @@ class Cafe {
     }
 }
 
-module.exports = Tours;
+module.exports = Cafe;

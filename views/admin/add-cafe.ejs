@@ -1,5 +1,6 @@
 <%- include('../includes/head.ejs') %> <%- include('../includes/navigation.ejs')
 %>
+
 <br />
 <br />
 <br />
@@ -49,40 +50,59 @@
     <br />
     <br />
     <br />
+    <h3>time of opening and closing</h3>
     <input
         type="time"
-        name="open_date"
-        value="13:30"
+        name="open_time"
+        value="09:00"
+        placeholder="tipe of opening"
+    />
+    <input
+        type="time"
+        name="close_time"
+        value="12:00"
         placeholder="tipe of opening"
     />
     <br />
     <br />
+    <br />
+    
 
-    <h3>all must be includes</h3>
-    <h2>includes</h2>
-    <ul>
-        <li>
-            <input type="text" name="includes" />
-        </li>
-        <li>
-            <input type="text" name="includes" />
-        </li>
-        <li>
-            <input type="text" name="includes" />
-        </li>
-        <li>
-            <input type="text" name="includes" />
-        </li>
-        <li>
-            <input type="text" name="includes" />
-        </li>
-        <li>
-            <input type="text" name="includes" />
-        </li>
+
+    <h3>menu</h3>
+    <input id="menuItemFileInp" type="file" name="menu_item_ImageUrl" multiple="" id="iva">
+    <ul id="menu_container">
+       
     </ul>
     <br />
     <br />
     <br />
+    <h3>rules</h3>
+    <ol style="list-style-type:decimal !important;">
+        <li>
+            <input type="text" name="rules" id="">
+            <h4 id="deleteElementBtn">delete rule</h4id>
+        </li>
+        <h4 id="addPreviousElementBtn">add rule</h4id>
+        
+    </ol>
+
+
+    <h3>keep in mind</h3>
+    <ol style="list-style-type:decimal !important;">
+        <li>
+            <input type="text" name="keepInMind" id="">
+            <h4 id="deleteElementBtn">delete keep in mind</h4>
+        </li>
+        <h4 id="addPreviousElementBtn">add keep in mind</h4>
+        
+    </ol>
+
+
+    <br>
+    <br>
+    <br>
+    <br>
 
     <select name="location">
         <option value="Tbilisi">Tbilisi</option>
@@ -122,36 +142,13 @@
         placeholder="telephone"
     />
     <br />
-    <br />
-    <input
-        type="number"
-        name="ratting"
-        value="<%= oldInputValues.ratting %>"
-        placeholder="ratting"
-    />
-    <br />
-    <br />
-    <input
-        type="number"
-        name="views"
-        value="<%= oldInputValues.views %>"
-        placeholder="views"
-    />
-    <br />
-    <br />
 
-    <select name="category">
-        <option value="tour">tours</option>
-        <option value="expeditions">expeditions</option>
-        <option value="hotels">hotels</option>
-        <option value="bike rides">bike rides</option>
-        <option value="campings">campings</option>
-    </select>
+    <br />
     <br />
     <br />
     <br /><br />
 
-    <label for="images">upload card image</label>
+    <label for="card_image">upload card image</label>
     <input
         type="file"
         name="card_image"
@@ -160,7 +157,7 @@
     />
     <br />
 
-    <label for="images">showcase images</label>
+    <label for="showcase_images">showcase images</label>
     <input
         type="file"
         name="showcase_images"
@@ -170,17 +167,120 @@
     />
     <br />
 
-    <label for="images">slider images</label>
+    <label for="about_image">about images</label>
     <input
         type="file"
-        name="slider_images"
-        value="<%= oldInputValues.slider_images %>"
+        name="about_image"
+        value="<%= oldInputValues.about_images %>"
         id=""
-        multiple="multiple"
     />
     <br />
 
+ 
+
     <button type="submit">add tour</button>
 </form>
+
+<script>
+    let menuItemFileInp = document.querySelector('#menuItemFileInp')
+    let menuContainer = document.querySelector('#menu_container')
+    let addPreviousElementBtn = document.querySelectorAll('#addPreviousElementBtn')
+    let deleteElementBtn = document.querySelectorAll('#deleteElementBtn')
+    
+    
+    menuItemFileInp.addEventListener('change', _=>{
+        // console.log(menu_item_name)
+        if (menuItemFileInp.files.length > 0) {
+            menuItemFileInp.files = null,
+            menuContainer.innerHTML = '';
+        }
+        
+        let amountOfImages = menuItemFileInp.files.length;
+        for (let i = 0; i < amountOfImages; i++) {
+            let menu_item_image = document.createElement('div')
+            let menu_item_name = document.createElement('input')
+            let menu_item_description = document.createElement('input')
+
+            const reader = new FileReader();
+
+            reader.onload = (e) => {
+                menu_item_image.style.backgroundImage = `url(${reader.result})` ;
+            };
+            reader.readAsDataURL(menuItemFileInp.files[i]);
+
+
+            menu_item_image.style.backgroundSize = 'cover' ;
+            menu_item_image.style.width = "30vw";
+            menu_item_image.style.height = "30vw";
+
+            // menu_item_image.src = 
+            menu_item_name.name = "menu_item_name";
+            menu_item_description.name = "menu_item_description";
+            menu_item_name.type = "text";
+            menu_item_description.type = "text";
+
+            const li = document.createElement('li');
+
+            
+            const mustAppend = [
+                menu_item_image,
+                menu_item_name,
+                menu_item_description
+            ]
+
+            apeendChildren(li, mustAppend)
+            menuContainer.appendChild(li)
+            
+
+
+            // // apeendChildren(menuContainer, mustAppend)
+            // apeendChildrenInLis(menuContainer, mustAppend)
+        }
+
+       
+    })
+
+
+    addPreviousElementBtn.forEach(prevElemBtn =>{
+        prevElemBtn.addEventListener('click', _=>{
+        let previousElement = prevElemBtn.previousElementSibling;
+        let clone = previousElement.cloneNode(true);
+        let parent = prevElemBtn.parentElement;
+        previousElement.parentNode.insertBefore(clone, previousElement.nextSibling);
+
+        //? get the delete button again so that every 
+        //  button created, event will be given
+        let createdDeleteElementBtn = document.querySelectorAll('#deleteElementBtn')
+        createdDeleteElementBtn.forEach(deletBtn =>{
+            deletBtn.addEventListener('click', _=>{
+                console.log('hey');
+                let parent = deletBtn.parentElement;
+                parent.remove()
+            })
+        })
+    })
+    })
+
+    // eventListForAllElements(addPreviousElementBtn, 'click', prevElemBtn, () =>{})
+     
+    function eventListForAllElements(array, typeOdEvent, elemName, func){
+        array.forEach(elemName => {
+            elemName.addEventListener(typeOdEvent, func)
+        });
+    }
+     
+
+
+    function apeendChildren(parent, children){
+        children.forEach(child => {
+            parent.appendChild(child)
+        });
+    }
+ 
+    //  <input type="text" name="menu_item_name">
+    //  <input type="text" name="menu_item_description"> 
+    
+    
+    </script>
 
 <%- include('../includes/bottom.ejs') %>

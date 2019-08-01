@@ -1,8 +1,4 @@
 // ─── BASE IMPORTS ───────────────────────────────────────────────────────────────
-// const fs = require('fs');
-// const http2 = require("http2");
-// const cert = fs.readFileSync('my.cert')
-// const key = fs.readFileSync('my.key')
 const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -17,9 +13,11 @@ require("dotenv").config();
 
 // ─── MY IMPORTS ─────────────────────────────────────────────────────────────────
 const mongoConnect = require("./utils/database").mongoConnect;
+
 //models
 const Users = require("./models/users");
 const Host = require("./models/host");
+
 //querys
 const userAndHostQuery = require("./queries/usersAndHost.js");
 
@@ -44,10 +42,12 @@ const fileStorage = multer.diskStorage({
 
 // const cpUpload = multer.fields([{ name: 'avatar', maxCount: 1 }, { name: 'gallery', maxCount: 8 }])
 const upload = multer({ storage: fileStorage }).fields([
-    { name: "card_image", maxCount: 1 },
-    { name: "showcase_images", maxCount: 6 },
-    { name: "slider_images", maxCount: 20 },
-    { name: "profile_image", maxCount: 1 }
+    { name: 'menu_item_ImageUrl', maxCount: 8 },
+    { name: 'card_image', maxCount: 1 },
+    { name: 'showcase_images', maxCount: 6 },
+    { name: 'about_image', maxCount: 1 },
+    { name: 'slider_images', maxCount: 20 },
+    { name: 'profile_image', maxCount: 1 }
 ]);
 
 app.use(upload);

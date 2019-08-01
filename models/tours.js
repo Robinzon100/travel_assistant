@@ -18,7 +18,6 @@ class Tours {
         ratting,
         category,
         views,
-        visitors,
         cardImageUrl,
         showcaseImagesUrls,
         sliderImagesUrls
@@ -38,7 +37,7 @@ class Tours {
         this.ratting = ratting;
         this.category = category;
         this.views = views;
-        this.visitors = visitors;
+        this.visitors = [];
         this.cardImageUrl = cardImageUrl;
         this.showcaseImagesUrls = showcaseImagesUrls;
         this.sliderImagesUrls = sliderImagesUrls;

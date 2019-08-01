@@ -8,7 +8,7 @@ class HotelApartment {
         small_description,
         long_description__title,
         long_description__text,
-        ammenities,
+        amenities,
         types_of_rooms,
         rules,
         keepInMind,
@@ -33,7 +33,7 @@ class HotelApartment {
         this.small_description = small_description;
         this.long_description__title = long_description__title;
         this.long_description__text = long_description__text;
-        this.ammenities = [];
+        this.amenities = [];
         this.types_of_rooms = [
             // {
             //     price_per_night: null,
@@ -44,7 +44,7 @@ class HotelApartment {
             //         }
             //     ],
             //     numberOfRooms: null,
-            //     ammenities: null
+            //     amenities: null
             // }
         ];
         this.rules = [];
