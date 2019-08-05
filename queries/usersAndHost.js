@@ -147,6 +147,25 @@ class UserAndHostQueries {
             });
     }
 
+
+
+
+    //
+    // ─── OTHER ─────────────────────────────────────────────────────────────────────
+    //
+    static addViews(objectId, collection, visitedIp) {
+        const db = getDb();
+        return db
+            .collection(collection)
+            .findOneAndUpdate(
+                { _id: new mongodb.ObjectId(tourId) },
+                { $inc: { views: 1 }, $push: { visitors: visitedIp } }
+            )
+            .then(tour => {
+                return tour;
+            })
+            .catch(err => console.log(err));
+    }
 }
 
 

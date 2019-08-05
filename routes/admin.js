@@ -80,4 +80,8 @@ router.post("/add-tour", isAuth.adminAuth,
     router.post('/add-cafe', adminControllers.postAddCafe);
 
 
+    router.get('/add-shop', adminControllers.getAddShop);
+    router.post('/add-shop', adminControllers.postAddShop);
+
+
 module.exports = router;

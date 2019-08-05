@@ -1,15 +1,29 @@
 <%- include('../includes/head.ejs') %> <%- include('../includes/navigation.ejs')
 %>
+<br />
+<br />
+<br />
+<br />
+<br />
+<style>
+    /* input{
+    color: white;
+}
 
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<form action="/admin/add-cafe" method="post" enctype="multipart/form-data">
+textarea{
+    color: white;
+}
+
+h3{
+    color: rgb(190, 12, 12);
+} */
+</style>
+
+<% for (let error of errorMessage){ %>
+<p style="color:red"><%= error.msg %></p>
+<% } %>
+
+<form action="/admin/add-tour" method="post" enctype="multipart/form-data">
     <!-- text -->
     <h3>must be 7 or less words</h3>
     <input
@@ -18,6 +32,7 @@
         value="<%= oldInputValues.title %>"
         placeholder="title"
     />
+    <br />
     <br />
     <br />
     <h3>must be 8-9 or less words</h3>
@@ -46,63 +61,27 @@
         cols="30"
         rows="10"
     ></textarea>
+    <!-- <input 
+            type="text" 
+            name="long_description__text" 
+            value="<%= oldInputValues.long_description__text %>" 
+            placeholder="long_description__text"> <br> <br> -->
 
-    <br />
-    <br />
-    <br />
-    <h3>time of opening and closing</h3>
-    <input
-        type="time"
-        name="open_time"
-        value="09:00"
-        placeholder="tipe of opening"
-    />
-    <input
-        type="time"
-        name="close_time"
-        value="12:00"
-        placeholder="tipe of opening"
-    />
-    <br />
-    <br />
-    <br />
-    
-
-
-    <h3>menu</h3>
-    <input id="menuItemFileInp" type="file" name="menu_item_ImageUrl" multiple="" id="iva">
-    <ul id="menu_container">
-       
-    </ul>
-    <br />
-    <br />
-    <br />
-    <h3>rules</h3>
+    <h3>all must be includes</h3>
+    <h2>includes</h2>
     <ol style="list-style-type:decimal !important;">
-        <li>
-            <input type="text" name="rules" id="">
-            <h4 id="deleteElementBtn">delete rule</h4id>
-        </li>
-        <h4 id="addPreviousElementBtn">add rule</h4id>
-        
-    </ol>
+            <li>
+                <input type="text" name="includes" id="">
+                <h4 id="deleteElementBtn">delete includes</h4>
+            </li>
+            <h4 id="addPreviousElementBtn">add includes</h4>
+            
+        </ol>
 
 
-    <h3>keep in mind</h3>
-    <ol style="list-style-type:decimal !important;">
-        <li>
-            <input type="text" name="keepInMind" id="">
-            <h4 id="deleteElementBtn">delete keep in mind</h4>
-        </li>
-        <h4 id="addPreviousElementBtn">add keep in mind</h4>
-        
-    </ol>
-
-
-    <br>
-    <br>
-    <br>
-    <br>
+    <br />
+    <br />
+    <br />
 
     <select name="location">
         <option value="Tbilisi">Tbilisi</option>
@@ -142,13 +121,36 @@
         placeholder="telephone"
     />
     <br />
-
     <br />
+    <input
+        type="number"
+        name="ratting"
+        value="<%= oldInputValues.ratting %>"
+        placeholder="ratting"
+    />
+    <br />
+    <br />
+    <input
+        type="number"
+        name="views"
+        value="<%= oldInputValues.views %>"
+        placeholder="views"
+    />
+    <br />
+    <br />
+
+    <select name="category">
+        <option value="tour">tours</option>
+        <option value="expeditions">expeditions</option>
+        <option value="hotels">hotels</option>
+        <option value="bike rides">bike rides</option>
+        <option value="campings">campings</option>
+    </select>
     <br />
     <br />
     <br /><br />
 
-    <label for="card_image">upload card image</label>
+    <label for="images">upload card image</label>
     <input
         type="file"
         name="card_image"
@@ -157,7 +159,7 @@
     />
     <br />
 
-    <label for="showcase_images">showcase images</label>
+    <label for="images">showcase images</label>
     <input
         type="file"
         name="showcase_images"
@@ -167,20 +169,18 @@
     />
     <br />
 
-    <label for="about_image">about images</label>
+    <label for="images">slider images</label>
     <input
         type="file"
-        name="about_image"
-        value="<%= oldInputValues.about_images %>"
+        name="slider_images"
+        value="<%= oldInputValues.slider_images %>"
         id=""
+        multiple="multiple"
     />
     <br />
-
- 
 
     <button type="submit">add tour</button>
 </form>
 
-
-<%- include('../includes/bottom.ejs') %>
-<%- include('../includes/adminPageTools.ejs') %>
+<%- include('../includes/adminPageTools.ejs') %> <%-
+include('../includes/bottom.ejs') %>
