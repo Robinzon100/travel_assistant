@@ -74,28 +74,15 @@ h3{
             value="<%= oldInputValues.long_description__text %>" 
             placeholder="long_description__text"> <br> <br> -->
 
-    <h3>all must be includes</h3>
     <h2>includes</h2>
-    <ul>
+    <ol style="list-style-type:decimal !important;">
         <li>
-            <input type="text" name="includes" />
+            <input type="text" name="includes" id="">
+            <h4 id="deleteElementBtn">delete keep in mind</h4>
         </li>
-        <li>
-            <input type="text" name="includes" />
-        </li>
-        <li>
-            <input type="text" name="includes" />
-        </li>
-        <li>
-            <input type="text" name="includes" />
-        </li>
-        <li>
-            <input type="text" name="includes" />
-        </li>
-        <li>
-            <input type="text" name="includes" />
-        </li>
-    </ul>
+        <h4 id="addPreviousElementBtn">add keep in mind</h4>
+        
+    </ol>
     <br />
     <br />
     <br />
@@ -138,30 +125,26 @@ h3{
         placeholder="telephone"
     />
     <br />
-    <br />
-    <input
-        type="number"
-        name="ratting"
-        value="<%= oldInputValues.ratting %>"
-        placeholder="ratting"
-    />
-    <br />
-    <br />
-    <input
-        type="number"
-        name="views"
-        value="<%= oldInputValues.views %>"
-        placeholder="views"
-    />
+    
     <br />
     <br />
 
-    <select name="category">
+    <select name="type">
         <option value="tour">tours</option>
         <option value="expeditions">expeditions</option>
         <option value="hotels">hotels</option>
         <option value="bike rides">bike rides</option>
         <option value="campings">campings</option>
+    </select>
+    <br />
+    <br />
+
+    <select name="difficulty">
+        <option value="casual">casual</option>
+        <option value="normal">normal</option>
+        <option value="medium">medium</option>
+        <option value="hard">hard</option>
+        <option value="expert">expert</option>
     </select>
     <br />
     <br />
@@ -198,5 +181,5 @@ h3{
 
     <button type="submit">add tour</button>
 </form>
-
+<%- include('../includes/adminPageTools.ejs') %>
 <%- include('../includes/bottom.ejs') %>

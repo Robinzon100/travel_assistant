@@ -72,7 +72,7 @@ if (parallaxElement || animatePralaxImage) {
             let distFromElementCenter = elementCenter - windowsCenter;
             let imageY = yPost + (distFromElementCenter * offset)
 
-            console.log(imageY);
+            // console.log(imageY);
             
 
             elem.style.backgroundPosition = `0% ${imageY}%`;

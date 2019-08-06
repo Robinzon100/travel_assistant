@@ -134,14 +134,14 @@ app.use((req, res, next) => {
 });
 
 // ─── ROUTES ─────────────────────────────────────────────────────────────────────
-const toursRouts = require("./routes/tours");
+const pagesRouts = require("./routes/pages");
 const adminsRouts = require("./routes/admin");
 
 const registrationRoutes = require("./routes/auth");
 
 // ─── USING THE ROUTES ───────────────────────────────────────────────────────────
 app.use("/admin", adminsRouts);
-app.use(toursRouts);
+app.use(pagesRouts);
 app.use(registrationRoutes);
 
 app.use((req, res, next) => {

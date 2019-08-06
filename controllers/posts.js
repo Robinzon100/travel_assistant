@@ -1,10 +1,8 @@
 const Tours = require("./../models/tours");
-const Users = require('./../models/users')
+const Users = require("./../models/users");
+const queries = require("./../queries/usersAndHost");
 
-
-//
-//? ─── LANDING ────────────────────────────────────────────────────────────────────
-//
+//! ─── LANDING ────────────────────────────────────────────────────────────────────
 exports.getLanding = (req, res, next) => {
     res.render("landing", {
         logedIn: req.session.logedIn,
@@ -12,114 +10,99 @@ exports.getLanding = (req, res, next) => {
         path: "/"
     });
 };
- 
 
-//
-//? ─── TOURS ──────────────────────────────────────────────────────────────────────
-//
-
+//! ─── TOURS ──────────────────────────────────────────────────────────────────────
 exports.getTours = (req, res, next) => {
-    console.log(req.Host)
-    Tours.fetchAll()
-        .then(tours => {
-            res.render("tours/tours", {
+    queries
+        .fetchAll("posts")
+        .then(posts => {
+            res.render("pages/explore", {
                 logedIn: req.session.logedIn,
                 user: req.session.user,
-                tours: tours,
-                pageTitle: "tours",
+                posts: posts,
+                pageTitle: "explore",
                 path: "/explore"
             });
         })
         .catch(err => {
             console.log(err);
         });
-};
 
+    Tours.fetchAll();
+};
 
 exports.postTourToBookmark = (req, res, next) => {
     const { addedPost, tourId } = req.body;
     let curentUser = req.session.user._id;
 
-    // if (addedPost) {
-        Tours.findById(tourId)
-            .then((tour) => {
-                Users.findById(curentUser._id)
-                    .then((user) => {
-                        req.user.addToBookmark(tour);
-                        res.redirect('/explore');
-                    }).catch((err) => {
-                        console.log(err)
-                    });
-            }).catch((err) => {
-                console.log(err)
-            });
-
-
-    // }
+    Tours.findById(tourId)
+        .then(tour => {
+            Users.findById(curentUser._id)
+                .then(user => {
+                    req.user.addToBookmark(tour);
+                    res.redirect("/explore");
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        })
+        .catch(err => {
+            console.log(err);
+        });
 };
 
-
-
-// ?GET a single tour page
-exports.getTour = (req, res, next) => {
-    // console.log(req.connection.remoteAddress);
-    // var ipuser = JSON.parse(body) 
-    const tourId = req.params.singleTourId;
+//! GET a single tour page
+exports.getPost = (req, res, next) => {
+    const postId = req.params.singlePostId;
     const visitorIp = req.socket.localAddress;
 
-    Tours.isVisited(tourId)
-        .then(visitedIps => {
-            console.log(visitedIps);
+    console.log(postId)
 
-            let isVisited = false;
 
-            visitedIps.forEach(el => {
-                if (el == visitorIp) {
-                    isVisited = true;
-                }
-            });
+    queries.getPostsVisitorsIp("posts", postId).then(visitedIps => {
+        let isVisited = false;
 
-            if (isVisited) {
-                Tours.findById(tourId)
-                    .then(tour => {
-                        res.render("tours/tour", {
-                            logedIn: req.session.logedIn,
-                            tour: tour,
-                            pageTitle: tour.title,
-                            path: "/explore"
-                        });
-                    })
-                    .catch(err => console.log(err));
-
-            } else {
-                Tours.findById(tourId)
-                    .then(tour => {
-                        Tours.addViews(tourId, visitorIp);
-
-                        res.render("tours/tour", {
-                            logedIn: req.session.logedIn,
-                            tour: tour,
-                            pageTitle: tour.title,
-                            path: "/explore"
-                        });
-                    })
-                    .catch(err => console.log(err));
+        visitedIps.forEach(el => {
+            if (el == visitorIp) {
+                isVisited = true;
             }
         });
 
+        if (isVisited) {
+            queries
+                .findById('posts',postId)
+                .then(post => {
+                    res.render(`pages/${post.category}`, {
+                        logedIn: req.session.logedIn,
+                        post: post,
+                        pageTitle: post.title,
+                        path: "/explore"
+                    });
+                })
+                .catch(err => console.log(err));
+        } else {
+            queries
+                .findById('posts',postId)
+                .then(post => {
+                    queries.addVisitors(post._id, "posts", visitorIp);
 
-
-
-
-
+                    res.render(`pages/${post.category}`, {
+                        logedIn: req.session.logedIn,
+                        post: post,
+                        pageTitle: post.title,
+                        path: "/explore"
+                    });
+                })
+                .catch(err => console.log(err));
+        }
+    });
 };
 
-
 //
-//? ─── CAFE ──────────────────────────────────────────────────────────────────────
+//! ─── CAFE ──────────────────────────────────────────────────────────────────────
 //
-//?  GET a single cafe page
-exports.getCafe = (req, res, next) =>{
+//!  GET a single cafe page
+exports.getCafe = (req, res, next) => {
     let allAmenities = [
         {
             name: "Free Wireless Internet",
@@ -254,21 +237,15 @@ exports.getCafe = (req, res, next) =>{
             have: false
         }
     ];
-
-}
-
+};
 
 //
-//? ─── SEARCH ─────────────────────────────────────────────────────────────────────
+//! ─── SEARCH ─────────────────────────────────────────────────────────────────────
 //
 exports.getSearch = (req, res, next) => {
-    res.render("tours/search", {
+    res.render("pages/search", {
         logedIn: req.session.logedIn,
         pageTitle: "search",
         path: "/search"
     });
 };
-
-
-
-

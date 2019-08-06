@@ -1,43 +1,57 @@
-const getDb = require('../utils/database').getDb;
-const mongodb = require('mongodb');
-
+const getDb = require("../utils/database").getDb;
+const mongodb = require("mongodb");
 
 class UserAndHostQueries {
-
-
-
     //
     // ─── SAVE ───────────────────────────────────────────────────────────────────────
     //
     static save(collection, object) {
         const db = getDb();
-        return db.collection(collection)
+        return db
+            .collection(collection)
             .insertOne(object)
-            .then((result) => {
+            .then(result => {
                 const Result = result;
-            }).catch((err) => {
+            })
+            .catch(err => {
                 console.log(err);
             });
     }
 
+    //
+    // ─── FETCH ───────────────────────────────────────────────────────────────────────
+    //
 
-    // 
+    static fetchAll(collection) {
+        const db = getDb();
+        return db
+            .collection(collection)
+            .find()
+            .toArray()
+            .then(posts => {
+                return posts;
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
+    //
     // ─── FIND ───────────────────────────────────────────────────────────────────────
     //
 
     static findById(collection, objectId) {
         const db = getDb();
-        return db.collection(collection)
+        return db
+            .collection(collection)
             .findOne({ _id: new mongodb.ObjectId(objectId) })
             .then(result => {
                 return result;
             })
             .catch(err => {
                 console.log(err);
-            })
+            });
     }
-
-
 
     static findByEmail(collection, email) {
         const db = getDb();
@@ -51,7 +65,6 @@ class UserAndHostQueries {
                 console.log(err);
             });
     }
-
 
     static findByToken(collection, token) {
         const db = getDb();
@@ -105,8 +118,6 @@ class UserAndHostQueries {
             });
     }
 
-
-
     //
     // ─── UPDATE ─────────────────────────────────────────────────────────────────────
     //
@@ -137,7 +148,13 @@ class UserAndHostQueries {
             .collection(collection)
             .updateOne(
                 { _id: new mongodb.ObjectId(userId) },
-                { $set: { password: newPassword, resetToken: null, resetTokenExpiration: null } }
+                {
+                    $set: {
+                        password: newPassword,
+                        resetToken: null,
+                        resetTokenExpiration: null
+                    }
+                }
             )
             .then(user => {
                 return user;
@@ -147,18 +164,15 @@ class UserAndHostQueries {
             });
     }
 
-
-
-
     //
     // ─── OTHER ─────────────────────────────────────────────────────────────────────
     //
-    static addViews(objectId, collection, visitedIp) {
+    static addVisitors(posdtId, collection, visitedIp) {
         const db = getDb();
         return db
             .collection(collection)
             .findOneAndUpdate(
-                { _id: new mongodb.ObjectId(tourId) },
+                { _id: new mongodb.ObjectId(posdtId) },
                 { $inc: { views: 1 }, $push: { visitors: visitedIp } }
             )
             .then(tour => {
@@ -166,9 +180,35 @@ class UserAndHostQueries {
             })
             .catch(err => console.log(err));
     }
+
+    //!  ADDING TO THE VIEWS
+    static getPostsVisitorsIp(collection, postId) {
+        const db = getDb();
+        return db
+            .collection(collection)
+            .findOne({ _id: new mongodb.ObjectId(postId) })
+            .then(post => {
+                return post.visitors;
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
+
+    static isVisited(tourId) {
+        const db = getDb();
+        return db
+            .collection("tours")
+            .findOne({ _id: new mongodb.ObjectId(tourId) })
+            .then(tour => {
+                return tour.visitors;
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
 }
 
-
-
 module.exports = UserAndHostQueries;
-

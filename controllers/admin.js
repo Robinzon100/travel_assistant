@@ -1,10 +1,9 @@
 const Cafe = require("../models/cafe");
+const Tour = require("../models/tours");
 const { validationResult } = require("express-validator/check");
-const UserAndHostQueries = require('../queries/usersAndHost');
+const queries = require("../queries/usersAndHost");
 
-//
 //? ─── ADD ────────────────────────────────────────────────────────────────────────
-//
 
 //!  tour
 exports.getAddTour = (req, res, next) => {
@@ -45,15 +44,14 @@ exports.postAddTour = (req, res, next) => {
         website,
         email,
         telephone,
-        ratting,
-        category,
-        views
+        type,
+        difficulty
     } = req.body;
 
-    let viewsInt = parseInt(views);
     const errors = validationResult(req);
 
     if (errors.isEmpty()) {
+        //! === === === === IMAGE PATHS === === === ===
         const allImages = req.files;
         const cardImageUrl = allImages.card_image[0].filename; // CARD IMAGE URL
 
@@ -67,14 +65,11 @@ exports.postAddTour = (req, res, next) => {
         const sliderImagesUrls = []; // SLIDER IMAGE URLS
         sliderImages.forEach(image => sliderImagesUrls.push(image.filename));
 
-        //visitors array
-        let visitors = [];
+        //! === === === === LOCATION LINK === === === ===
+        let parsedLocationLink;
+        parsedLocationLink = locationLink.split(" ")[1].slice(4).replace(/['"]+/g, '');
 
-        // console.log(cardImageUrl,
-        //     showcaseImagesUrls,
-        //     sliderImagesUrls)
-
-        const tour = new Tours(
+        const tour = new Tour(
             title,
             price,
             small_description,
@@ -82,29 +77,30 @@ exports.postAddTour = (req, res, next) => {
             long_description__text,
             includes,
             location,
-            locationLink,
+            parsedLocationLink,
             website,
             email,
             telephone,
-            ratting,
-            category,
-            viewsInt,
-            visitors,
+            type,
+            difficulty,
             cardImageUrl,
             showcaseImagesUrls,
             sliderImagesUrls
         );
 
+        queries.save("posts", tour).then(post => {
+            res.redirect("/explore");
+        });
+
         //  res.redirect('admin/add-tour');
-        tour.save()
-            .then(tour => {
-                res.redirect("/explore");
-            })
-            .catch(err => {
-                console.log(err);
-            });
+        // tour.save()
+        //     .then(tour => {
+        // res.redirect("/explore");
+        //     })
+        //     .catch(err => {
+        //         console.log(err);
+        //     });
     } else {
-        // console.log(errors.array());
         return res.status(422).render("admin/add-tour", {
             pageTitle: "add-tour",
             path: "/admin/add-tours",
@@ -122,7 +118,6 @@ exports.postAddTour = (req, res, next) => {
                 website: website,
                 email: email,
                 telephone: telephone,
-                ratting: ratting,
                 category: category,
                 viewsInt: viewsInt
             }
@@ -178,53 +173,42 @@ exports.postAddCafe = (req, res, next) => {
 
     //! === === === === MENU === === === ===
 
-    
-        const allImages = req.files;
+    const allImages = req.files;
 
-        const cardImageUrl = allImages.card_image[0].filename; // CARD IMAGE URL
-        const aboutImage = allImages.about_image[0].filename; // CARD IMAGE URL
+    const cardImageUrl = allImages.card_image[0].filename; // CARD IMAGE URL
+    const aboutImage = allImages.about_image[0].filename; // CARD IMAGE URL
 
-        const showcaseImages = allImages.showcase_images;
-        const showcaseImagesUrls = []; // SHOWCASE IMAGE URLS
-        showcaseImages.forEach(image =>
-            showcaseImagesUrls.push(image.filename)
-        );
+    const showcaseImages = allImages.showcase_images;
+    const showcaseImagesUrls = []; // SHOWCASE IMAGE URLS
+    showcaseImages.forEach(image => showcaseImagesUrls.push(image.filename));
 
-        const menu_item_ImageUrl = allImages.menu_item_ImageUrl;
-        const menu_item_ImageUrls = []; // MENU ITEM IMAGE URLS
-        menu_item_ImageUrl.forEach(image =>
-            menu_item_ImageUrls.push(image.filename)
-        );
+    const menu_item_ImageUrl = allImages.menu_item_ImageUrl;
+    const menu_item_ImageUrls = []; // MENU ITEM IMAGE URLS
+    menu_item_ImageUrl.forEach(image =>
+        menu_item_ImageUrls.push(image.filename)
+    );
 
-        let menu = [];
+    let menu = [];
 
-        for (let i = 0; i < menu_item_ImageUrls.length; i++) {
-            menu.push({
-                imageUrl: menu_item_ImageUrls[i],
-                name: menu_item_name[i],
-                description: menu_item_description[i],
-                reviews: []
-            });
-        }
-  
-
-    
+    for (let i = 0; i < menu_item_ImageUrls.length; i++) {
+        menu.push({
+            imageUrl: menu_item_ImageUrls[i],
+            name: menu_item_name[i],
+            description: menu_item_description[i],
+            reviews: []
+        });
+    }
 
     //! === === === === TIME OF OPENING === === === ===
     let timeOfOpenAndClose = {
         opened: open_time,
         closed: close_time
     };
-    
 
     //! === === === === LOCATION LINK === === === ===
     let parsedLocationLink;
 
     parsedLocationLink = locationLink.split(" ")[1].slice(4);
-
-    
-
-
 
     const cafe = new Cafe(
         title,
@@ -246,7 +230,9 @@ exports.postAddCafe = (req, res, next) => {
         views
     );
 
-    UserAndHostQueries.save('cafe', cafe)
+    queries.save("posts", cafe).then(() => {
+        res.redirect("/admin/add-cafe");
+    });
     //visitors array
     // let visitors = [];
 
@@ -259,13 +245,7 @@ exports.postAddCafe = (req, res, next) => {
     // });
 
     // console.log(activeAmenities);
-    res.redirect("/admin/add-cafe");
 };
-
-
-
-
-
 
 //!  shop
 exports.getAddShop = (req, res, next) => {

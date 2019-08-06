@@ -4,14 +4,14 @@
 
 
 <div class="tour_hero "data-rate="-0.06">
-    <h1 class="tour_hero__title"><%= tour.title%> <br>
-        <p class="tour_hero__title--sub"><%= tour.small_description %></p>
+    <h1 class="tour_hero__title"><%= post.title%> <br>
+        <p class="tour_hero__title--sub"><%= post.small_description %></p>
     </h1>
     <ul class="tour_hero__showcase-images">
 
-        <% for(let i = 0; i < tour.showcaseImagesUrls.length; i++){ %>
+        <% for(let i = 0; i < post.showcaseImagesUrls.length; i++){ %>
         <li class="tour_hero__showcase-images__image"
-            style='background-image: url("/images/<%= tour.showcaseImagesUrls[i] %>" )'></li>
+            style='background-image: url("/images/<%= post.showcaseImagesUrls[i] %>" )'></li>
         <% } %>
     </ul>
 </div>
@@ -20,8 +20,8 @@
     <div class="tour_info">
         <div class="tour_info__text">
             <div class="tour_info__slogan-and-description">
-                <h1 class="tour_info__slogan-and-description--slogan"><%= tour.long_description__title %></h1>
-                <p class="tour_info__slogan-and-description--description"><%= tour.long_description__text %>
+                <h1 class="tour_info__slogan-and-description--slogan"><%= post.long_description__title %></h1>
+                <p class="tour_info__slogan-and-description--description"><%= post.long_description__text %>
                 </p>
             </div>
 
@@ -29,9 +29,9 @@
             <div class="tour_info__includes">
                 <h2 class="tour_info__includes--title">what includes</h2>
                 <ul class="tour_info__includes--cheks">
-                    <% for(i = 0; i < tour.includes.length; i++){ %>
+                    <% for(i = 0; i < post.includes.length; i++){ %>
                     <li>
-                        <p> <%= tour.includes[i] %></p>
+                        <p> <%= post.includes[i] %></p>
                     </li>
                     <% } %>
                 </ul>
@@ -45,22 +45,22 @@
             <ul>
                 <li class="tour_info__panel__content">
                     <!-- <div class="tour_info__panel__img" style="background-image: url('/img/slider /images/slider_2.jpg')"></div> -->
-                    <h2 class="tour_info__panel__price">$<%= tour.price %></h2>
+                    <h2 class="tour_info__panel__price">$<%= post.price %></h2>
                     <hr>
 
                     <div class="tour_info__panel__info">
                         <ul>
                             <li><a href="">
-                                    <p> <%= tour.location %> </p>
+                                    <p> <%= post.location %> </p>
                                 </a></li>
-                            <li><a href="http://<%=tour.website %>">
+                            <li><a href="http://<%=post.website %>">
                                     <p> website </p>
                                 </a></li>
-                            <li><a href="mailto:<%= tour.email %>">
+                            <li><a href="mailto:<%= post.email %>">
                                     <p> email </p>
                                 </a></li>
-                            <li><a href="tel:<%= tour.telephone %>">
-                                    <p> <%= tour.telephone %> </p>
+                            <li><a href="tel:<%= post.telephone %>">
+                                    <p> <%= post.telephone %> </p>
                                 </a></li>
                         </ul>
                     </div>
@@ -71,7 +71,7 @@
                     <div class="tour_info__panel__map--map">
                         <div class="mapouter">
                             <div class="gmap_canvas">
-                                <iframe id="gmap_canvas" src="<%= tour.locationLink %>" width="500" height="500"
+                                <iframe id="gmap_canvas" src="<%= post.locationLink %>" width="500" height="500"
                                     frameborder="0" style="border:0" allowfullscreen></iframe>
                                 <style>
                                     .mapouter {
@@ -93,7 +93,7 @@
                         </div>
                         <!-- <div class="mapouter">
                             <div class="gmap_canvas"><iframe width="500" height="500" id="gmap_canvas"
-                                    src="https://maps.google.com/maps?q=<%= tour.locationLink %>&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                                    src="https://maps.google.com/maps?q=<%= post.locationLink %>&t=&z=13&ie=UTF8&iwloc=&output=embed"
                                     frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                                 <style>
                                     .mapouter {
@@ -137,8 +137,8 @@
 
             <div class="slider__small-images" id="sliderThumbnailImages">
 
-                <% for(let i = 0; i < tour.sliderImagesUrls.length; i++){ %>
-                <div style='background-image: url("/images/<%= tour.sliderImagesUrls[i] %>" )'></div>
+                <% for(let i = 0; i < post.sliderImagesUrls.length; i++){ %>
+                <div style='background-image: url("/images/<%= post.sliderImagesUrls[i] %>" )'></div>
                 <% } %>
 
 
@@ -154,10 +154,10 @@
 </main>
 
 
-<!-- <div class=""  style='background-image: url("<%= tour.image %>)'></div>
-<h2 class=""><%= tour.title %> </h2>
-<p class=""><%= tour.price %>$</p>
-<div class=""><%= tour.description %></div> -->
+<!-- <div class=""  style='background-image: url("<%= post.image %>)'></div>
+<h2 class=""><%= post.title %> </h2>
+<p class=""><%= post.price %>$</p>
+<div class=""><%= post.description %></div> -->
 
 
 

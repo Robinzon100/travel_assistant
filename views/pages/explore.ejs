@@ -37,19 +37,19 @@
 
 	<div class="glide__track" data-glide-el="track"> 
 		<div class="glide__slides">
-			<% for (let tour of tours) {  
-				if (tour.category == "tour"){ %>
+			<% for (let post of posts) {  
+				if (post.category == "tour"){ %>
 					<div class="card-small glide__slide">
-						<a href="explore/<%= tour._id %>">
-							<div class="card-small__image" style='background-image: url("images/<%= tour.cardImageUrl %>")'></div>
+						<a href="explore/<%= post._id %>">
+							<div class="card-small__image" style='background-image: url("images/<%= post.cardImageUrl %>")'></div>
 						</a>
-						<a href="explore/<%= tour._id %>" class="card-small__text">
-							<h2 class="card-small__text__title"><%= tour.title %> </h2>
-							<p class="card-small__text__price"><%= tour.price %>$</p>
-							<div class="card-small__text__description"><%= tour.small_description %></div>
-							<p class="card-small__text__views"> <span>👁</span> <%= tour.views %></p>
+						<a href="explore/<%= post._id %>" class="card-small__text">
+							<h2 class="card-small__text__title"><%= post.title %> </h2>
+							<p class="card-small__text__price"><%= post.price %>$</p>
+							<div class="card-small__text__description"><%= post.small_description %></div>
+							<p class="card-small__text__views"> <span>👁</span> <%= post.views %></p>
 							<div class="card-small__text__rating">
-								<% for(let i = 0; i < tour.ratting; i++){ %>
+								<% for(let i = 0; i < post.ratting; i++){ %>
 									<img class="card-small__text__rating__star" src="./img/SVG/star.svg" alt="">
 								<% } %>
 							</div>
@@ -60,7 +60,7 @@
 
 						<form action="explore" method="post">
 							<button type="submit">add to boockmarks</button>
-							<input type="hidden" name="tourId" value="<%= tour._id %>">
+							<input type="hidden" name="postId" value="<%= post._id %>">
 						</form>
 					</div>
 			<% } 
@@ -89,18 +89,18 @@
 
 	<div class="glide__track" data-glide-el="track">
 		<div class="glide__slides">
-			<% for (let tour of tours) {  %>
+			<% for (let post of posts) {  %>
 			<div class="card-large glide__slide">
-				<a href="tours/<%= tour._id %>">
-					<div class="card-large__image" style="background-image: url(<%=  tour.cardImageUrl %>)"></div>
+				<a href="posts/<%= post._id %>">
+					<div class="card-large__image" style="background-image: url(<%=  post.cardImageUrl %>)"></div>
 				</a>
-				<a href="tours/<%= tour._id %>" class="card-large__text">
-					<h2 class="card-large__text__title"><%= tour.title %> </h2>
-					<p class="card-large__text__price"><%= tour.price %>$</p>
-					<div class="card-large__text__description"><%=  tour.small_description %></div>
-					<p class="card-large__text__views"> <span>👁</span> <%= tour.views %></p>
+				<a href="posts/<%= post._id %>" class="card-large__text">
+					<h2 class="card-large__text__title"><%= post.title %> </h2>
+					<p class="card-large__text__price"><%= post.price %>$</p>
+					<div class="card-large__text__description"><%=  post.small_description %></div>
+					<p class="card-large__text__views"> <span>👁</span> <%= post.views %></p>
 					<div class="card-large__text__rating">
-						<% for(let i = 0; i < tour.ratting; i++){ %>
+						<% for(let i = 0; i < post.ratting; i++){ %>
 							<img class="card-large__text__rating__star" src="./img/SVG/star.svg" alt="">
 						<% } %>
 					</div>
@@ -134,18 +134,18 @@
 
 	<div class="glide__track" data-glide-el="track">
 		<div class="glide__slides">
-			<% for (let tour of tours) {  %>
+			<% for (let post of posts) {  %>
 			<div class="card-small glide__slide">
-				<a href="tours/<%= tour._id %>">
-					<div class="card-small__image" style="background-image: url(<%=  tour.cardImageUrl %>)"></div>
+				<a href="posts/<%= post._id %>">
+					<div class="card-small__image" style="background-image: url(<%=  post.cardImageUrl %>)"></div>
 				</a>
-				<a href="tours/<%= tour._id %>" class="card-small__text">
-					<h2 class="card-small__text__title"><%= tour.title %> </h2>
-					<p class="card-small__text__price"><%= tour.price %>$</p>
-					<div class="card-small__text__description"><%=  tour.small_description %></div>
-					<p class="card-small__text__views"> <span>👁</span>  <%= tour.views %></p>
+				<a href="posts/<%= post._id %>" class="card-small__text">
+					<h2 class="card-small__text__title"><%= post.title %> </h2>
+					<p class="card-small__text__price"><%= post.price %>$</p>
+					<div class="card-small__text__description"><%=  post.small_description %></div>
+					<p class="card-small__text__views"> <span>👁</span>  <%= post.views %></p>
 					<div class="card-small__text__rating">
-						<% for(let i = 0; i < tour.ratting; i++){ %>
+						<% for(let i = 0; i < post.ratting; i++){ %>
 						<img class="card-small__text__rating__star" src="./img/SVG/star.svg" alt="">
 						<% } %>
 					</div>

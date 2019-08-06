@@ -1,98 +1,99 @@
 <script>
     let menuItemFileInp = document.querySelector("#menuItemFileInp");
-let menuContainer = document.querySelector("#menu_container");
-let addPreviousElementBtn = document.querySelectorAll("#addPreviousElementBtn");
-let deleteElementBtn = document.querySelectorAll("#deleteElementBtn");
+    let menuContainer = document.querySelector("#menu_container");
+    let addPreviousElementBtn = document.querySelectorAll(
+        "#addPreviousElementBtn"
+    );
+    let deleteElementBtn = document.querySelectorAll("#deleteElementBtn");
 
- 
-    
-    menuItemFileInp.addEventListener("change", _ => {
-        // console.log(menu_item_name)
-        if (menuItemFileInp.files.length > 0) {
-            (menuItemFileInp.files = null), (menuContainer.innerHTML = "");
-        }
-    
-        let amountOfImages = menuItemFileInp.files.length;
-        for (let i = 0; i < amountOfImages; i++) {
-            let menu_item_image = document.createElement("div");
-            let menu_item_name = document.createElement("input");
-            let menu_item_description = document.createElement("input");
-    
-            const reader = new FileReader();
-    
-            reader.onload = e => {
-                menu_item_image.style.backgroundImage = `url(${reader.result})`;
-            };
-            reader.readAsDataURL(menuItemFileInp.files[i]);
-    
-            menu_item_image.style.backgroundSize = "cover";
-            menu_item_image.style.width = "30vw";
-            menu_item_image.style.height = "30vw";
-    
-            // menu_item_image.src =
-            menu_item_name.name = "menu_item_name";
-            menu_item_description.name = "menu_item_description";
-            menu_item_name.type = "text";
-            menu_item_description.type = "text";
-    
-            const li = document.createElement("li");
-    
-            const mustAppend = [
-                menu_item_image,
-                menu_item_name,
-                menu_item_description
-            ];
-    
-            apeendChildren(li, mustAppend);
-            menuContainer.appendChild(li);
-    
-            // // apeendChildren(menuContainer, mustAppend)
-            // apeendChildrenInLis(menuContainer, mustAppend)
-        }
-    });
-    
-    addPreviousElementBtn.forEach(prevElemBtn => {
-        prevElemBtn.addEventListener("click", _ => {
-            let previousElement = prevElemBtn.previousElementSibling;
-            let clone = previousElement.cloneNode(true);
-            let parent = prevElemBtn.parentElement;
-            previousElement.parentNode.insertBefore(
-                clone,
-                previousElement.nextSibling
-            );
-    
-            //? get the delete button again so that every
-            //  button created, event will be given
-            let createdDeleteElementBtn = document.querySelectorAll(
-                "#deleteElementBtn"
-            );
-            createdDeleteElementBtn.forEach(deletBtn => {
-                deletBtn.addEventListener("click", _ => {
-                    console.log("hey");
-                    let parent = deletBtn.parentElement;
-                    parent.remove();
+    if (menuItemFileInp) {
+        menuItemFileInp.addEventListener("change", _ => {
+            // console.log(menu_item_name)
+            if (menuItemFileInp.files.length > 0) {
+                (menuItemFileInp.files = null), (menuContainer.innerHTML = "");
+            }
+
+            let amountOfImages = menuItemFileInp.files.length;
+            for (let i = 0; i < amountOfImages; i++) {
+                let menu_item_image = document.createElement("div");
+                let menu_item_name = document.createElement("input");
+                let menu_item_description = document.createElement("input");
+
+                const reader = new FileReader();
+
+                reader.onload = e => {
+                    menu_item_image.style.backgroundImage = `url(${
+                        reader.result
+                    })`;
+                };
+                reader.readAsDataURL(menuItemFileInp.files[i]);
+
+                menu_item_image.style.backgroundSize = "cover";
+                menu_item_image.style.width = "30vw";
+                menu_item_image.style.height = "30vw";
+
+                // menu_item_image.src =
+                menu_item_name.name = "menu_item_name";
+                menu_item_description.name = "menu_item_description";
+                menu_item_name.type = "text";
+                menu_item_description.type = "text";
+
+                const li = document.createElement("li");
+
+                const mustAppend = [
+                    menu_item_image,
+                    menu_item_name,
+                    menu_item_description
+                ];
+
+                apeendChildren(li, mustAppend);
+                menuContainer.appendChild(li);
+
+                // // apeendChildren(menuContainer, mustAppend)
+                // apeendChildrenInLis(menuContainer, mustAppend)
+            }
+        });
+    }
+
+        addPreviousElementBtn.forEach(prevElemBtn => {
+            prevElemBtn.addEventListener("click", _ => {
+                let previousElement = prevElemBtn.previousElementSibling;
+                let clone = previousElement.cloneNode(true);
+                let parent = prevElemBtn.parentElement;
+                previousElement.parentNode.insertBefore(
+                    clone,
+                    previousElement.nextSibling
+                );
+
+                //? get the delete button again so that every
+                //  button created, event will be given
+                let createdDeleteElementBtn = document.querySelectorAll(
+                    "#deleteElementBtn"
+                );
+                createdDeleteElementBtn.forEach(deletBtn => {
+                    deletBtn.addEventListener("click", _ => {
+                        let parent = deletBtn.parentElement;
+                        parent.remove();
+                    });
                 });
             });
         });
-    });
+
+        // eventListForAllElements(addPreviousElementBtn, 'click', prevElemBtn, () =>{})
+
+        function eventListForAllElements(array, typeOdEvent, elemName, func) {
+            array.forEach(elemName => {
+                elemName.addEventListener(typeOdEvent, func);
+            });
+        }
+
+        function apeendChildren(parent, children) {
+            children.forEach(child => {
+                parent.appendChild(child);
+            });
+        }
     
-    // eventListForAllElements(addPreviousElementBtn, 'click', prevElemBtn, () =>{})
-    
-    function eventListForAllElements(array, typeOdEvent, elemName, func) {
-        array.forEach(elemName => {
-            elemName.addEventListener(typeOdEvent, func);
-        });
-    }
-    
-    function apeendChildren(parent, children) {
-        children.forEach(child => {
-            parent.appendChild(child);
-        });
-    }
-    
+
     //  <input type="text" name="menu_item_name">
     //  <input type="text" name="menu_item_description">
-    
-    
- 
 </script>

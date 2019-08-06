@@ -1,6 +1,6 @@
-const getDb = require("../utils/database").getDb;
-const mongoId = require("mongodb").ObjectID;
-const mongodb = require("mongodb");
+// const getDb = require("../utils/database").getDb;
+// const mongoId = require("mongodb").ObjectID;
+// const mongodb = require("mongodb");
 
 class Cafe {
     constructor(
@@ -42,7 +42,7 @@ class Cafe {
         this.views = views;
         this.visitors = [];
         this.date_created = Date();
-        this.ratting = {
+        this.reviews = {
             satisfaction: [2], 
             Cleanliness: [2],
             communication: [2],
@@ -66,88 +66,10 @@ class Cafe {
         ];
         this.fitured = false;
         this.highlyRated = false;
+        this.type = 'cafe'
         this.hostId = hostId;
     }
 
-    
-
-    // === === === === ===
-    //!  getting SINGLE tour
-    // === === === === ===
-
-    static findById(tourId) {
-        const db = getDb();
-        return db
-            .collection("tours")
-            .find({
-                _id: new mongodb.ObjectId(tourId)
-            })
-            .next()
-            .then(tour => {
-                // console.log(tour);
-                return tour;
-            })
-            .catch(err => console.log(err));
-    }
-
-    // === === === === ===
-    //!  getting ALL tour
-    // === === === === ===
-
-    static fetchAll() {
-        const db = getDb();
-        return db
-            .collection("tours")
-            .find()
-            .toArray()
-            .then(tours => {
-                return tours;
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    }
-
-    // === === === === ===
-    //!  ADDING TO THE VIEWS
-    // === === === === ===
-    static isVisited(tourId) {
-        const db = getDb();
-        return db
-            .collection("tours")
-            .findOne({
-                _id: new mongodb.ObjectId(tourId)
-            })
-            .then(tour => {
-                return tour.visitors;
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    }
-
-    static addViews(tourId, visitedIp) {
-        const db = getDb();
-        return db
-            .collection("tours")
-            .findOneAndUpdate(
-                {
-                    _id: new mongodb.ObjectId(tourId)
-                },
-                {
-                    $inc: {
-                        views: 1
-                    },
-                    $push: {
-                        visitors: visitedIp
-                    }
-                }
-            )
-            .then(tour => {
-                return tour;
-            })
-            .catch(err => console.log(err));
-    }
 }
 
 module.exports = Cafe;

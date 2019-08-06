@@ -15,9 +15,8 @@ class Tours {
         website,
         email,
         telephone,
-        ratting,
-        category,
-        views,
+        type,
+        difficulty,
         cardImageUrl,
         showcaseImagesUrls,
         sliderImagesUrls
@@ -34,19 +33,25 @@ class Tours {
         this.website = website;
         this.email = email;
         this.telephone = telephone;
-        this.ratting = ratting;
-        this.category = category;
-        this.views = views;
+        this.reviews = {
+            satisfaction: [2],
+            safety: [2],
+            communication: [2],
+            experience: [2],
+            value: [2],
+            accuracy: [2]
+        };
+        this.type = type;
+        this.difficulty = difficulty;
+        this.views = 1;
         this.visitors = [];
         this.cardImageUrl = cardImageUrl;
         this.showcaseImagesUrls = showcaseImagesUrls;
         this.sliderImagesUrls = sliderImagesUrls;
+        this.category = 'tour';
     }
 
-    // === === === === ===
     //!  SAVING SINGLE tour
-    // === === === === ===
-
     save() {
         const db = getDb();
         return db
@@ -61,10 +66,7 @@ class Tours {
             });
     }
 
-    // === === === === ===
     //!  getting SINGLE tour
-    // === === === === ===
-
     static findById(tourId) {
         const db = getDb();
         return db
@@ -78,10 +80,7 @@ class Tours {
             .catch(err => console.log(err));
     }
 
-    // === === === === ===
     //!  getting ALL tour
-    // === === === === ===
-
     static fetchAll() {
         const db = getDb();
         return db
@@ -96,9 +95,7 @@ class Tours {
             });
     }
 
-    // === === === === ===
     //!  ADDING TO THE VIEWS
-    // === === === === ===
     static isVisited(tourId) {
         const db = getDb();
         return db
