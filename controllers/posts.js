@@ -76,7 +76,7 @@ exports.getPost = (req, res, next) => {
                     let postCategory = post.category;
                     res.render(`pages/${post.category}`, {
                         logedIn: req.session.logedIn,
-                        postCategory: post,
+                        post: post,
                         pageTitle: post.title,
                         path: "/explore"
                     });
@@ -92,7 +92,7 @@ exports.getPost = (req, res, next) => {
 
                     res.render(`pages/${post.category}`, {
                         logedIn: req.session.logedIn,
-                        postCategory: post,
+                        post: post,
                         pageTitle: post.title,
                         path: "/explore"
                     });

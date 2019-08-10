@@ -3,16 +3,15 @@
 
 
 
-
 <div class="tour_hero "data-rate="-0.06">
-    <h1 class="tour_hero__title"><%= cafe.title%> <br>
-        <p class="tour_hero__title--sub"><%= cafe.small_description %></p>
+    <h1 class="tour_hero__title"><%= post.title%> <br>
+        <p class="tour_hero__title--sub"><%= post.small_description %></p>
     </h1>
     <ul class="tour_hero__showcase-images">
 
-        <% for(let i = 0; i < cafe.showcaseImagesUrls.length; i++){ %>
+        <% for(let i = 0; i < post.showcaseImagesUrls.length; i++){ %>
         <li class="tour_hero__showcase-images__image"
-            style='background-image: url("/images/<%= cafe.showcaseImagesUrls[i] %>" )'></li>
+            style='background-image: url("/images/<%= post.showcaseImagesUrls[i] %>" )'></li>
         <% } %>
     </ul>
 </div>
@@ -22,15 +21,181 @@
 <main class="cafe_main">
     <section class="cafe_about">
         <div class="cafe_about__image"></div>
-        <h2 class="cafe_about__title"><%= cafe.long_description__title %></h2>
-        <p class="cafe_about__text"><%= cafe.long_description__text %></p>
+        <h2 class="cafe_about__title"><%= post.long_description__title %></h2>
+        <p class="cafe_about__text"><%= post.long_description__text %></p>
         <div class="cafe_about__description"></div>
         <div class="cafe_about__time_of_oppening">
             <p>OPEN UNTIL</p>
             <div class="about__time_of_oppening__container"></div>
-            <p class="about__time_of_oppening__container__opened"><%= cafe.timeOfOpenAndClose.opened %> am</p>
-            <p class="about__time_of_oppening__container__closed"><%= cafe.timeOfOpenAndClose.closed %> am</p>
+            <p class="about__time_of_oppening__container__opened"><%= post.timeOfOpenAndClose.opened %> am</p>
+            <p class="about__time_of_oppening__container__closed"><%= post.timeOfOpenAndClose.closed %> am</p>
         </div>
+    </section>
+
+
+
+    <section class="menu">
+        <h2 class="menu__title"></h2>
+        <div class="manu__manu">
+            <div class="manu__manu__item">
+                <div class="manu__manu__item__image"></div>
+                <p class="manu__manu__item__name"></p>
+                <p class="manu__manu__item__desc"></p>
+                <div class="manu__manu__item__ratting">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                </div>
+            </div>
+            <div class="manu__manu__item">
+                <div class="manu__manu__item__image"></div>
+                <p class="manu__manu__item__name"></p>
+                <p class="manu__manu__item__desc"></p>
+                <div class="manu__manu__item__ratting">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                </div>
+            </div>
+            <div class="manu__manu__item">
+                <div class="manu__manu__item__image"></div>
+                <p class="manu__manu__item__name"></p>
+                <p class="manu__manu__item__desc"></p>
+                <div class="manu__manu__item__ratting">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                </div>
+            </div>
+            <div class="manu__manu__item">
+                <div class="manu__manu__item__image"></div>
+                <p class="manu__manu__item__name"></p>
+                <p class="manu__manu__item__desc"></p>
+                <div class="manu__manu__item__ratting">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                </div>
+            </div>
+            <div class="manu__manu__item">
+                <div class="manu__manu__item__image"></div>
+                <p class="manu__manu__item__name"></p>
+                <p class="manu__manu__item__desc"></p>
+                <div class="manu__manu__item__ratting">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                </div>
+            </div>
+            <div class="manu__manu__item">
+                <div class="manu__manu__item__image"></div>
+                <p class="manu__manu__item__name"></p>
+                <p class="manu__manu__item__desc"></p>
+                <div class="manu__manu__item__ratting">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                </div>
+            </div>
+            <div class="manu__manu__item">
+                <div class="manu__manu__item__image"></div>
+                <p class="manu__manu__item__name"></p>
+                <p class="manu__manu__item__desc"></p>
+                <div class="manu__manu__item__ratting">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                </div>
+            </div>
+            <div class="manu__manu__item">
+                <div class="manu__manu__item__image"></div>
+                <p class="manu__manu__item__name"></p>
+                <p class="manu__manu__item__desc"></p>
+                <div class="manu__manu__item__ratting">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section class="info">
+        <h2 class="info__title"></h2>
+        <div class="info__info">
+            <div class="info__info__contact">
+                <ul>
+                    <li>
+                        <img src="" alt="">
+                        <p></p>
+                    </li>
+                    <li>
+                        <img src="" alt="">
+                        <p></p>
+                    </li>
+                    <li>
+                        <img src="" alt="">
+                        <p></p>
+                    </li>
+                    <li>
+                        <img src="" alt="">
+                        <p></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="info__info__location"></div>
+        </div>
+    </section>
+
+
+
+    <section class="reviews">
+        <h2 class="reviews__title"></h2>
+        <ul>
+            <li>
+                <p></p>
+                <img src="" alt="">
+            </li>
+            <li>
+                <p></p>
+                <img src="" alt="">
+            </li>
+            <li>
+                <p></p>
+                <img src="" alt="">
+            </li>
+            <li>
+                <p></p>
+                <img src="" alt="">
+            </li>
+            <li>
+                <p></p>
+                <img src="" alt="">
+            </li>
+            <li>
+                <p></p>
+                <img src="" alt="">
+            </li>
+        </ul>
     </section>
 </main>
 
