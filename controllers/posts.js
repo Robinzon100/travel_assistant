@@ -72,23 +72,27 @@ exports.getPost = (req, res, next) => {
             queries
                 .findById('posts',postId)
                 .then(post => {
+                    
+                    let postCategory = post.category;
                     res.render(`pages/${post.category}`, {
                         logedIn: req.session.logedIn,
-                        post: post,
+                        postCategory: post,
                         pageTitle: post.title,
                         path: "/explore"
                     });
                 })
                 .catch(err => console.log(err));
+
         } else {
             queries
                 .findById('posts',postId)
                 .then(post => {
+                    let postCategory = post.category;
                     queries.addVisitors(post._id, "posts", visitorIp);
 
                     res.render(`pages/${post.category}`, {
                         logedIn: req.session.logedIn,
-                        post: post,
+                        postCategory: post,
                         pageTitle: post.title,
                         path: "/explore"
                     });

@@ -122,7 +122,7 @@
 
 
 <div class="medium-card-container glide" id="medium-card-container-expeditions">
-	<h1 class="underline-headings medium-card-container__title"><a class="link-thin-arrow " href=""> EXPEDITIONS </a>
+	<h1 class="underline-headings medium-card-container__title"><a class="link-thin-arrow " href=""> CAFE </a>
 	</h1>
 
 	<div class="glide__arrows medium-card-container__buttons" data-glide-el="controls">
@@ -134,27 +134,34 @@
 
 	<div class="glide__track" data-glide-el="track">
 		<div class="glide__slides">
-			<% for (let post of posts) {  %>
-			<div class="card-small glide__slide">
-				<a href="posts/<%= post._id %>">
-					<div class="card-small__image" style="background-image: url(<%=  post.cardImageUrl %>)"></div>
-				</a>
-				<a href="posts/<%= post._id %>" class="card-small__text">
-					<h2 class="card-small__text__title"><%= post.title %> </h2>
-					<p class="card-small__text__price"><%= post.price %>$</p>
-					<div class="card-small__text__description"><%=  post.small_description %></div>
-					<p class="card-small__text__views"> <span>👁</span>  <%= post.views %></p>
-					<div class="card-small__text__rating">
-						<% for(let i = 0; i < post.ratting; i++){ %>
-						<img class="card-small__text__rating__star" src="./img/SVG/star.svg" alt="">
-						<% } %>
+			<% for (let post of posts) {  
+				if (post.category == "cafe"){ %>
+					<div class="card-small glide__slide">
+						<a href="explore/<%= post._id %>">
+							<div class="card-small__image" style='background-image: url("images/<%= post.cardImageUrl %>")'></div>
+						</a>
+						<a href="explore/<%= post._id %>" class="card-small__text">
+							<h2 class="card-small__text__title"><%= post.title %> </h2>
+							<p class="card-small__text__price"><%= post.price %>$</p>
+							<div class="card-small__text__description"><%= post.small_description %></div>
+							<p class="card-small__text__views"> <span>👁</span> <%= post.views %></p>
+							<div class="card-small__text__rating">
+								<% for(let i = 0; i < post.ratting; i++){ %>
+									<img class="card-small__text__rating__star" src="./img/SVG/star.svg" alt="">
+								<% } %>
+							</div>
+
+							<p href="#" class="card-small__text__location"><img src="img/SVG/SVG/ratting.svg" alt="">tbilisi</p>
+
+						</a>
+
+						<form action="explore" method="post">
+							<button type="submit">add to boockmarks</button>
+							<input type="hidden" name="postId" value="<%= post._id %>">
+						</form>
 					</div>
-
-					<p href="#" class="card-small__text__location"><img src="img/SVG/SVG/ratting.svg" alt="">tbilisi</p>
-
-				</a>
-			</div>
-			<% } %>
+			<% } 
+		}%>
 		</div>
 	</div>
 </div>

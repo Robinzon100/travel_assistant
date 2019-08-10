@@ -167,8 +167,7 @@ exports.postAddCafe = (req, res, next) => {
         locationLink,
         website,
         email,
-        telephone,
-        views
+        telephone
     } = req.body;
 
     //! === === === === MENU === === === ===
@@ -208,7 +207,7 @@ exports.postAddCafe = (req, res, next) => {
     //! === === === === LOCATION LINK === === === ===
     let parsedLocationLink;
 
-    parsedLocationLink = locationLink.split(" ")[1].slice(4);
+    parsedLocationLink = locationLink.split(" ")[1].slice(4).replace(/['"]+/g, '');
 
     const cafe = new Cafe(
         title,
@@ -226,12 +225,11 @@ exports.postAddCafe = (req, res, next) => {
         telephone,
         cardImageUrl,
         showcaseImagesUrls,
-        aboutImage,
-        views
+        aboutImage
     );
 
     queries.save("posts", cafe).then(() => {
-        res.redirect("/admin/add-cafe");
+        res.redirect("/explore");
     });
     //visitors array
     // let visitors = [];

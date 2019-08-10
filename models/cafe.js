@@ -20,7 +20,6 @@ class Cafe {
         cardImageUrl,
         showcaseImagesUrls,
         aboutImage,
-        views,
         hostId
     ) {
         this.title = title;
@@ -39,7 +38,7 @@ class Cafe {
         this.cardImageUrl = cardImageUrl;
         this.showcaseImagesUrls = showcaseImagesUrls;
         this.aboutImage = aboutImage;
-        this.views = views;
+        this.views = 1;
         this.visitors = [];
         this.date_created = Date();
         this.reviews = {
@@ -66,10 +65,9 @@ class Cafe {
         ];
         this.fitured = false;
         this.highlyRated = false;
-        this.type = 'cafe'
+        this.category = 'cafe'
         this.hostId = hostId;
     }
-
 }
 
 module.exports = Cafe;
