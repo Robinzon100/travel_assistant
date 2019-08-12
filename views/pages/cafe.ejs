@@ -1,38 +1,54 @@
-<%- include('../includes/head.ejs')  %>
-<%- include('../includes/navigation.ejs')  %>
+<%- include('../includes/head.ejs') %> <%- include('../includes/navigation.ejs')
+%>
 
-
-
-<div class="tour_hero "data-rate="-0.06">
-    <h1 class="tour_hero__title"><%= post.title%> <br>
+<div class="tour_hero " data-rate="-0.06">
+    <h1 class="tour_hero__title">
+        <%= post.title%> <br />
         <p class="tour_hero__title--sub"><%= post.small_description %></p>
     </h1>
     <ul class="tour_hero__showcase-images">
-
         <% for(let i = 0; i < post.showcaseImagesUrls.length; i++){ %>
-        <li class="tour_hero__showcase-images__image"
-            style='background-image: url("/images/<%= post.showcaseImagesUrls[i] %>" )'></li>
+        <li
+            class="tour_hero__showcase-images__image"
+            style='background-image: url("/images/<%= post.showcaseImagesUrls[i] %>" )'
+        ></li>
         <% } %>
     </ul>
 </div>
 
-
-
 <main class="cafe_main">
     <section class="cafe_about">
         <div class="cafe_about__image"></div>
-        <h2 class="cafe_about__title"><%= post.long_description__title %></h2>
-        <p class="cafe_about__text"><%= post.long_description__text %></p>
-        <div class="cafe_about__description"></div>
-        <div class="cafe_about__time_of_oppening">
-            <p>OPEN UNTIL</p>
-            <div class="about__time_of_oppening__container"></div>
-            <p class="about__time_of_oppening__container__opened"><%= post.timeOfOpenAndClose.opened %> am</p>
-            <p class="about__time_of_oppening__container__closed"><%= post.timeOfOpenAndClose.closed %> am</p>
+
+        <div class="cafe_about__text__container">
+            <div class="text">
+                <h1 class="text__title">
+                    <%= post.long_description__title %>
+                </h1>
+
+                <div class="text__description">about this place</div>
+
+                <p class="text__text">
+                    <%= post.long_description__text %>
+                </p>
+
+                <div class="text__time_of_opening">
+                    <p class="text__time_of_opening__text">OPEN UNTIL</p>
+                    <div class="text__time_of_opening__container">
+                        <p class="text__time_of_opening__container__opened">
+                            <%= post.timeOfOpenAndClose.opened %>
+                            <span>am</span>
+                        </p>
+                        <img class="text__time_of_opening__container__arrow" src="../img/SVG/long_arrow.svg" alt="" />
+                        <p class="text__time_of_opening__container__opened">
+                            <%= post.timeOfOpenAndClose.closed %>
+                            <span>am</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-
-
 
     <section class="menu">
         <h2 class="menu__title"></h2>
@@ -42,11 +58,11 @@
                 <p class="manu__manu__item__name"></p>
                 <p class="manu__manu__item__desc"></p>
                 <div class="manu__manu__item__ratting">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
+                    <img src="" alt="" />
+                    <img src="" alt="" />
+                    <img src="" alt="" />
+                    <img src="" alt="" />
+                    <img src="" alt="" />
                 </div>
             </div>
             <div class="manu__manu__item">
@@ -54,11 +70,11 @@
                 <p class="manu__manu__item__name"></p>
                 <p class="manu__manu__item__desc"></p>
                 <div class="manu__manu__item__ratting">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
+                    <img src="" alt="" />
+                    <img src="" alt="" />
+                    <img src="" alt="" />
+                    <img src="" alt="" />
+                    <img src="" alt="" />
                 </div>
             </div>
             <div class="manu__manu__item">
@@ -66,11 +82,11 @@
                 <p class="manu__manu__item__name"></p>
                 <p class="manu__manu__item__desc"></p>
                 <div class="manu__manu__item__ratting">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
+                    <img src="" alt="" />
+                    <img src="" alt="" />
+                    <img src="" alt="" />
+                    <img src="" alt="" />
+                    <img src="" alt="" />
                 </div>
             </div>
             <div class="manu__manu__item">
@@ -78,11 +94,11 @@
                 <p class="manu__manu__item__name"></p>
                 <p class="manu__manu__item__desc"></p>
                 <div class="manu__manu__item__ratting">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
+                    <img src="" alt="" />
+                    <img src="" alt="" />
+                    <img src="" alt="" />
+                    <img src="" alt="" />
+                    <img src="" alt="" />
                 </div>
             </div>
             <div class="manu__manu__item">
@@ -90,11 +106,11 @@
                 <p class="manu__manu__item__name"></p>
                 <p class="manu__manu__item__desc"></p>
                 <div class="manu__manu__item__ratting">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
+                    <img src="" alt="" />
+                    <img src="" alt="" />
+                    <img src="" alt="" />
+                    <img src="" alt="" />
+                    <img src="" alt="" />
                 </div>
             </div>
             <div class="manu__manu__item">
@@ -102,11 +118,11 @@
                 <p class="manu__manu__item__name"></p>
                 <p class="manu__manu__item__desc"></p>
                 <div class="manu__manu__item__ratting">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
+                    <img src="" alt="" />
+                    <img src="" alt="" />
+                    <img src="" alt="" />
+                    <img src="" alt="" />
+                    <img src="" alt="" />
                 </div>
             </div>
             <div class="manu__manu__item">
@@ -114,11 +130,11 @@
                 <p class="manu__manu__item__name"></p>
                 <p class="manu__manu__item__desc"></p>
                 <div class="manu__manu__item__ratting">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
+                    <img src="" alt="" />
+                    <img src="" alt="" />
+                    <img src="" alt="" />
+                    <img src="" alt="" />
+                    <img src="" alt="" />
                 </div>
             </div>
             <div class="manu__manu__item">
@@ -126,18 +142,15 @@
                 <p class="manu__manu__item__name"></p>
                 <p class="manu__manu__item__desc"></p>
                 <div class="manu__manu__item__ratting">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
+                    <img src="" alt="" />
+                    <img src="" alt="" />
+                    <img src="" alt="" />
+                    <img src="" alt="" />
+                    <img src="" alt="" />
                 </div>
             </div>
         </div>
     </section>
-
-
-
 
     <section class="info">
         <h2 class="info__title"></h2>
@@ -145,19 +158,19 @@
             <div class="info__info__contact">
                 <ul>
                     <li>
-                        <img src="" alt="">
+                        <img src="" alt="" />
                         <p></p>
                     </li>
                     <li>
-                        <img src="" alt="">
+                        <img src="" alt="" />
                         <p></p>
                     </li>
                     <li>
-                        <img src="" alt="">
+                        <img src="" alt="" />
                         <p></p>
                     </li>
                     <li>
-                        <img src="" alt="">
+                        <img src="" alt="" />
                         <p></p>
                     </li>
                 </ul>
@@ -166,41 +179,35 @@
         </div>
     </section>
 
-
-
     <section class="reviews">
         <h2 class="reviews__title"></h2>
         <ul>
             <li>
                 <p></p>
-                <img src="" alt="">
+                <img src="" alt="" />
             </li>
             <li>
                 <p></p>
-                <img src="" alt="">
+                <img src="" alt="" />
             </li>
             <li>
                 <p></p>
-                <img src="" alt="">
+                <img src="" alt="" />
             </li>
             <li>
                 <p></p>
-                <img src="" alt="">
+                <img src="" alt="" />
             </li>
             <li>
                 <p></p>
-                <img src="" alt="">
+                <img src="" alt="" />
             </li>
             <li>
                 <p></p>
-                <img src="" alt="">
+                <img src="" alt="" />
             </li>
         </ul>
     </section>
 </main>
 
-
- 
-
-
-<%- include('../includes/bottom.ejs')  %>
+<%- include('../includes/bottom.ejs') %>

@@ -1,5 +1,5 @@
 p {
-    font-size: calc(14px + (17 - 14) * ((100vw - 300px) / (1900 - 700))) !important;
+    font-size: calc(13px + (17 - 13) * ((100vw - 300px) / (1900 - 700))) !important;
     // line-height: 1.7;
 } 
 
@@ -14,11 +14,11 @@ a {
 }
 
 h1 {
-    font-size: calc(18px + (45 - 18) * ((100vw - 300px) / (1900 - 700))) !important;
+    font-size: calc(22px + (45 - 22) * ((100vw - 300px) / (1900 - 700))) !important;
 }
 
 h2 {
-    font-size: calc(22px + (36 - 22) * ((100vw - 300px) / (1900 - 700))) !important;
+    font-size: calc(22px + (38 - 22) * ((100vw - 300px) / (1900 - 700))) !important;
 }
 
 h3 {
@@ -96,10 +96,10 @@ h3 {
 
 
     &__title{
-        font-size: calc(22px + (65 - 22) * ((100vw - 300px) / (1900 - 700))) !important;
+        font-size: calc(22px + (58 - 22) * ((100vw - 300px) / (1900 - 700))) !important;
 
         &--sub{
-            font-size: calc(16px + (30 - 16) * ((100vw - 300px) / (1900 - 700))) !important;
+            font-size: calc(16px + (26 - 16) * ((100vw - 300px) / (1900 - 700))) !important;
         }
     }
 }

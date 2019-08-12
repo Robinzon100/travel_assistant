@@ -17,6 +17,7 @@
         margin-left: 10vw;
         color: white;
         line-height: 1.2;
+        transform: translateY(20%);
         @extend %font-heading-1;
 
         &--sub {
