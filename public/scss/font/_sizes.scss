@@ -1,15 +1,15 @@
 p {
     font-size: calc(13px + (17 - 13) * ((100vw - 300px) / (1900 - 700))) !important;
     // line-height: 1.7;
-} 
+}
 
 .p-big {
     font-size: calc(16px + (20 - 16) * ((100vw - 300px) / (1900 - 700))) !important;
     letter-spacing: 1.1px;
     line-height: 3.3rem;
-} 
+}
 
-a { 
+a {
     // font-size: calc(14px + (18 - 14) * ((100vw - 300px) / (1900 - 700))) !important;
 }
 
@@ -28,13 +28,15 @@ h3 {
 
 
 
+// === === === === === === === === === ===
+//! CARDS
+// === === === === === === === === === ===
+.card-small {
 
-.card-small { 
- 
- 
+
     // STYLES
     &__text {
- 
+
 
         &__title {
             font-size: calc(13px + (14 - 13) * ((100vw - 300px)/ (1900 - 700))) !important;
@@ -56,12 +58,12 @@ h3 {
 
 }
 
-.card-large { 
- 
- 
+.card-large {
+
+
     // STYLES
     &__text {
- 
+
 
         &__title {
             font-size: calc(13px + (20 - 13) * ((100vw - 300px)/ (1900 - 700))) !important;
@@ -79,27 +81,65 @@ h3 {
             font-size: calc(13px + (18 - 13) * ((100vw - 300px)/ (1900 - 700))) !important;
         }
 
-        &__views{
-            font-size: calc(12px + (18 - 12) * ((100vw - 300px) / (1900 - 700))) !important;            
+        &__views {
+            font-size: calc(12px + (18 - 12) * ((100vw - 300px) / (1900 - 700))) !important;
         }
 
     }
 
 }
 
-  
 
 
 
 
+
+// === === === === === === === === === ===
+//! TOUR PAGE
+// === === === === === === === === === ===
 .tour_hero {
 
 
-    &__title{
+    &__title {
         font-size: calc(22px + (58 - 22) * ((100vw - 300px) / (1900 - 700))) !important;
 
-        &--sub{
+        &--sub {
             font-size: calc(16px + (26 - 16) * ((100vw - 300px) / (1900 - 700))) !important;
+        }
+    }
+}
+
+
+
+
+
+// === === === === === === === === === ===
+//! CAFE PAGE
+// === === === === === === === === === ===
+.cafe_about {
+
+
+
+    &__text {
+        grid-column: 2/3;
+    }
+
+    &__text__container {
+        .text {
+            &__time_of_opening {
+
+                &__text {
+                    font-size: calc(16px + (20 - 16) * ((100vw - 300px) / (1900 - 700))) !important;
+                }
+
+                &__container {
+
+                    &__opened {
+                        font-size: calc(14px + (18 - 14) * ((100vw - 300px) / (1900 - 700))) !important;
+                    }
+
+                }
+            }
         }
     }
 }

@@ -1,88 +1,120 @@
-.cafe_about {
-    // height: 100vh;
+.cafe_main {
 
-    &__image {
-        background: {
-            image: url("./../../img/png/cafe_about.jpg");
-            size: cover;
-            position: center;
+    .cafe_about {
+
+        &__image {
+            height: 100vh;
+
+            background: {
+                image: url("./../../img/png/cafe_about.jpg");
+                size: cover;
+                position: center;
+            }
+
         }
-        height: 100vh;
-    }
 
-    &__text__container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
+        &__text__container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
 
-        .text {
-            max-width: 45rem;
-            width: $max-width-vw;
-            text-align: right;
+            .text {
+                max-width: 45rem;
+                width: $max-width-vw;
+                text-align: right;
 
-            &__title {
-                line-height: 1.5;
-                margin-bottom: 1.8rem;
-                // font-family: $font-heading-2;
-                @extend %font-heading-1;
-                line-height: 5rem;
-            }
-
-            &__description {
-                margin: 1.8rem 0 1.8rem 0;
-                font-size: 1.8rem;
-                font-style: italic;
-                font-weight: thin;
-                color: rgba($color: $dark, $alpha: 0.5);
-            }
-
-            &__text {
-                margin-bottom: 4rem;
-            }
-
-            &__time_of_opening {
-                border-radius: $radius-std;
-                text-align: center;
-                float: right;
-                display: flex;
-                background-color: $primary-light;
-
-                &__text {
-                    color: white;
-                    margin: 0 2vw;
-                    align-self: center;
-                    justify-self: center;
-                    font-weight: bold;
+                &__title {
+                    line-height: 1.5;
+                    margin-bottom: 1.8rem;
+                    // font-family: $font-heading-2;
+                    @extend %font-heading-1;
+                    line-height: 5rem;
                 }
 
-                &__container {
-                    height: 100%;
-                    padding: 1.5vw;
-                    background-color: white;
+                &__description {
+                    margin: 1.8rem 0 1.8rem 0;
+                    font-size: 1.8rem;
+                    font-style: italic;
+                    font-weight: thin;
+                    color: rgba($color: $dark, $alpha: 0.5);
+                }
+
+                &__text {
+                    margin-bottom: 4rem;
+                }
+
+                &__time_of_opening {
+                    width: 100%;
                     border-radius: $radius-std;
-                    filter: drop-shadow(0 0px 6px rgba(50, 50, 50, 0.2));
+                    text-align: center;
+                    float: right;
+                    display: flex;
+                    background-color: $primary-light;
 
-                    p {
-                        color: $dark;
-                    }
-
-                    &__arrow {
+                    &__text {
+                        color: white;
+                        margin: 0 1.2rem;
+                        width: 50%;
+                        align-self: center;
                         justify-self: center;
+                        // font-weight: bold;
+                        font-family: opensans-bold;
                     }
 
-                    &__opened {
-                        font-weight: bold;
+                    &__container {
+                        padding: 0 1.2rem;
+                        border-radius: 10px;
+                        height: 8rem;
+                        width: 100%;
+                        background-color: white;
+                        border-radius: $radius-std;
+                        filter: drop-shadow(0 0px 6px rgba(50, 50, 50, 0.2));
 
-                        span {
-                            font-weight: 100;
-                            color: rgba($color: $dark, $alpha: 0.6);
-                            font-style: italic;
-                            margin-left: -5px;
+                        p {
+                            color: $dark;
+                        }
+
+                        &__arrow {
+                            justify-self: center;
+                        }
+
+                        &__opened {
+                            font-weight: bold;
+                            border-radius: 10px;
+                            width: 100%;
+
+                            span {
+                                font-family: opensans-light;
+                                font-weight: 100;
+                                color: rgba($color: $dark, $alpha: 0.6);
+                                // font-style: italic;
+                                margin-left: -5px;
+                            }
                         }
                     }
                 }
             }
         }
     }
+
+
+    .cafe_menu{
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        
+
+        &__container{
+            max-width: $max-width-rem;
+            width: $max-width;
+        }
+
+        &__title{
+
+        }
+    }
+    
+
 }

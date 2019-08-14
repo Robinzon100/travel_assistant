@@ -202,6 +202,7 @@
                         align-items: center;
                         grid-column-gap: 1rem;
                         padding: 2.5vw;
+                        height: initial;
 
                         &__arrow {
                             justify-self: center;
@@ -214,19 +215,3 @@
 
 
 }
-
-
-/* main.min.css | http://localhost:7000/css/main.min.css?browsersync=1565645866504 */
-
-.cafe_about__text__container .text__title {
-    /* margin-bottom: 1.8rem; */
-    /* line-height: 5rem; */
-
-  }
-  
-  .cafe_about__text__container .text__description {
-    /* margin: 1.8rem 0 1.8rem 0; */
-    /* font-size: 1.8rem; */
-    
-  }
-  
