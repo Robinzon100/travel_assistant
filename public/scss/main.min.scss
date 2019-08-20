@@ -13,12 +13,14 @@
 @import "layout/_flex-boxes";  
 @import "layout/_grids";
 
+@import "components/containers";
+@import "components/_info_panels";
 @import "components/_links";
 @import "components/_underlines";
 @import "components/_navigation";
 @import "components/_hamburger";
 @import "components/_buttons";
-@import "components/_slider";
+@import "components/_slider"; 
 @import "components/_cards";
 @import "components/_arrow_links";
 @import "components/loading";

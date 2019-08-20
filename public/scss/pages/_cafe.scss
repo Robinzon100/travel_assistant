@@ -20,9 +20,9 @@
             height: 100vh;
 
             .text {
-                max-width: 45rem;
+                max-width: 55rem;
                 width: $max-width-vw;
-                text-align: right;
+                text-align: left;
 
                 &__title {
                     line-height: 1.5;
@@ -99,22 +99,71 @@
     }
 
 
-    .cafe_menu{
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-content: center;
-        
+    .cafe_menu {
+        margin: 10rem 0;
 
-        &__container{
+
+
+        &__container {
             max-width: $max-width-rem;
             width: $max-width;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+
+
         }
 
-        &__title{
+
+        .cafe_menu__manu {
+            width: 100%;
+
+        }
+
+        &__item {
+            width: 100% !important;
+        }
+
+        &__item:not(:nth-child(4n-7)) {
+            // margin: 0 0 2rem 2rem;
+        }
+
+
+        &__title {
+            // margin-left: 5rem;
+            margin-bottom: 4rem;
+            position: relative;
+            font-family: gilroy-extrabold;
+            font-weight: 300;
+
 
         }
     }
-    
+
+    .info {
+        padding: 5vw 0;
+        background-color: $primary-light;
+
+        .container {
+
+            .title {
+                color: white;
+
+                &::after {
+                    background-color: white !important;
+                }
+            }
+
+
+        }
+    }
+
 
 }
+
+
+
+
+ 

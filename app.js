@@ -8,7 +8,7 @@ const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const flash = require("connect-flash");
 const multer = require("multer");
-// const compression = require('compression');
+// const compression = require('compression'); 
 require("dotenv").config();
 
 // ─── MY IMPORTS ─────────────────────────────────────────────────────────────────

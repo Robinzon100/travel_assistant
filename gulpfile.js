@@ -52,7 +52,7 @@ function watch() {
 
   gulp.watch("./public/scss/**/*.scss", style);
   gulp.watch("./public/js/**/*.js", javascript);
-  // gulp.watch("./views/**/*.ejs").on('change', browserSync.reload);
+  gulp.watch("views/**/*.ejs").on('change', browserSync.reload);
 }
 
 

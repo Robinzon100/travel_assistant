@@ -15,7 +15,36 @@
             grid-template-areas: "first second third fourth fifth sixth";
         }
     }
+
+
+
+    //     .cafe_menu {
+
+
+
+
+    //         .cafe_menu__manu {
+    //             grid-template-columns:  1fr !important;
+    //         }
+
+    //         &__item {
+    //             // margin-bottom: 2rem;
+    //         }
+
+    //         &__item:not(:nth-child(4n-7)) {
+    //             // margin: 0 0 2rem 2rem;
+    //         }
+
+
+    //         &__title {
+
+
+    //             &::after {}
+    //         }
+    //     }
 }
+
+
 
 @media all and (max-width: 980px) {
 
@@ -157,9 +186,9 @@
         grid-template-rows: 2fr;
         // grid-column-gap: 3vw;
 
-        &__image {
+        .cafe_about__image {
             grid-column: 1;
-            height: 50vh;
+            height: 30vh;
             background-attachment: fixed;
         }
 
@@ -167,45 +196,63 @@
             grid-column: 1;
         }
 
-        &__text__container {
-            height: inherit;
+        .cafe_about__text__container {
+            height: initial;
             margin: 4rem 0;
             justify-content: center;
 
+
             .text {
-                text-align: center;
+                text-align: left;
                 width: $max-width-vw;
 
-                &__title{
+                &__title {
                     margin-top: 1.8rem;
                     margin-bottom: 0;
-                    line-height: 3rem;
+                    line-height: 3.4rem;
                 }
 
-                &__description{
+                &__description {
                     margin: 1rem 0 1rem 0;
-                    font-size: 1.6rem;
+                    font-size: 1.5rem;
                 }
 
                 &__time_of_opening {
-                    justify-content: space-between;
+                    justify-content: center;
                     float: none;
+                    background-color: transparent;
+                    flex-direction: column;
+                    align-content: center;
 
-                    &__text{
-                        margin: 0 auto;
+                    &__text {
+                        /* margin: 0 auto; */
+                        /* width: 25%; */
+                        width: 80%;
+                        background-color: #21e6c1;
+                        border-radius: 6px 6px 0 0;
+                        padding: 1.5rem 0;
+                        font-size: calc(13px + (20 - 13) * ((100vw - 300px)/ (1900 - 700))) !important;
+
                     }
 
+
                     &__container {
+                        box-shadow: 0px -15px 40px -20px rgba(0, 0, 0, 0.5);
                         display: grid;
                         grid-template-columns: 1fr 1fr 1fr;
                         grid-template-rows: 1fr;
                         align-items: center;
-                        grid-column-gap: 1rem;
-                        padding: 2.5vw;
+                        grid-column-gap: 0;
+                        padding: 2rem 0;
                         height: initial;
 
                         &__arrow {
                             justify-self: center;
+                            width: 50%;
+                        }
+
+                        &__opened {
+                            font-size: calc(16px + (18 - 14) * ((100vw - 300px)/ (1900 - 700))) !important;
                         }
                     }
                 }
@@ -214,4 +261,74 @@
     }
 
 
+
+    .cafe_menu {
+
+
+
+
+        &__container {}
+
+
+        .cafe_menu__manu {
+            width: 100%;
+            display: grid;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(calc(45rem / 2), 1fr)) !important;
+            align-items: center;
+            justify-items: center;
+            grid-row-gap: 5rem;
+        }
+
+        &__item {
+            // margin-bottom: 2rem;
+        }
+
+        &__item:not(:nth-child(4n-7)) {
+            // margin: 0 0 2rem 2rem;
+        }
+
+
+        &__title {
+
+
+            &::after {}
+        }
+    }
+
+
+
+
+
+}
+
+
+
+@media all and (max-width: 1280px) {
+    .cafe_menu {
+
+
+        &__container {}
+
+
+        .cafe_menu__manu {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            align-items: center;
+            justify-items: center;
+            grid-row-gap: 5rem;
+        }
+
+        &__item {}
+
+        &__item:not(:nth-child(4n-7)) {}
+
+
+        &__title {
+
+
+            &::after {}
+        }
+    }
 }

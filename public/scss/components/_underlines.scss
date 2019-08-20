@@ -1,7 +1,7 @@
-span {
-    position: relative;
-    z-index: 1;
-}
+// span {
+//     position: relative;
+//     z-index: 1;
+// }
 
 .underline-1 {
     text-decoration: none;
@@ -48,5 +48,24 @@ span {
         bottom: 20%;
         transform: translateX(-50%);
         left: 50%;
+    }
+}
+
+
+ 
+
+.line-on-left{
+    position: relative;
+
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 4vw;
+        height: 3px;
+        background-color: #071e3d;
+        transform: translate(-120%,-50%);
+        top: 50%;
+        // left: -2%;
     }
 }
