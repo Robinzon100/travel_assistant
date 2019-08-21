@@ -14,7 +14,7 @@
         grid-template-rows: 1fr;
 
         p {
-            font-size: calc(13px + (17 - 13) * ((100vw - 300px) / (1900 - 700))) !important;
+            font-size: calc(13px + (20 - 13) * ((100vw - 300px) / (1900 - 700))) !important;
         }
     }
 
@@ -23,7 +23,7 @@
 
     &__content {
         padding: 0 3vw;
-        width: 60%;
+        width: 65%;
         align-self: center;
         justify-self: center;
     }
@@ -124,7 +124,7 @@
         width: 100% !important;
         position: relative;
         bottom: 0;
-        height: 26rem;
+        // height: 26rem;
         overflow: hidden;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
@@ -159,58 +159,16 @@
 
 @media all and (max-width: 736px) {
     .info_panel__wide {
-        background-color: white;
-        filter: drop-shadow(0 0 20px rgba(black, 0.1));
-        border-radius: 10px; 
-        position: sticky;
-        // top: 10vh;
-        height: 42rem;
-        overflow: hidden;
 
         &__container {
             height: 100%;
             display: grid;
             grid-template-columns: 1fr;
-            grid-template-rows: 1fr;
-
-            p {
-                font-size: calc(13px + (17 - 13) * ((100vw - 300px) / (1900 - 700))) !important;
-            }
+            grid-template-rows: 1fr 1fr;
         }
 
 
-
-
-        &__content {
-            padding: 0 3vw;
-            width: 60%;
-            align-self: center;
-            justify-self: center;
-        }
-
-        &__img {
-            width: 11vw;
-            height: 11vw;
-            background-color: white;
-            @include centerlize;
-            position: absolute;
-            top: -0%;
-            left: 50%;
-            border-radius: 1000px;
-            filter: drop-shadow(0 8px 3px rgba(black, 0.4));
-
-            background: {
-                position: center;
-                size: cover;
-                repeat: no-repeat;
-            }
-        }
-
-        &__price {
-            text-align: center;
-            margin: 3rem 0;
-            color: $green;
-        }
+        &__content {}
 
         hr {
             color: rgba(black, 0.1);
@@ -280,15 +238,7 @@
         }
 
         &__map {
-            height: 100%;
-            width: 100% !important;
-            position: relative;
-            bottom: 0;
-            height: 26rem;
-            overflow: hidden;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            grid-column: 1/2!important;
+            grid-column: 1/2 !important;
 
             &--map {
                 height: 100% !important;
@@ -297,18 +247,57 @@
 
     }
 
-    .mapouter {
-        height: 100% !important;
-        width: 100% !important;
 
-        .gmap_canvas {
-            // height: 20rem !important;
-            height: 100% !important;
+}
+
+
+
+
+@media all and (max-width: 500px){
+    .info_panel__wide {
+        height: 48rem;
+
+        &__container {
+            height: 100%;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr;
         }
 
-        #gmap_canvas {
-            height: 100% !important;
-            width: 100% !important;
+
+        &__content {}
+
+        hr {
+            color: rgba(black, 0.1);
         }
+
+        &__info {
+            margin: 4rem 0;
+
+            ul {
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr;
+                grid-gap: 3rem;
+                justify-items: left;
+
+                li {
+                     
+                    position: relative;
+                }
+            }
+        }
+
+        &__map {
+            grid-column: 1/2 !important;
+
+            &--map {
+                height: 100% !important;
+            }
+        }
+
     }
 }
+
+ 
+  
