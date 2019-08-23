@@ -183,12 +183,15 @@
     .cafe_about {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 2fr;
+        grid-template-rows: 1fr 2fr;
+        justify-items: center;
+        // justify-items: center;
         // grid-column-gap: 3vw;
 
         .cafe_about__image {
             grid-column: 1;
-            height: 30vh;
+            height: 100%;
+            width: 100%;
             background-attachment: fixed;
         }
 

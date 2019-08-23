@@ -7,6 +7,10 @@
     z-index: 99999;
     transition: all 0.2s ease;
     top: 0;
+    
+    *{
+        font-family: LexendDeca !important;
+    }
 
     // &::before {
     //     background: url(https://i.ytimg.com/vi/eq7Adzo4QAE/maxresdefault.jpg) 0 / cover fixed;
@@ -37,7 +41,7 @@
 
                     input {
                         font-size: calc(16px + (20 - 16) * ((100vw - 300px) / (1900 - 700))) !important;
-                        font-family: opensans-regular;
+                         
                         font-weight: 200;
                         border: none;
                         cursor: pointer;
@@ -58,7 +62,7 @@
 
                     a {
                         font-size: calc(16px + (20 - 16) * ((100vw - 300px) / (1900 - 700))) !important;
-                        font-family: opensans-regular;
+                         
                         font-weight: 200;
 
                         &:hover + ::after {
