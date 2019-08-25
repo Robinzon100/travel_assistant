@@ -1,6 +1,7 @@
 const Tours = require("./../models/tours");
 const Users = require("./../models/users");
 const queries = require("./../queries/usersAndHost");
+const isVisited = require("./../utils/visited").isVisited;
 
 //! ─── LANDING ────────────────────────────────────────────────────────────────────
 exports.getLanding = (req, res, next) => {
@@ -56,50 +57,19 @@ exports.getPost = (req, res, next) => {
     const postId = req.params.singlePostId;
     const visitorIp = req.socket.localAddress;
 
-    console.log(postId)
+    isVisited(postId, visitorIp);
 
-
-    queries.getPostsVisitorsIp("posts", postId).then(visitedIps => {
-        let isVisited = false;
-
-        visitedIps.forEach(el => {
-            if (el == visitorIp) {
-                isVisited = true;
-            }
-        });
-
-        if (isVisited) {
-            queries
-                .findById('posts',postId)
-                .then(post => {
-                    
-                    let postCategory = post.category;
-                    res.render(`pages/${post.category}`, {
-                        logedIn: req.session.logedIn,
-                        post: post,
-                        pageTitle: post.title,
-                        path: "/explore"
-                    });
-                })
-                .catch(err => console.log(err));
-
-        } else {
-            queries
-                .findById('posts',postId)
-                .then(post => {
-                    let postCategory = post.category;
-                    queries.addVisitors(post._id, "posts", visitorIp);
-
-                    res.render(`pages/${post.category}`, {
-                        logedIn: req.session.logedIn,
-                        post: post,
-                        pageTitle: post.title,
-                        path: "/explore"
-                    });
-                })
-                .catch(err => console.log(err));
-        }
-    });
+    queries
+        .findById("posts", postId)
+        .then(post => {
+            res.render(`pages/${post.category}`, {
+                logedIn: req.session.logedIn,
+                post: post,
+                pageTitle: post.title,
+                path: "/explore"
+            });
+        })
+        .catch(err => console.log(err));
 };
 
 //
@@ -253,3 +223,44 @@ exports.getSearch = (req, res, next) => {
         path: "/search"
     });
 };
+
+// queries.getPostsVisitorsIp("posts", postId).then(visitedIps => {
+//     let isVisited = false;
+
+//     visitedIps.forEach(el => {
+//         if (el == visitorIp) {
+//             isVisited = true;
+//         }
+//     });
+
+//     if (isVisited) {
+//         queries
+//             .findById('posts',postId)
+//             .then(post => {
+//                 let postCategory = post.category;
+//                 res.render(`pages/${post.category}`, {
+//                     logedIn: req.session.logedIn,
+//                     post: post,
+//                     pageTitle: post.title,
+//                     path: "/explore"
+//                 });
+//             })
+//             .catch(err => console.log(err));
+
+//     } else {
+//         queries
+//             .findById('posts',postId)
+//             .then(post => {
+//                 let postCategory = post.category;
+//                 queries.addVisitors(post._id, "posts", visitorIp);
+
+//                 res.render(`pages/${post.category}`, {
+//                     logedIn: req.session.logedIn,
+//                     post: post,
+//                     pageTitle: post.title,
+//                     path: "/explore"
+//                 });
+//             })
+//             .catch(err => console.log(err));
+//     }
+// });

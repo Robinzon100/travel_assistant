@@ -155,6 +155,7 @@ exports.postAddCafe = (req, res, next) => {
     let {
         title,
         small_description,
+        establishment_name,
         long_description__title,
         long_description__text,
         open_time,
@@ -183,9 +184,9 @@ exports.postAddCafe = (req, res, next) => {
 
     const menu_item_ImageUrl = allImages.menu_item_ImageUrl;
     const menu_item_ImageUrls = []; // MENU ITEM IMAGE URLS
-    menu_item_ImageUrl.forEach(image =>
-        menu_item_ImageUrls.push(image.filename)
-    );
+    // menu_item_ImageUrl.forEach(image =>
+    //     menu_item_ImageUrls.push(image.filename) 
+    // );
 
     let menu = [];
 
@@ -212,6 +213,7 @@ exports.postAddCafe = (req, res, next) => {
     const cafe = new Cafe(
         title,
         small_description,
+        establishment_name,
         timeOfOpenAndClose,
         long_description__title,
         long_description__text,
@@ -231,8 +233,7 @@ exports.postAddCafe = (req, res, next) => {
     queries.save("posts", cafe).then(() => {
         res.redirect("/explore");
     });
-    //visitors array
-    // let visitors = [];
+    let visitors = [];
 
     // amenities.forEach(amenitie => {
     //     activeAmenities.push({

@@ -6,6 +6,7 @@ class Cafe {
     constructor(
         title,
         small_description,
+        establishment_name,
         timeOfOpenAndClose,
         long_description__title,
         long_description__text,
@@ -23,6 +24,7 @@ class Cafe {
         hostId
     ) {
         this.title = title;
+        this.establishment_name = establishment_name;
         this.small_description = small_description;
         this.timeOfOpenAndClose = timeOfOpenAndClose,
         this.long_description__title = long_description__title;
