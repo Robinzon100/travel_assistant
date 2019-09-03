@@ -43,13 +43,28 @@ class Cafe {
         this.views = 1;
         this.visitors = [];
         this.date_created = Date();
-        this.reviews = {
-            satisfaction: [2], 
-            Cleanliness: [2],
-            communication: [2],
-            food: [2],
-            value: [2]
-        };
+        this.reviews = [
+            {
+                name: satisfaction,
+                stars: [2]
+            },
+            {
+                name: Cleanliness,
+                stars: [2]
+            },
+            {
+                name: communication,
+                stars: [2]
+            },
+            {
+                name: food,
+                stars: [2]
+            },
+            {
+                name: value,
+                stars: [2]
+            }
+        ];
         this.comments = [
             // {
             //     commentId: mongoId.ObjectID(),

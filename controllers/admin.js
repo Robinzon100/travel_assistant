@@ -67,7 +67,10 @@ exports.postAddTour = (req, res, next) => {
 
         //! === === === === LOCATION LINK === === === ===
         let parsedLocationLink;
-        parsedLocationLink = locationLink.split(" ")[1].slice(4).replace(/['"]+/g, '');
+        parsedLocationLink = locationLink
+            .split(" ")[1]
+            .slice(4)
+            .replace(/['"]+/g, "");
 
         const tour = new Tour(
             title,
@@ -171,79 +174,108 @@ exports.postAddCafe = (req, res, next) => {
         telephone
     } = req.body;
 
-    //! === === === === MENU === === === ===
 
-    const allImages = req.files;
+    const errors = validationResult(req);
 
-    const cardImageUrl = allImages.card_image[0].filename; // CARD IMAGE URL
-    const aboutImage = allImages.about_image[0].filename; // CARD IMAGE URL
+    if (errors.isEmpty()) {
+        // //! === === === === MENU === === === ===
 
-    const showcaseImages = allImages.showcase_images;
-    const showcaseImagesUrls = []; // SHOWCASE IMAGE URLS
-    showcaseImages.forEach(image => showcaseImagesUrls.push(image.filename));
+        const allImages = req.files;
 
-    const menu_item_ImageUrl = allImages.menu_item_ImageUrl;
-    const menu_item_ImageUrls = []; // MENU ITEM IMAGE URLS
-    // menu_item_ImageUrl.forEach(image =>
-    //     menu_item_ImageUrls.push(image.filename) 
-    // );
+        const cardImageUrl = allImages.card_image[0].filename; // CARD IMAGE URL
+        const aboutImage = allImages.about_image[0].filename; // CARD IMAGE URL
 
-    let menu = [];
+        const showcaseImages = allImages.showcase_images;
+        const showcaseImagesUrls = []; // SHOWCASE IMAGE URLS
+        showcaseImages.forEach(image =>
+            showcaseImagesUrls.push(image.filename)
+        );
 
-    for (let i = 0; i < menu_item_ImageUrls.length; i++) {
-        menu.push({
-            imageUrl: menu_item_ImageUrls[i],
-            name: menu_item_name[i],
-            description: menu_item_description[i],
-            reviews: []
+        const menu_item_ImageUrl = allImages.menu_item_ImageUrl;
+        const menu_item_ImageUrls = []; // MENU ITEM IMAGE URLS
+        menu_item_ImageUrl.forEach(image =>
+            menu_item_ImageUrls.push(image.filename)
+        );
+
+        let menu = [];
+
+        for (let i = 0; i < menu_item_ImageUrls.length; i++) {
+            menu.push({
+                imageUrl: menu_item_ImageUrls[i],
+                name: menu_item_name[i],
+                description: menu_item_description[i],
+                reviews: []
+            });
+        }
+
+        //! === === === === TIME OF OPENING === === === ===
+        let timeOfOpenAndClose = {
+            opened: open_time,
+            closed: close_time
+        };
+
+        //! === === === === LOCATION LINK === === === ===
+        let parsedLocationLink;
+
+        parsedLocationLink = locationLink
+            .split(" ")[1]
+            .slice(4)
+            .replace(/['"]+/g, "");
+
+        const cafe = new Cafe(
+            title,
+            small_description,
+            establishment_name,
+            timeOfOpenAndClose,
+            long_description__title,
+            long_description__text,
+            menu,
+            rules,
+            keepInMind,
+            location,
+            locationLink,
+            website,
+            email,
+            telephone,
+            cardImageUrl,
+            showcaseImagesUrls,
+            aboutImage
+        );
+
+        queries.save("posts", cafe).then(() => {
+            res.redirect("/explore");
+        });
+        let visitors = [];
+
+        // amenities.forEach(amenitie => {
+        //     activeAmenities.push({
+        //         amenitie: amenitie,
+        //         imageUrl: `${amenitie}.svg`,
+        //         have: true
+        //     });
+        // });
+
+        // console.log(activeAmenities);
+    } else {
+        console.log(errors.array())
+        return res.status(422).render("admin/add-cafe", {
+            pageTitle: "add-cafe",
+            path: "/admin/add-cafe",
+            logedIn: req.session.logedIn,
+            errorMessage: errors.array(),
+            oldInputValues: {
+                title: title,
+                small_description: small_description,
+                long_description__title: long_description__title,
+                long_description__text: long_description__text,
+                location: location,
+                locationLink: locationLink,
+                website: website,
+                email: email,
+                telephone: telephone
+            }
         });
     }
-
-    //! === === === === TIME OF OPENING === === === ===
-    let timeOfOpenAndClose = {
-        opened: open_time,
-        closed: close_time
-    };
-
-    //! === === === === LOCATION LINK === === === ===
-    let parsedLocationLink;
-
-    parsedLocationLink = locationLink.split(" ")[1].slice(4).replace(/['"]+/g, '');
-
-    const cafe = new Cafe(
-        title,
-        small_description,
-        establishment_name,
-        timeOfOpenAndClose,
-        long_description__title,
-        long_description__text,
-        menu,
-        rules,
-        keepInMind,
-        location,
-        locationLink,
-        website,
-        email,
-        telephone,
-        cardImageUrl,
-        showcaseImagesUrls,
-        aboutImage
-    );
-
-    queries.save("posts", cafe).then(() => {
-        res.redirect("/explore");
-    });
-    let visitors = [];
-
-    // amenities.forEach(amenitie => {
-    //     activeAmenities.push({
-    //         amenitie: amenitie,
-    //         imageUrl: `${amenitie}.svg`,
-    //         have: true
-    //     });
-    // });
-
-    // console.log(activeAmenities);
 };
 
 //!  shop

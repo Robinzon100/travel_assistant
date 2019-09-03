@@ -14,7 +14,7 @@
         grid-template-rows: 1fr;
 
         p {
-            font-size: calc(13px + (20 - 13) * ((100vw - 300px) / (1900 - 700))) !important;
+            font-size: calc(13px + (17 - 13) * ((100vw - 300px) / (1900 - 700))) !important;
         }
     }
 
@@ -45,13 +45,7 @@
             repeat: no-repeat;
         }
     }
-
-    &__price {
-        text-align: center;
-        margin: 3rem 0;
-        color: $green;
-    }
-
+ 
     hr {
         color: rgba(black, 0.1);
     }

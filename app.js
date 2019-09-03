@@ -28,7 +28,11 @@ app.set("view engine", "ejs");
 app.set("views", "views");
 
 // ─── BODY PARSER AND MULTER ────────────────────────────────────────────────────────────────
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({ type: 'application/*+json' }));
 
 // // ─── FILE STORAGE OPTIONS FOR MULTER ────────────────────────────────────────────
 // const fileStorage = multer.diskStorage({

@@ -62,6 +62,8 @@ exports.getPost = (req, res, next) => {
     queries
         .findById("posts", postId)
         .then(post => {
+            console.log(post);
+            
             res.render(`pages/${post.category}`, {
                 logedIn: req.session.logedIn,
                 post: post,

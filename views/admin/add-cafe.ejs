@@ -1,16 +1,26 @@
-<%- include('../includes/head.ejs') %> <%- include('../includes/navigation.ejs')
-%>
+<%- include('../includes/head.ejs') %>
+<%- include('../includes/navigation.ejs')%>
+
+
 
 <br />
 <br />
 <br />
 <br />
 <br />
+<% if (errorMessage) { %>
+        <% for (const error  of errorMessage) {%>
+            <h2 style="color:red"><%=error.msg%></h2>
+    <%}%>  
+<%}%>
 <br />
 <br />
 <br />
 <form action="/admin/add-cafe" method="post" enctype="multipart/form-data">
     <!-- text -->
+    <input type="hidden" name="typeOfPost" value="cafe">
+
+
     <h3>must be 7 or less words</h3>
     <input
         type="text"
@@ -152,6 +162,8 @@
     />
     <br />
 
+  
+
     <br />
     <br />
     <br />
@@ -184,9 +196,7 @@
         id=""
     />
     <br />
-
  
-
     <button type="submit">add tour</button>
 </form>
 

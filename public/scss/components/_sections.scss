@@ -26,8 +26,8 @@
 
             li {
                 display: inline-grid;
-                justify-items: center;
                 grid-template-columns: 1fr 2fr;
+                justify-items: left;
                 align-items: center;
 
 
@@ -44,7 +44,8 @@
                 }
 
                 img {
-                    width: calc(100%/5.9);
+                    margin-left: 1rem;
+                    width: 3rem;
                 }
 
 

@@ -384,12 +384,13 @@
 
         &__name {
             font-size: calc(14px + (17 - 14) * ((100vw - 300px)/ (1900 - 700))) !important;
-
+            font-family: montserat-semibold!important; 
+            color: rgb(14, 14, 14) !important;
         }
 
         &__desc {
             margin: -0.4rem 0;
-            color: rgba(0, 0, 0, 0.66);
+            color: rgba(0, 0, 0, 0.5);
             margin: .5rem 0 .9rem 0;
             font-size: calc(13px + (14 - 13) * ((100vw - 300px)/ (1900 - 700))) !important;
         }

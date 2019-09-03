@@ -25,11 +25,11 @@
                 text-align: left;
 
                 &__title {
-                    line-height: 1.5;
+                    // line-height: 1.5;
                     margin-bottom: 1.8rem;
                     // font-family: $font-heading-2;
                     @extend %font-heading-1;
-                    line-height: 5rem;
+                    line-height: 6rem;
                 }
 
                 &__description {

@@ -1,0 +1,18 @@
+<section class="reviews">
+    <div class="reviews__container container">
+        <h2 class="title">Reviews</h2>
+        <ul>
+            <%post.reviews.forEach(review => {%>
+                <li>
+                    <p> <%=review.name%></p>
+                    <div class="ratting_stars">
+                        <%for (let i = 0; i < review.stars.length; i++){%>
+                            <img src="/img/SVG/star.svg" alt="" />
+                        <%}%>
+                    </div>
+                </li>
+            <%});%>
+        </ul>
+    </div>
+</section>
+
