@@ -3,6 +3,7 @@ const Tour = require("../models/tours");
 const { validationResult } = require("express-validator/check");
 const queries = require("../queries/usersAndHost");
 
+
 //? ─── ADD ────────────────────────────────────────────────────────────────────────
 
 //!  tour
@@ -175,7 +176,15 @@ exports.postAddCafe = (req, res, next) => {
     } = req.body;
 
 
+
+    
+   
+
+
+
     const errors = validationResult(req);
+
+
 
     if (errors.isEmpty()) {
         // //! === === === === MENU === === === ===
@@ -245,6 +254,9 @@ exports.postAddCafe = (req, res, next) => {
         queries.save("posts", cafe).then(() => {
             res.redirect("/explore");
         });
+ 
+ 
+
         let visitors = [];
 
         // amenities.forEach(amenitie => {

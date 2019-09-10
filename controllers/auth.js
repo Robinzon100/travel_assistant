@@ -1,12 +1,3 @@
-// const Joi = require("@hapi/joi");
-
-// using SendGrid's v3 Node.js Library
-// https://github.com/sendgrid/sendgrid-nodejs
-
-//  USER validation schema
-// const schema = require("../models/schemas/user");
-// "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"
-
 const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
 const mailer = require("../utils/mailer.js");

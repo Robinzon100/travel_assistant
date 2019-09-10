@@ -9,112 +9,130 @@
 <br />
 <br />
 <% if (errorMessage) { %>
-        <% for (const error  of errorMessage) {%>
-            <h2 style="color:red"><%=error.msg%></h2>
-    <%}%>  
+<% for (const error  of errorMessage) {%>
+<h2 style="color:red"><%=error.msg%></h2>
+<%}%>  
 <%}%>
 <br />
 <br />
 <br />
 <form action="/admin/add-cafe" method="post" enctype="multipart/form-data">
+
+
     <!-- text -->
     <input type="hidden" name="typeOfPost" value="cafe">
 
 
     <h3>must be 7 or less words</h3>
-    <input
-        type="text"
-        name="title"
-        value="<%= oldInputValues.title %>"
-        placeholder="title"
-    />
+    <div class="box">
+        <div class="counter-display-container">
+            <p id="counter-display">0</p>
+        </div>
+        <input id="counter-input" type="text" name="title" value="<%= oldInputValues.title %>" placeholder="title" />
+    </div>
+    </div>
     <br />
     <br />
     <h3>must be 8-9 or less words</h3>
-    <input
-        type="text"
-        name="small_description"
-        value="<%= oldInputValues.small_description %>"
-        placeholder="small_description"
-    />
+    <div class="box">
+        <div class="counter-display-container">
+            <p id="counter-display">0</p>
+        </div>
+        <input id="counter-input" type="text" name="small_description" value="<%= oldInputValues.small_description %>"
+            placeholder="small_description" />
+    </div>
+    </div>
     <br />
     <br />
     <h3>must be 9-10 or less words</h3>
-    <input
-        type="text"
-        name="establishment_name"
-        value="<%= oldInputValues.establishment_name %>"
-        placeholder="establishment_name"
-    />
+    <div class="box">
+        <div class="counter-display-container">
+            <p id="counter-display">0</p>
+        </div>
+        <input id="counter-input" type="text" name="establishment_name" value="<%= oldInputValues.establishment_name %>"
+            placeholder="establishment_name" />
+    </div>
+    </div>
     <br />
     <br />
     <h3>must be 9-10 or less words</h3>
-    <input
-        type="text"
-        name="long_description__title"
-        value="<%= oldInputValues.long_description__title %>"
-        placeholder="long_description__title"
-    />
+    <div class="box">
+        <div class="counter-display-container">
+            <p id="counter-display">0</p>
+        </div>
+        <input id="counter-input" type="text" name="long_description__title"
+            value="<%= oldInputValues.long_description__title %>" placeholder="long_description__title" />
+    </div>
+    </div>
     <br />
     <br />
     <h3>must be 40-50 or less words</h3>
-    <textarea
-        name="long_description__text"
-        placeholder="long_description__text"
-        id=""
-        cols="30"
-        rows="10"
-    ></textarea>
+    <div class="box">
+        <div class="counter-display-container">
+            <p id="counter-display">0</p>
+        </div>
+        <textarea id="counter-input" name="long_description__text" placeholder="long_description__text" id="" cols="30"
+            rows="10"></textarea>
+    </div>
 
+    </div>
+    </div>
     <br />
     <br />
     <br />
     <h3>time of opening and closing</h3>
-    <input
-        type="time"
-        name="open_time"
-        value="09:00"
-        placeholder="tipe of opening"
-    />
-    <input
-        type="time"
-        name="close_time"
-        value="12:00"
-        placeholder="tipe of opening"
-    />
+
+
+    <input type="time" name="open_time" value="09:00" placeholder="tipe of opening" />
+    <div class="box">
+
+        <input type="time" name="close_time" value="12:00" placeholder="tipe of opening" />
+    </div>
     <br />
     <br />
     <br />
-    
+
 
 
     <h3>menu</h3>
-    <input id="menuItemFileInp" type="file" name="menu_item_ImageUrl" multiple="" id="iva">
-    <ul id="menu_container">
-       
-    </ul>
+    <div class="box">
+
+        <input id="menuItemFileInp" type="file" name="menu_item_ImageUrl" multiple="" id="iva">
+        <ul id="menu_container">
+
+        </ul>
+    </div>
+    </div>
     <br />
     <br />
     <br />
     <h3>rules</h3>
     <ol style="list-style-type:decimal !important;">
         <li>
-            <input type="text" name="rules" id="">
-            <h4 id="deleteElementBtn">delete rule</h4id>
+            <div class="box">
+                <div class="counter-display-container">
+                    <p id="counter-display">0</p>
+                </div>
+                <input id="counter-input" type="text" name="rules" id="">
+                <h4 id="deleteElementBtn">delete rule</h4id>
         </li>
         <h4 id="addPreviousElementBtn">add rule</h4id>
-        
+
     </ol>
 
 
     <h3>keep in mind</h3>
     <ol style="list-style-type:decimal !important;">
         <li>
-            <input type="text" name="keepInMind" id="">
-            <h4 id="deleteElementBtn">delete keep in mind</h4>
+            <div class="box">
+                <div class="counter-display-container">
+                    <p id="counter-display">0</p>
+                </div>
+                <input id="counter-input" type="text" name="keepInMind" id="">
+                <h4 id="deleteElementBtn">delete keep in mind</h4>
         </li>
         <h4 id="addPreviousElementBtn">add keep in mind</h4>
-        
+
     </ol>
 
 
@@ -130,73 +148,66 @@
         <option value="Qutaisi">Qutaisi</option>
     </select>
 
-    <input
-        type="text"
-        name="locationLink"
-        value="<%= oldInputValues.locationLink %>"
-        placeholder="locationLink"
-    />
+    <div class="box">
+        <div class="counter-display-container">
+            <p id="counter-display">0</p>
+        </div>
+        <input id="counter-input" type="text" name="locationLink" value="<%= oldInputValues.locationLink %>"
+            placeholder="locationLink" />
+    </div>
+    </div>
     <br />
     <br />
-    <input
-        type="text"
-        name="website"
-        value="<%= oldInputValues.website %>"
-        placeholder="website"
-    />
+    <div class="box">
+        <div class="counter-display-container">
+            <p id="counter-display">0</p>
+        </div>
+        <input id="counter-input" type="text" name="website" value="<%= oldInputValues.website %>"
+            placeholder="website" />
+    </div>
+    </div>
     <br />
     <br />
-    <input
-        type="email"
-        name="email"
-        value="<%= oldInputValues.email %>"
-        placeholder="email"
-    />
+    <div class="box">
+        <div class="counter-display-container">
+            <p id="counter-display">0</p>
+        </div>
+        <input id="counter-input" type="email" name="email" value="<%= oldInputValues.email %>" placeholder="email" />
+    </div>
+    </div>
     <br />
     <br />
-    <input
-        type="text"
-        name="telephone"
-        value="<%= oldInputValues.telephone %>"
-        placeholder="telephone"
-    />
-    <br />
+    <div class="box">
+        <div class="counter-display-container">
+            <p id="counter-display">0</p>
+        </div>
+        <input id="counter-input" type="text" name="telephone" value="<%= oldInputValues.telephone %>"
+            placeholder="telephone" />
+        <br />
 
-  
 
+
+    </div>
+    </div>
     <br />
     <br />
+    </div>
+    </div>
     <br />
     <br /><br />
 
     <label for="card_image">upload card image</label>
-    <input
-        type="file"
-        name="card_image"
-        value="<%= oldInputValues.card_image %>"
-        id=""
-    />
+    <input type="file" name="card_image" value="<%= oldInputValues.card_image %>" id="" />
     <br />
 
     <label for="showcase_images">showcase images</label>
-    <input
-        type="file"
-        name="showcase_images"
-        value="<%= oldInputValues.showcase_images %>"
-        id=""
-        multiple="multiple"
-    />
+    <input type="file" name="showcase_images" value="<%= oldInputValues.showcase_images %>" id="" multiple="multiple" />
     <br />
 
     <label for="about_image">about images</label>
-    <input
-        type="file"
-        name="about_image"
-        value="<%= oldInputValues.about_images %>"
-        id=""
-    />
+    <input type="file" name="about_image" value="<%= oldInputValues.about_images %>" id="" />
     <br />
- 
+
     <button type="submit">add tour</button>
 </form>
 

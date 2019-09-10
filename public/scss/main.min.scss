@@ -10,7 +10,7 @@
 @import "font/_styles";
 @import "font/_sizes";
 
-@import "layout/_flex-boxes";  
+@import "layout/_flex-boxes";   
 @import "layout/_grids";
 
 @import "components/containers";
@@ -25,6 +25,7 @@
 @import "components/_cards";
 @import "components/_arrow_links"; 
 @import "components/loading";
+@import "components/_inputCounters";
 
 @import "pages/_landing";
 @import "pages/_tours";

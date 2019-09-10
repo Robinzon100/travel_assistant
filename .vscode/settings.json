@@ -1,0 +1,4 @@
+{
+    "html.format.indentHandlebars": true,
+    "html.format.unformatted": "wbr,%"
+}

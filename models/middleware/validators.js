@@ -2,13 +2,13 @@ const { check, body } = require("express-validator/check");
 
 exports.cafeBody = [
     //! === === title
-    check("title", "small_description")
-        .not()
-        .isEmpty()
-        .withMessage("title musnt be empty")
-        .trim()
-        .isLength({ min: 5, max: 50 })
-        .withMessage("title musnt be more than 5 characers and less than 50"),
+    // check("title", "small_description")
+    //     .not()
+    //     .isEmpty()
+    //     .withMessage("title musnt be empty")
+    //     .trim()
+    //     .isLength({ min: 5, max: 50 })
+    //     .withMessage("title musnt be more than 5 characers and less than 50"),
 
     // //! === === small description
     // check("small_description")

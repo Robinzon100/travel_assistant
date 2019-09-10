@@ -1,9 +1,8 @@
 <script>
+    // INPUT FOR MENU ITEMS AND RULES 
     let menuItemFileInp = document.querySelector("#menuItemFileInp");
     let menuContainer = document.querySelector("#menu_container");
-    let addPreviousElementBtn = document.querySelectorAll(
-        "#addPreviousElementBtn"
-    );
+    let addPreviousElementBtn = document.querySelectorAll("#addPreviousElementBtn");
     let deleteElementBtn = document.querySelectorAll("#deleteElementBtn");
 
     if (menuItemFileInp) {
@@ -55,45 +54,81 @@
         });
     }
 
-        addPreviousElementBtn.forEach(prevElemBtn => {
-            prevElemBtn.addEventListener("click", _ => {
-                let previousElement = prevElemBtn.previousElementSibling;
-                let clone = previousElement.cloneNode(true);
-                let parent = prevElemBtn.parentElement;
-                previousElement.parentNode.insertBefore(
-                    clone,
-                    previousElement.nextSibling
-                );
+    addPreviousElementBtn.forEach(prevElemBtn => {
+        prevElemBtn.addEventListener("click", _ => {
+            let previousElement = prevElemBtn.previousElementSibling;
+            let clone = previousElement.cloneNode(true);
+            let parent = prevElemBtn.parentElement;
+            previousElement.parentNode.insertBefore(
+                clone,
+                previousElement.nextSibling
+            );
 
-                //? get the delete button again so that every
-                //  button created, event will be given
-                let createdDeleteElementBtn = document.querySelectorAll(
-                    "#deleteElementBtn"
-                );
-                createdDeleteElementBtn.forEach(deletBtn => {
-                    deletBtn.addEventListener("click", _ => {
-                        let parent = deletBtn.parentElement;
-                        parent.remove();
-                    });
+            //? get the delete button again so that every
+            //  button created, event will be given
+            let createdDeleteElementBtn = document.querySelectorAll(
+                "#deleteElementBtn"
+            );
+            createdDeleteElementBtn.forEach(deletBtn => {
+                deletBtn.addEventListener("click", _ => {
+                    let parent = deletBtn.parentElement;
+                    parent.remove();
                 });
             });
         });
+    });
 
-        // eventListForAllElements(addPreviousElementBtn, 'click', prevElemBtn, () =>{})
 
-        function eventListForAllElements(array, typeOdEvent, elemName, func) {
-            array.forEach(elemName => {
-                elemName.addEventListener(typeOdEvent, func);
-            });
-        }
+    function eventListForAllElements(array, typeOdEvent, elemName, func) {
+        array.forEach(elemName => {
+            elemName.addEventListener(typeOdEvent, func);
+        });
+    }
 
-        function apeendChildren(parent, children) {
-            children.forEach(child => {
-                parent.appendChild(child);
-            });
-        }
+    function apeendChildren(parent, children) {
+        children.forEach(child => {
+            parent.appendChild(child);
+        });
+    }
+
+
+
+
+
+
+
+
+
+    // WORD COUNT FOR INPUTS
+    const inputsWithCounter = document.querySelectorAll("#counter-input");
+    
     
 
-    //  <input type="text" name="menu_item_name">
-    //  <input type="text" name="menu_item_description">
+    if (inputsWithCounter) {
+        inputsWithCounter.forEach(input => {
+            input.addEventListener("input", e => {
+                const display = input.previousElementSibling.firstElementChild;
+                const displayContainer = display.parentElement;
+                const maxLetters = input.getAttribute("maxlength");
+
+                console.log(display);
+
+                if (!input.value) {
+                    display.innerHTML = 0;
+                    input.classList.remove("deny-input");
+                    display.classList.remove("deny-display");
+                } else {
+                    display.innerHTML = e.target.value.length;
+
+                    if (e.target.value.length == maxLetters) {
+                        input.classList.add("deny-input");
+                        displayContainer.classList.add("deny-display");
+                    } else {
+                        input.classList.remove("deny-input");
+                        displayContainer.classList.remove("deny-display");
+                    }
+                }
+            });
+        });
+    }
 </script>
