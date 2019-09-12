@@ -24,7 +24,7 @@ router.post("/add-tour", isAuth.adminAuth, adminControllers.postAddTour);
 router.get('/add-cafe', adminControllers.getAddCafe);
 router.post('/add-cafe',  
             validate.cafeBody,
-            multer.imageErrorHandler,
+            multer.uploadCafeImages,
             adminControllers.postAddCafe);
 
 

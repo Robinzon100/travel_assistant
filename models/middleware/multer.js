@@ -1,33 +1,38 @@
 const multer = require("multer");
 const fs = require('fs');
 
-// exports.getPostCategoryName = async(req, res, next) => {
-//     let typeOfPost = await req.body;
-//     return  typeOfPost;
-// };
-
 //!─── CAFE PAGE IMAGES ────────────────────────────────────────────
 let routerCall = 0;
+
+if (routerCall > 0) {
+    routerCall = 0;
+}
+
+
+
+
 const storage = multer.diskStorage({
     //? FILE DESTINATION
     destination: async (req, file, cb) => {
         let body = await req.body;
         const dir = `images/${body.typeOfPost}/${body.establishment_name}`;
 
-        if (routerCall == 0) {
-            checkDirectory()
-            fs.mkdirSync(dir);
+        if (fs.existsSync(dir)) {
+            cb(null, dir);
+        } else {
+            fs.mkdirSync(dir, err => cb(err, dir))
+            cb(null, dir);
         }
 
-        routerCall++;
-        cb(null, dir);
+      
+ 
     },
 
-    //? ON ERROR
-    onError: async (req, file, cb) => {
-        req.flash('error', 'file must be no more than 30KB and JPEG or PNG')
-        next();
-    },
+    // //? ON ERROR
+    // onError: async (req, file, cb) => {
+    //     req.flash('error', 'file must be no more than 30KB and JPEG or PNG')
+    //     next();
+    // },
 
     //? FILE NAME
     filename: async (req, file, cb) => {
@@ -39,8 +44,6 @@ const storage = multer.diskStorage({
 
 
 
-// const cpUpload = multer.fields([{ name: 'avatar', maxCount: 1 }, { name: 'gallery', maxCount: 8 }])
-
 
 const maxSize = 3000000;
 
@@ -48,12 +51,7 @@ const options = {
     storage: storage,
     limits: { fileSize: maxSize },
     fileFilter: (req, file, cb) => {
-        if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
-            cb(null, true);
-        } else {
-            console.log('Only .png, .jpg and .jpeg format allowed!');
-            cb(null, false);
-        }
+        sanitizeFile(file, cb);
     }
 }
 
@@ -67,23 +65,69 @@ exports.uploadCafeImages = multer(options).fields([
 
 
 
-exports.imageErrorHandler = (req, res) => {
-    this.uploadCafeImages(req, res, function (err) {
-        if (err instanceof multer.MulterError) {
-            console.log('this' + err.message + "=====> " + err.field)
-        } else if (err) {
-            // An unknown error occurred when uploading.
-        }
 
-        // Everything went fine.
-    })
+
+
+
+const sanitizeFile = (file, cb) => {
+    // Define the allowed extension
+    let fileExts = ['png', 'jpg', 'jpeg']
+    // Check allowed extensions
+    let isAllowedExt = fileExts.includes(file.originalname.split('.')[1].toLowerCase());
+    // Mime type must be an image
+    let isAllowedMimeType = file.mimetype.startsWith("image/")
+    if (isAllowedExt && isAllowedMimeType) {
+        return cb(null, true) // no errors
+    }
+    else {
+        // pass error msg to callback, which can be displaye in frontend
+        cb(res.send('Error: File type not allowed!'))
+    }
 }
 
 
 
 
+// exports.imageErrorHandler = (req, res) => {
+//     this.uploadCafeImages(req, res, function (err) {
+//         if (err instanceof multer.MulterError) {
+//             res.send('this' + err.message + "=====> " + err.field)
+//         } else if (err) {
+
+//         }
+//     })
+// }
 
 
+
+
+
+
+//var rimraf = require("rimraf");
+
+// exports.getPostCategoryName = async(req, res, next) => {
+//     let typeOfPost = await req.body;
+//     return  typeOfPost;
+// };
+
+// const getLocationLink = (locationLink) => {
+//     return parsedLocationLink = locationLink
+//         .split(" ")[1]
+//         .slice(4)
+//         .replace(/['"]+/g, "");
+// }
+
+// const emptyDir = (dir) =>{
+//     fs.readdir(dir, (err, files) => {
+//         if (err) throw err;
+
+//         for (const file of files) {
+//             fs.unlink(path.join(dir, file), err => {
+//                 if (err) throw err;
+//             });
+//         }
+//     });
+// }
 
 
 
@@ -116,7 +160,7 @@ exports.imageErrorHandler = (req, res) => {
 
 // fs.readdir(directory, (err, files) => {
 //     if (err) throw err;
-  
+
 //     for (const file of files) {
 //       fs.unlink(path.join(directory, file), err => {
 //         if (err) throw err;
