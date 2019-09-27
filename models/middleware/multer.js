@@ -9,6 +9,19 @@ if (routerCall > 0) {
 }
 
 
+// uploadCafeImages(req, res, err => {
+//     if (err) {
+//         if (err.code === 'LIMIT_FILE_SIZE') {
+//             console.log("THE FILE IS TOO LARGE")
+//         } else {
+//             var result = {
+//                 'status': 'Fail',
+//                 'error': err
+//             };
+//             res.end(result);
+//         }
+//     }
+// })
 
 
 const storage = multer.diskStorage({
@@ -24,15 +37,15 @@ const storage = multer.diskStorage({
             cb(null, dir);
         }
 
-      
- 
+       
     },
 
-    // //? ON ERROR
+    // // //? ON ERROR
     // onError: async (req, file, cb) => {
     //     req.flash('error', 'file must be no more than 30KB and JPEG or PNG')
     //     next();
     // },
+    
 
     //? FILE NAME
     filename: async (req, file, cb) => {
@@ -45,13 +58,13 @@ const storage = multer.diskStorage({
 
 
 
-const maxSize = 3000000;
+const maxSize = 800000;
 
 const options = {
     storage: storage,
     limits: { fileSize: maxSize },
     fileFilter: (req, file, cb) => {
-        sanitizeFile(file, cb);
+        sanitizeFile(req, file, cb);
     }
 }
 
@@ -69,7 +82,11 @@ exports.uploadCafeImages = multer(options).fields([
 
 
 
-const sanitizeFile = (file, cb) => {
+
+
+
+
+const sanitizeFile = (req, file, cb) => {
     // Define the allowed extension
     let fileExts = ['png', 'jpg', 'jpeg']
     // Check allowed extensions
@@ -81,7 +98,8 @@ const sanitizeFile = (file, cb) => {
     }
     else {
         // pass error msg to callback, which can be displaye in frontend
-        cb(res.send('Error: File type not allowed!'))
+        
+        cb(console.log('Error: File type not allowed!'))
     }
 }
 
